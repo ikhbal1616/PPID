@@ -306,7 +306,22 @@ class PermohonanController extends Controller
             'pengaduan' => Permohonan::where('kategori', 'pengaduan')->count(),
         ];
 
-        return view('admin.profil-ppid', compact('sidebarCounts'));
+        $checkpointsJson = setting('profil_ppid_checkpoints');
+        $checkpoints = [];
+        if ($checkpointsJson) {
+            $checkpoints = json_decode($checkpointsJson, true);
+        }
+        
+        if (empty($checkpoints)) {
+            $checkpoints = [
+                ['title' => 'Layanan Informasi Cepat', 'desc' => 'Proses verifikasi dokumen cepat dan transparan.'],
+                ['title' => 'Akses Terbuka & Efisien', 'desc' => 'Dapat diakses secara online dari mana saja dan kapan saja.'],
+                ['title' => 'Pendokumentasian Akurat', 'desc' => 'Arsip digital terdokumentasi dengan standar keamanan tinggi.'],
+                ['title' => 'Dukungan Civitas Akademika', 'desc' => 'Terintegrasi dengan seluruh unit kerja pelayanan universitas.'],
+            ];
+        }
+
+        return view('admin.profil-ppid', compact('sidebarCounts', 'checkpoints'));
     }
 
     /**
