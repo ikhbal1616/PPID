@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PermohonanController;
 
 Route::get('/', function () {
-    return view('user.welcome');
+    return view('user.halaman-utama');
 });
 
 Route::get('/profil', function () {
@@ -100,6 +100,10 @@ Route::get('/admin/tentang', [PermohonanController::class, 'profilIndex'])->name
 Route::post('/admin/tentang/update', [PermohonanController::class, 'profilUpdate'])->name('admin.tentang.update');
 Route::get('/admin/slide-show', [PermohonanController::class, 'slideShowIndex'])->name('admin.slide-show.index');
 Route::post('/admin/slide-show/update', [PermohonanController::class, 'profilUpdate'])->name('admin.slide-show.update');
+Route::get('/admin/profil-ppid', [PermohonanController::class, 'profilPpidIndex'])->name('admin.profil-ppid.index');
+Route::post('/admin/profil-ppid/update', [PermohonanController::class, 'profilUpdate'])->name('admin.profil-ppid.update');
+Route::get('/admin/agenda-kegiatan', [PermohonanController::class, 'agendaKegiatanIndex'])->name('admin.agenda-kegiatan.index');
+Route::post('/admin/agenda-kegiatan/update', [PermohonanController::class, 'profilUpdate'])->name('admin.agenda-kegiatan.update');
 Route::post('/admin/upload-file', [PermohonanController::class, 'uploadFile'])->name('admin.upload-file');
 
 Route::get('/admin/informasi-publik-berkala', [PermohonanController::class, 'informasiPublikBerkalaIndex'])->name('admin.informasi-publik-berkala.index');

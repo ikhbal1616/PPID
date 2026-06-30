@@ -107,6 +107,7 @@
                     </div>
 
                     <a href="/#news" class="hover:text-brand-green-600 transition-colors">Kilas Berita</a>
+                    <a href="/#agenda" class="hover:text-brand-green-600 transition-colors">Agenda</a>
                     <a href="/galeri" class="text-brand-green-600 transition-colors relative after:absolute after:bottom-[-6px] after:left-0 after:w-full after:h-[2px] after:bg-brand-green-500">Galeri</a>
                     <a href="/dokumen" class="hover:text-brand-green-600 transition-colors">Dokumen</a>
                 </nav>
@@ -163,6 +164,7 @@
                     <hr class="border-slate-100">
 
                     <a href="/#news" class="block py-2 hover:text-brand-green-600">Kilas Berita</a>
+                    <a href="/#agenda" class="block py-2 hover:text-brand-green-600">Agenda</a>
                     <a href="/galeri" class="block py-2 pl-4 text-xs text-brand-green-600 font-bold">Galeri</a>
                     <a href="/dokumen" class="block py-2 hover:text-brand-green-600">Dokumen</a>
                 </div>

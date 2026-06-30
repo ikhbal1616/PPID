@@ -295,6 +295,36 @@ class PermohonanController extends Controller
     }
 
     /**
+     * Display the Profil PPID edit page.
+     */
+    public function profilPpidIndex()
+    {
+        $sidebarCounts = [
+            'permohonan' => Permohonan::where('kategori', 'permohonan')->count(),
+            'keberatan' => Permohonan::where('kategori', 'keberatan')->count(),
+            'penyalahgunaan' => Permohonan::where('kategori', 'penyalahgunaan')->count(),
+            'pengaduan' => Permohonan::where('kategori', 'pengaduan')->count(),
+        ];
+
+        return view('admin.profil-ppid', compact('sidebarCounts'));
+    }
+
+    /**
+     * Display the Agenda Kegiatan edit page.
+     */
+    public function agendaKegiatanIndex()
+    {
+        $sidebarCounts = [
+            'permohonan' => Permohonan::where('kategori', 'permohonan')->count(),
+            'keberatan' => Permohonan::where('kategori', 'keberatan')->count(),
+            'penyalahgunaan' => Permohonan::where('kategori', 'penyalahgunaan')->count(),
+            'pengaduan' => Permohonan::where('kategori', 'pengaduan')->count(),
+        ];
+
+        return view('admin.agenda-kegiatan', compact('sidebarCounts'));
+    }
+
+    /**
      * Update website profile content dynamically.
      */
     public function profilUpdate(Request $request)

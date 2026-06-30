@@ -52,6 +52,18 @@
                         <span>Slide Show</span>
                     </a>
 
+                    <!-- Profil PPID -->
+                    <a href="/admin/profil-ppid" class="flex items-center space-x-3 hover:bg-brand-green-900/40 hover:text-white px-3 py-3 rounded-lg transition-all text-slate-400">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                        <span>Profil PPID</span>
+                    </a>
+
+                    <!-- Agenda Kegiatan -->
+                    <a href="/admin/agenda-kegiatan" class="flex items-center space-x-3 hover:bg-brand-green-900/40 hover:text-white px-3 py-3 rounded-lg transition-all text-slate-400">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        <span>Agenda Kegiatan</span>
+                    </a>
+
                     <span class="block px-3 py-2 text-[10px] text-brand-green-600 uppercase tracking-widest font-bold pt-4">Permohonan</span>
 
                     <a href="/admin/permohonan" class="flex items-center space-x-3 hover:bg-brand-green-900/40 hover:text-white px-3 py-3 rounded-lg transition-all text-slate-400">
@@ -174,14 +186,20 @@
                 </div>
                 @endif
 
-                <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
+                <div class="space-y-6">
                     
-                    <!-- COLUMN 1: SLIDE LIST (Takes 5 cols on large screen) -->
-                    <div class="xl:col-span-5 space-y-4">
+                    <!-- SLIDE LIST (Full width, matching page boundaries) -->
+                    <div class="space-y-4">
                         <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden p-6 space-y-4">
                             <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-                                <h3 class="text-sm font-bold text-slate-950 font-display uppercase tracking-wider">Daftar Slide Banner</h3>
-                                <span class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-0.5 rounded-full" id="slide-count">0 Slide</span>
+                                <div class="flex items-center space-x-2">
+                                    <h3 class="text-sm font-bold text-slate-950 font-display uppercase tracking-wider">Daftar Slide Banner</h3>
+                                    <span class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-0.5 rounded-full" id="slide-count">0 Slide</span>
+                                </div>
+                                <button type="button" onclick="openSlideModalForAdd()" class="px-3.5 py-2 bg-brand-green-50 hover:bg-brand-green-100 text-brand-green-700 hover:text-brand-green-800 text-[11px] font-bold rounded-xl transition-all flex items-center space-x-1 cursor-pointer transform active:scale-95">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
+                                    <span>Tambah Slide Baru</span>
+                                </button>
                             </div>
 
                             <!-- List Container -->
@@ -201,142 +219,156 @@
                         </div>
                     </div>
 
-                    <!-- COLUMN 2: FORM TAMBAH / EDIT SLIDE (Takes 7 cols) -->
-                    <div class="xl:col-span-7">
-                        <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden p-6 space-y-6">
-                            <div class="border-b border-slate-100 pb-3 flex justify-between items-center">
-                                <h3 class="text-sm font-bold text-slate-950 font-display uppercase tracking-wider" id="form-title">Form Tambah/Edit Slide</h3>
-                                <button type="button" onclick="resetFormState()" class="text-xs text-rose-500 hover:underline font-bold flex items-center space-x-1 cursor-pointer">
-                                    <span>Batal / Bersihkan</span>
-                                </button>
-                            </div>
-
-                            <div class="space-y-5">
-                                <!-- Background Image Picker/Uploader -->
-                                <div>
-                                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Gambar Latar Belakang (Slider)</label>
-                                    <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
-                                        <div class="md:col-span-4">
-                                            <div class="relative w-full h-24 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 flex items-center justify-center shadow-inner">
-                                                <img id="image-preview" src="/images/slider1.png" class="w-full h-full object-cover" alt="Preview Image">
-                                                <div id="upload-spinner" class="absolute inset-0 bg-black/40 flex items-center justify-center hidden">
-                                                    <svg class="animate-spin h-6 w-6 text-white" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="md:col-span-8 space-y-2">
-                                            <input type="file" id="file-uploader" onchange="uploadSlideImage(this)" class="hidden" accept="image/*">
-                                            <button type="button" onclick="document.getElementById('file-uploader').click()" class="w-full py-2.5 px-4 bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-800 text-xs font-bold rounded-xl transition-all cursor-pointer flex items-center justify-center space-x-2">
-                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                                                <span>Pilih & Unggah Gambar Baru</span>
-                                            </button>
-                                            <div class="flex items-center space-x-2">
-                                                <span class="text-[10px] text-slate-400 font-bold uppercase">Atau URL:</span>
-                                                <input type="text" id="slide-image-url" oninput="updatePreviewFromUrl()" class="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-1.5 text-xs focus:ring-2 focus:ring-brand-green-600 focus:bg-white transition-all" placeholder="/images/slider1.png">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="text-[10px] text-slate-400 mt-2 font-medium">Rekomendasi ukuran gambar: 1920x1080 piksel (Widescreen landscape).</p>
-                                </div>
-
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <!-- Badge -->
-                                    <div>
-                                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Teks Badge Atas</label>
-                                        <input type="text" id="slide-badge" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-brand-green-600 focus:bg-white transition-all font-semibold" placeholder="Contoh: Layanan Publik Informatif">
-                                    </div>
-
-                                    <!-- Title Line 1 -->
-                                    <div>
-                                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Judul Baris 1</label>
-                                        <input type="text" id="slide-title-line1" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-brand-green-600 focus:bg-white transition-all font-semibold" placeholder="Contoh: Keterbukaan Informasi">
-                                    </div>
-                                </div>
-
-                                <!-- Title Line 2 (Highlight Gold) -->
-                                <div>
-                                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Judul Baris 2 (Highlight Emas)</label>
-                                    <input type="text" id="slide-title-line2" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-brand-green-600 focus:bg-white transition-all font-bold text-brand-gold-600" placeholder="Contoh: Universitas Baiturrahmah">
-                                </div>
-
-                                <!-- Description -->
-                                <div>
-                                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Deskripsi Lengkap</label>
-                                    <textarea id="slide-description" rows="3" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-brand-green-600 focus:bg-white transition-all leading-relaxed" placeholder="Tulis deskripsi penjelasan slide show..."></textarea>
-                                </div>
-
-                                <hr class="border-slate-100">
-
-                                <!-- BUTTON 1 SETTINGS -->
-                                <div class="space-y-4">
-                                    <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Tombol Kiri (Utama)</h4>
-                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                        <div>
-                                            <label class="block text-[10px] text-slate-500 font-bold uppercase mb-1">Teks Tombol</label>
-                                            <input type="text" id="btn1-text" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-brand-green-600 focus:bg-white transition-all" placeholder="Ajukan Informasi Sekarang">
-                                        </div>
-                                        <div>
-                                            <label class="block text-[10px] text-slate-500 font-bold uppercase mb-1">Aksi Tombol</label>
-                                            <select id="btn1-action" onchange="toggleLinkInput(1)" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-brand-green-600 focus:bg-white transition-all">
-                                                <option value="link">Buka URL Link</option>
-                                                <option value="permohonan">Buka Form Permohonan</option>
-                                                <option value="keberatan">Buka Form Keberatan</option>
-                                                <option value="penyalahgunaan">Buka Form Penyalahgunaan</option>
-                                                <option value="pengaduan">Buka Form Pengaduan</option>
-                                                <option value="none">Sembunyikan Tombol</option>
-                                            </select>
-                                        </div>
-                                        <div id="btn1-link-wrapper">
-                                            <label class="block text-[10px] text-slate-500 font-bold uppercase mb-1">Link URL</label>
-                                            <input type="text" id="btn1-link" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-brand-green-600 focus:bg-white transition-all" placeholder="/profil atau #about">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <hr class="border-slate-100">
-
-                                <!-- BUTTON 2 SETTINGS -->
-                                <div class="space-y-4">
-                                    <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Tombol Kanan (Sekunder)</h4>
-                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                        <div>
-                                            <label class="block text-[10px] text-slate-500 font-bold uppercase mb-1">Teks Tombol</label>
-                                            <input type="text" id="btn2-text" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-brand-green-600 focus:bg-white transition-all" placeholder="Pelajari Selengkapnya">
-                                        </div>
-                                        <div>
-                                            <label class="block text-[10px] text-slate-500 font-bold uppercase mb-1">Aksi Tombol</label>
-                                            <select id="btn2-action" onchange="toggleLinkInput(2)" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-brand-green-600 focus:bg-white transition-all">
-                                                <option value="link">Buka URL Link</option>
-                                                <option value="permohonan">Buka Form Permohonan</option>
-                                                <option value="keberatan">Buka Form Keberatan</option>
-                                                <option value="penyalahgunaan">Buka Form Penyalahgunaan</option>
-                                                <option value="pengaduan">Buka Form Pengaduan</option>
-                                                <option value="none">Sembunyikan Tombol</option>
-                                            </select>
-                                        </div>
-                                        <div id="btn2-link-wrapper">
-                                            <label class="block text-[10px] text-slate-500 font-bold uppercase mb-1">Link URL</label>
-                                            <input type="text" id="btn2-link" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-brand-green-600 focus:bg-white transition-all" placeholder="#about">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="pt-3 border-t border-slate-100 flex justify-end gap-3">
-                                    <button type="button" onclick="saveSlideItem()" id="submit-slide-btn" class="px-6 py-3 bg-brand-green-600 hover:bg-brand-green-700 text-white rounded-xl text-xs font-bold transition-all flex items-center space-x-1.5 cursor-pointer transform active:scale-95 shadow-md">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                        <span id="submit-slide-btn-text">Tambahkan Slide</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
 
             </main>
 
         </div>
 
+    </div>
+
+    <!-- MODAL FOR TAMBAH / EDIT SLIDE -->
+    <div id="slide-modal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+        <!-- Backdrop overlay with blur effect -->
+        <div class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity duration-300 opacity-0" id="slide-modal-backdrop" onclick="closeSlideModal()"></div>
+
+        <!-- Center modal contents -->
+        <div class="flex min-h-screen items-center justify-center p-4">
+            <!-- Modal Box -->
+            <div class="relative bg-white rounded-3xl border border-slate-200 shadow-2xl overflow-hidden w-full max-w-3xl transform transition-all duration-300 scale-95 opacity-0 z-10" id="slide-modal-content">
+                <!-- Close Button in Header -->
+                <button type="button" onclick="closeSlideModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 hover:bg-slate-100 p-2 rounded-xl transition-all cursor-pointer">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+
+                <div class="p-6 md:p-8 space-y-6">
+                    <div class="border-b border-slate-100 pb-3">
+                        <h3 class="text-sm font-bold text-slate-950 font-display uppercase tracking-wider" id="form-title">Form Tambah/Edit Slide</h3>
+                    </div>
+
+                    <div class="space-y-5">
+                        <!-- Background Image Picker/Uploader -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Gambar Latar Belakang (Slider)</label>
+                            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+                                <div class="md:col-span-4">
+                                    <div class="relative w-full h-24 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 flex items-center justify-center shadow-inner">
+                                        <img id="image-preview" src="/images/slider1.png" class="w-full h-full object-cover" alt="Preview Image">
+                                        <div id="upload-spinner" class="absolute inset-0 bg-black/40 flex items-center justify-center hidden">
+                                            <svg class="animate-spin h-6 w-6 text-white" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="md:col-span-8 space-y-2">
+                                    <input type="file" id="file-uploader" onchange="uploadSlideImage(this)" class="hidden" accept="image/*">
+                                    <button type="button" onclick="document.getElementById('file-uploader').click()" class="w-full py-2.5 px-4 bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-800 text-xs font-bold rounded-xl transition-all cursor-pointer flex items-center justify-center space-x-2">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                        <span>Pilih & Unggah Gambar Baru</span>
+                                    </button>
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-[10px] text-slate-400 font-bold uppercase">Atau URL:</span>
+                                        <input type="text" id="slide-image-url" oninput="updatePreviewFromUrl()" class="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-1.5 text-xs focus:ring-2 focus:ring-brand-green-600 focus:bg-white transition-all" placeholder="/images/slider1.png">
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-[10px] text-slate-400 mt-2 font-medium">Rekomendasi ukuran gambar: 1920x1080 piksel (Widescreen landscape).</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Badge -->
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Teks Badge Atas</label>
+                                <input type="text" id="slide-badge" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-brand-green-600 focus:bg-white transition-all font-semibold" placeholder="Contoh: Layanan Publik Informatif">
+                            </div>
+
+                            <!-- Title Line 1 -->
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Judul Baris 1</label>
+                                <input type="text" id="slide-title-line1" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-brand-green-600 focus:bg-white transition-all font-semibold" placeholder="Contoh: Keterbukaan Informasi">
+                            </div>
+                        </div>
+
+                        <!-- Title Line 2 (Highlight Gold) -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Judul Baris 2 (Highlight Emas)</label>
+                            <input type="text" id="slide-title-line2" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-brand-green-600 focus:bg-white transition-all font-bold text-brand-gold-600" placeholder="Contoh: Universitas Baiturrahmah">
+                        </div>
+
+                        <!-- Description -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Deskripsi Lengkap</label>
+                            <textarea id="slide-description" rows="3" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-brand-green-600 focus:bg-white transition-all leading-relaxed" placeholder="Tulis deskripsi penjelasan slide show..."></textarea>
+                        </div>
+
+                        <hr class="border-slate-100">
+
+                        <!-- BUTTON 1 SETTINGS -->
+                        <div class="space-y-4">
+                            <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Tombol Kiri (Utama)</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div>
+                                    <label class="block text-[10px] text-slate-500 font-bold uppercase mb-1">Teks Tombol</label>
+                                    <input type="text" id="btn1-text" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-brand-green-600 focus:bg-white transition-all" placeholder="Ajukan Informasi Sekarang">
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] text-slate-500 font-bold uppercase mb-1">Aksi Tombol</label>
+                                    <select id="btn1-action" onchange="toggleLinkInput(1)" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-brand-green-600 focus:bg-white transition-all">
+                                        <option value="link">Buka URL Link</option>
+                                        <option value="permohonan">Buka Form Permohonan</option>
+                                        <option value="keberatan">Buka Form Keberatan</option>
+                                        <option value="penyalahgunaan">Buka Form Penyalahgunaan</option>
+                                        <option value="pengaduan">Buka Form Pengaduan</option>
+                                        <option value="none">Sembunyikan Tombol</option>
+                                    </select>
+                                </div>
+                                <div id="btn1-link-wrapper">
+                                    <label class="block text-[10px] text-slate-500 font-bold uppercase mb-1">Link URL</label>
+                                    <input type="text" id="btn1-link" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-brand-green-600 focus:bg-white transition-all" placeholder="/profil atau #about">
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="border-slate-100">
+
+                        <!-- BUTTON 2 SETTINGS -->
+                        <div class="space-y-4">
+                            <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Tombol Kanan (Sekunder)</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div>
+                                    <label class="block text-[10px] text-slate-500 font-bold uppercase mb-1">Teks Tombol</label>
+                                    <input type="text" id="btn2-text" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-brand-green-600 focus:bg-white transition-all" placeholder="Pelajari Selengkapnya">
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] text-slate-500 font-bold uppercase mb-1">Aksi Tombol</label>
+                                    <select id="btn2-action" onchange="toggleLinkInput(2)" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-brand-green-600 focus:bg-white transition-all">
+                                        <option value="link">Buka URL Link</option>
+                                        <option value="permohonan">Buka Form Permohonan</option>
+                                        <option value="keberatan">Buka Form Keberatan</option>
+                                        <option value="penyalahgunaan">Buka Form Penyalahgunaan</option>
+                                        <option value="pengaduan">Buka Form Pengaduan</option>
+                                        <option value="none">Sembunyikan Tombol</option>
+                                    </select>
+                                </div>
+                                <div id="btn2-link-wrapper">
+                                    <label class="block text-[10px] text-slate-500 font-bold uppercase mb-1">Link URL</label>
+                                    <input type="text" id="btn2-link" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-brand-green-600 focus:bg-white transition-all" placeholder="#about">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-3 border-t border-slate-100 flex justify-end gap-3">
+                            <button type="button" onclick="closeSlideModal()" class="px-5 py-3 border border-slate-200 hover:bg-slate-50 text-slate-700 rounded-xl text-xs font-bold transition-all cursor-pointer transform active:scale-95 shadow-sm">
+                                Batal / Tutup
+                            </button>
+                            <button type="button" onclick="saveSlideItem()" id="submit-slide-btn" class="px-6 py-3 bg-brand-green-600 hover:bg-brand-green-700 text-white rounded-xl text-xs font-bold transition-all flex items-center space-x-1.5 cursor-pointer transform active:scale-95 shadow-md">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span id="submit-slide-btn-text">Tambahkan Slide</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- GLOBAL JAVASCRIPT FOR SIDEBAR TOGGLE & DYNAMIC MANAGEMENT -->
@@ -580,7 +612,7 @@
             }
 
             resetFormState();
-            renderSlidesList();
+            closeSlideModal(true); // Close modal and skip duplicate reset
         }
 
         // Load item into Form for editing
@@ -611,6 +643,7 @@
             document.getElementById('submit-slide-btn').className = "px-6 py-3 bg-brand-gold-500 hover:bg-brand-gold-600 text-brand-green-950 rounded-xl text-xs font-bold transition-all flex items-center space-x-1.5 cursor-pointer transform active:scale-95 shadow-md";
 
             renderSlidesList(); // Re-render to highlight active editing item
+            openSlideModal(); // Open popup modal
         }
 
         // Delete slide item from array
@@ -644,6 +677,48 @@
             }
 
             renderSlidesList();
+        }
+
+        // Modal opening/closing animations logic
+        function openSlideModal() {
+            const modal = document.getElementById('slide-modal');
+            const backdrop = document.getElementById('slide-modal-backdrop');
+            const content = document.getElementById('slide-modal-content');
+
+            modal.classList.remove('hidden');
+            
+            // Force repaint
+            void modal.offsetHeight;
+
+            backdrop.classList.remove('opacity-0');
+            backdrop.classList.add('opacity-100');
+
+            content.classList.remove('scale-95', 'opacity-0');
+            content.classList.add('scale-100', 'opacity-100');
+        }
+
+        function closeSlideModal(skipReset = false) {
+            const modal = document.getElementById('slide-modal');
+            const backdrop = document.getElementById('slide-modal-backdrop');
+            const content = document.getElementById('slide-modal-content');
+
+            backdrop.classList.remove('opacity-100');
+            backdrop.classList.add('opacity-0');
+
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                if (!skipReset) {
+                    resetFormState();
+                }
+            }, 300);
+        }
+
+        function openSlideModalForAdd() {
+            resetFormState();
+            openSlideModal();
         }
 
         // Reset form state to "Add Slide"

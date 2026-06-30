@@ -384,33 +384,30 @@
                     <span>Profil PPID Universitas Baiturrahmah</span>
                 </div>
                 <h2 class="text-3xl sm:text-4xl font-bold font-display tracking-tight text-slate-900 leading-tight">
-                    Mewujudkan Transparansi Informasi Akademik yang Terpercaya
+                    {{ setting('profil_ppid_title', 'Mewujudkan Transparansi Informasi Akademik yang Terpercaya') }}
                 </h2>
-                <p class="text-slate-600 text-sm md:text-base leading-relaxed">
-                    Sesuai dengan amanat Undang-Undang Nomor 14 Tahun 2008 tentang Keterbukaan Informasi Publik (KIP), Universitas Baiturrahmah berkomitmen penuh menyediakan wadah bagi publik untuk mengakses informasi secara efisien.
+                <p class="text-slate-600 text-sm md:text-base leading-relaxed whitespace-pre-line text-justify">
+                    {{ setting('profil_ppid_description', "Sesuai dengan amanat Undang-Undung Nomor 14 Tahun 2008 tentang Keterbukaan Informasi Publik (KIP), Universitas Baiturrahmah berkomitmen penuh menyediakan wadah bagi publik untuk mengakses informasi secara efisien.\n\nPejabat Pengelola Informasi dan Dokumentasi (PPID) Universitas Baiturrahmah bertugas mengkoordinasikan pengumpulan, penyimpanan, pendokumentasian, dan penyediaan layanan informasi publik yang dapat diakses oleh masyarakat umum, civitas akademika, maupun instansi terkait secara transparan dan akuntabel.") }}
                 </p>
-                <p class="text-slate-600 text-sm leading-relaxed">
-                    Pejabat Pengelola Informasi dan Dokumentasi (PPID) Universitas Baiturrahmah bertugas mengkoordinasikan pengumpulan, penyimpanan, pendokumentasian, dan penyediaan layanan informasi publik yang dapat diakses oleh masyarakat umum, civitas akademika, maupun instansi terkait secara transparan dan akuntabel.
-                </p>
+                @php
+                    $checkpointsJson = setting('profil_ppid_checkpoints');
+                    $checkpoints = $checkpointsJson ? json_decode($checkpointsJson, true) : [
+                        ['title' => setting('profil_ppid_check1_title', 'Layanan Online 24/7'), 'desc' => setting('profil_ppid_check1_desc', 'Pengajuan form kapan saja dan di mana saja.')],
+                        ['title' => setting('profil_ppid_check2_title', 'Respons Cepat & Terukur'), 'desc' => setting('profil_ppid_check2_desc', 'Pemrosesan maksimal 10 hari kerja.')]
+                    ];
+                @endphp
                 <div class="grid grid-cols-2 gap-4 pt-4">
+                    @foreach ($checkpoints as $item)
                     <div class="flex items-start space-x-3">
-                        <div class="w-6 h-6 rounded bg-brand-green-100 flex items-center justify-center text-brand-green-600 mt-1">
+                        <div class="w-6 h-6 rounded bg-brand-green-100 flex items-center justify-center text-brand-green-600 mt-1 flex-shrink-0">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                         </div>
                         <div>
-                            <h4 class="font-bold text-slate-800 text-sm">Layanan Online 24/7</h4>
-                            <p class="text-slate-500 text-[11px] mt-0.5">Pengajuan form kapan saja dan di mana saja.</p>
+                            <h4 class="font-bold text-slate-800 text-sm">{{ $item['title'] }}</h4>
+                            <p class="text-slate-500 text-[11px] mt-0.5">{{ $item['desc'] }}</p>
                         </div>
                     </div>
-                    <div class="flex items-start space-x-3">
-                        <div class="w-6 h-6 rounded bg-brand-green-100 flex items-center justify-center text-brand-green-600 mt-1">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-800 text-sm">Respons Cepat & Terukur</h4>
-                            <p class="text-slate-500 text-[11px] mt-0.5">Pemrosesan maksimal 10 hari kerja.</p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
 
@@ -418,16 +415,16 @@
             <div class="reveal-right relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white group">
                 <div class="absolute inset-0 bg-brand-green-950/20 group-hover:bg-brand-green-950/10 transition-colors z-10 duration-300"></div>
                 <!-- Mock YouTube Video / Image Preview (Using slider image for high visual appeal) -->
-                <img src="/images/slider2.png" alt="PPID Video Preview" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-700">
+                <img src="{{ setting('profil_ppid_video_image', '/images/slider2.png') }}" alt="PPID Video Preview" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-700">
                 <!-- Play Button Action -->
                 <div class="absolute inset-0 flex items-center justify-center z-20">
-                    <a href="https://www.youtube.com/embed/jXZVBE2wbs0" target="_blank" class="w-16 h-16 rounded-full bg-brand-gold-500 hover:bg-brand-gold-600 text-brand-green-950 flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-300 cursor-pointer">
+                    <a href="{{ setting('profil_ppid_video_url', 'https://www.youtube.com/embed/jXZVBE2wbs0') }}" target="_blank" class="w-16 h-16 rounded-full bg-brand-gold-500 hover:bg-brand-gold-600 text-brand-green-950 flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-300 cursor-pointer">
                         <svg class="w-8 h-8 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
                     </a>
                 </div>
                 <div class="absolute bottom-4 left-4 right-4 z-20 bg-brand-green-950/80 backdrop-blur rounded-xl p-3 border border-white/15">
-                    <span class="text-brand-gold-500 text-[10px] font-bold tracking-widest uppercase">Video Profil</span>
-                    <h4 class="text-white text-xs font-bold mt-0.5">Panduan Alur Permohonan Informasi Publik Unbrah</h4>
+                    <span class="text-brand-gold-500 text-[10px] font-bold tracking-widest uppercase">{{ setting('profil_ppid_video_label', 'Video Profil') }}</span>
+                    <h4 class="text-white text-xs font-bold mt-0.5">{{ setting('profil_ppid_video_title', 'Panduan Alur Permohonan Informasi Publik Unbrah') }}</h4>
                 </div>
             </div>
         </div>
@@ -438,71 +435,62 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center space-y-4 mb-16">
                 <span class="inline-block bg-brand-gold-500/10 text-brand-gold-500 border border-brand-gold-500/20 text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full">Agenda Kegiatan</span>
-                <h2 class="text-3xl sm:text-4xl font-bold font-display tracking-tight">Timeline & Jadwal Aktivitas PPID</h2>
+                <h2 class="text-3xl sm:text-4xl font-bold font-display tracking-tight">
+                    {{ setting('agenda_kegiatan_title', 'Timeline & Jadwal Aktivitas PPID') }}
+                </h2>
                 <p class="text-slate-400 text-sm max-w-xl mx-auto leading-relaxed">
-                    Ikuti jadwal pelaksanaan kegiatan, sosialisasi, dan monitoring keterbukaan informasi publik terbaru dari kami.
+                    {{ setting('agenda_kegiatan_desc', 'Ikuti jadwal pelaksanaan kegiatan, sosialisasi, dan monitoring keterbukaan informasi publik terbaru dari kami.') }}
                 </p>
             </div>
 
             <!-- Horizontal Timeline / Stepper (Responsive) -->
+            @php
+                $agendaJson = setting('agenda_kegiatan_list');
+                $agendas = $agendaJson ? json_decode($agendaJson, true) : [
+                    [
+                        'date' => '15 Juli 2026',
+                        'title' => 'Sosialisasi Keterbukaan Informasi',
+                        'desc' => 'Seminar dan workshop keterbukaan dokumen publik bagi seluruh jajaran struktural universitas.',
+                        'location' => 'Kampus Unbrah'
+                    ],
+                    [
+                        'date' => '28 Juli 2026',
+                        'title' => 'Bimbingan Teknis Pengelola Data',
+                        'desc' => 'Pelatihan operasional sistem informasi arsip bagi sekretariat fakultas untuk kecepatan layanan informasi.',
+                        'location' => 'Gedung Rektorat'
+                    ],
+                    [
+                        'date' => '12 Agustus 2026',
+                        'title' => 'Audit Transparansi Berkala',
+                        'desc' => 'Pemeriksaan ketersediaan berkas publik bersama Komisi Informasi Sumatera Barat untuk penilaian kepatuhan.',
+                        'location' => 'Ruang VIP Senat'
+                    ],
+                    [
+                        'date' => '25 Agustus 2026',
+                        'title' => 'Evaluasi & Laporan PPID Tahunan',
+                        'desc' => 'Penyusunan laporan tahunan indeks kepuasan layanan informasi masyarakat di lingkungan Unbrah.',
+                        'location' => 'Aula Rektorat'
+                    ]
+                ];
+            @endphp
             <div class="reveal relative py-4">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
-                    <!-- Event 1 -->
-                    <div class="group relative bg-brand-green-900/40 hover:bg-brand-green-900/70 border border-brand-green-800/60 hover:border-brand-gold-500/30 rounded-2xl p-6 transition-all duration-300 flex flex-col justify-between">
+                    @foreach ($agendas as $index => $event)
+                    <!-- Event {{ $index + 1 }} -->
+                    <div class="group relative bg-brand-green-900/40 hover:bg-brand-green-900/70 border border-brand-green-800/60 hover:border-brand-gold-500/30 rounded-2xl p-6 transition-all duration-300 flex flex-col justify-between" style="transition-delay: {{ $index * 100 }}ms">
                         <div>
                             <!-- Date Stamp -->
-                            <span class="inline-block bg-brand-gold-500 text-brand-green-950 font-bold text-xs px-3 py-1 rounded-full mb-4">15 Juli 2026</span>
-                            <h4 class="font-bold text-base text-white group-hover:text-brand-gold-500 transition-colors">Sosialisasi Keterbukaan Informasi</h4>
+                            <span class="inline-block bg-brand-gold-500 text-brand-green-950 font-bold text-xs px-3 py-1 rounded-full mb-4">{{ $event['date'] }}</span>
+                            <h4 class="font-bold text-base text-white group-hover:text-brand-gold-500 transition-colors">{{ $event['title'] }}</h4>
                             <p class="text-slate-400 text-xs mt-2 leading-relaxed text-justify">
-                                Seminar dan workshop keterbukaan dokumen publik bagi seluruh jajaran struktural universitas.
+                                {{ $event['desc'] }}
                             </p>
                         </div>
                         <div class="mt-6 pt-4 border-t border-brand-green-800/50 flex items-center">
-                            <span class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Kampus Unbrah</span>
+                            <span class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">{{ $event['location'] }}</span>
                         </div>
                     </div>
-
-                    <!-- Event 2 -->
-                    <div class="group relative bg-brand-green-900/40 hover:bg-brand-green-900/70 border border-brand-green-800/60 hover:border-brand-gold-500/30 rounded-2xl p-6 transition-all duration-300 flex flex-col justify-between delay-100">
-                        <div>
-                            <span class="inline-block bg-brand-gold-500 text-brand-green-950 font-bold text-xs px-3 py-1 rounded-full mb-4">28 Juli 2026</span>
-                            <h4 class="font-bold text-base text-white group-hover:text-brand-gold-500 transition-colors">Bimbingan Teknis Pengelola Data</h4>
-                            <p class="text-slate-400 text-xs mt-2 leading-relaxed text-justify">
-                                Pelatihan operasional sistem informasi arsip bagi sekretariat fakultas untuk kecepatan layanan informasi.
-                            </p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-brand-green-800/50 flex items-center">
-                            <span class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Gedung Rektorat</span>
-                        </div>
-                    </div>
-
-                    <!-- Event 3 -->
-                    <div class="group relative bg-brand-green-900/40 hover:bg-brand-green-900/70 border border-brand-green-800/60 hover:border-brand-gold-500/30 rounded-2xl p-6 transition-all duration-300 flex flex-col justify-between delay-200">
-                        <div>
-                            <span class="inline-block bg-brand-gold-500 text-brand-green-950 font-bold text-xs px-3 py-1 rounded-full mb-4">12 Agustus 2026</span>
-                            <h4 class="font-bold text-base text-white group-hover:text-brand-gold-500 transition-colors">Audit Transparansi Berkala</h4>
-                            <p class="text-slate-400 text-xs mt-2 leading-relaxed text-justify">
-                                Pemeriksaan ketersediaan berkas publik bersama Komisi Informasi Sumatera Barat untuk penilaian kepatuhan.
-                            </p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-brand-green-800/50 flex items-center">
-                            <span class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Ruang VIP Senat</span>
-                        </div>
-                    </div>
-
-                    <!-- Event 4 -->
-                    <div class="group relative bg-brand-green-900/40 hover:bg-brand-green-900/70 border border-brand-green-800/60 hover:border-brand-gold-500/30 rounded-2xl p-6 transition-all duration-300 flex flex-col justify-between delay-300">
-                        <div>
-                            <span class="inline-block bg-brand-gold-500 text-brand-green-950 font-bold text-xs px-3 py-1 rounded-full mb-4">25 Agustus 2026</span>
-                            <h4 class="font-bold text-base text-white group-hover:text-brand-gold-500 transition-colors">Evaluasi & Laporan PPID Tahunan</h4>
-                            <p class="text-slate-400 text-xs mt-2 leading-relaxed text-justify">
-                                Penyusunan laporan tahunan indeks kepuasan layanan informasi masyarakat di lingkungan Unbrah.
-                            </p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-brand-green-800/50 flex items-center">
-                            <span class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Aula Rektorat</span>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
