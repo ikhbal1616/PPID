@@ -22,3 +22,10 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# Local Documentation
+/doc/
+
+# Public Uploads
+/public/uploads/
+

@@ -43,15 +43,31 @@ class AppServiceProvider extends ServiceProvider
         // Shared global variables for admin views
         try {
             if (\Illuminate\Support\Facades\Schema::hasTable('users')) {
-                $adminUser = \App\Models\User::first();
-                if (!$adminUser) {
-                    $adminUser = \App\Models\User::create([
-                        'name' => 'Admin Humas',
-                        'email' => 'admin@unbrah.ac.id',
-                        'password' => bcrypt('password123'),
-                    ]);
-                }
-                view()->share('adminUser', $adminUser);
+                view()->composer('*', function ($view) {
+                    $user = \Illuminate\Support\Facades\Auth::user();
+                    if (!$user) {
+                        $user = \App\Models\User::first();
+                        if (!$user) {
+                            $user = \App\Models\User::create([
+                                'name' => 'Admin Humas',
+                                'email' => 'admin@unbrah.ac.id',
+                                'password' => bcrypt('password123'),
+                                'role' => 'admin',
+                            ]);
+                        }
+                    }
+                    $view->with('adminUser', $user);
+                    
+                    // Share sidebar counts globally
+                    if (\Illuminate\Support\Facades\Schema::hasTable('permohonans')) {
+                        $view->with('globalSidebarCounts', [
+                            'permohonan' => \App\Models\Permohonan::where('kategori', 'permohonan')->count(),
+                            'keberatan' => \App\Models\Permohonan::where('kategori', 'keberatan')->count(),
+                            'penyalahgunaan' => \App\Models\Permohonan::where('kategori', 'penyalahgunaan')->count(),
+                            'pengaduan' => \App\Models\Permohonan::where('kategori', 'pengaduan')->count(),
+                        ]);
+                    }
+                });
             }
         } catch (\Exception $e) {
             // Silently ignore database errors

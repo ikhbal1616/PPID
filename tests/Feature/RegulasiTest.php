@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Setting;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -17,12 +18,14 @@ class RegulasiTest extends TestCase
      */
     public function test_can_upload_pdf_file(): void
     {
+        $user = User::factory()->create(['role' => 'petugas']);
+        
         // Fake public disk / uploads directory
         Storage::fake('public');
 
         $file = UploadedFile::fake()->create('test_document.pdf', 500, 'application/pdf');
 
-        $response = $this->postJson(route('admin.upload-file'), [
+        $response = $this->actingAs($user)->postJson(route('admin.upload-file'), [
             'file' => $file,
         ]);
 
@@ -34,13 +37,16 @@ class RegulasiTest extends TestCase
     }
 
     /**
-     * Test uploading non-pdf file fails validation.
+     * Test uploading non-allowed file fails validation.
      */
     public function test_cannot_upload_non_pdf_file(): void
     {
-        $file = UploadedFile::fake()->create('image.png', 100, 'image/png');
+        $user = User::factory()->create(['role' => 'petugas']);
+        
+        // ZIP is not in pdf,jpg,jpeg,png,webp
+        $file = UploadedFile::fake()->create('archive.zip', 100, 'application/zip');
 
-        $response = $this->postJson(route('admin.upload-file'), [
+        $response = $this->actingAs($user)->postJson(route('admin.upload-file'), [
             'file' => $file,
         ]);
 
@@ -53,6 +59,8 @@ class RegulasiTest extends TestCase
      */
     public function test_can_save_regulation_settings(): void
     {
+        $user = User::factory()->create(['role' => 'petugas']);
+        
         $regulasiData = [
             [
                 'type' => 'Keputusan Rektor',
@@ -63,7 +71,7 @@ class RegulasiTest extends TestCase
             ]
         ];
 
-        $response = $this->post(route('admin.tentang.update'), [
+        $response = $this->actingAs($user)->post(route('admin.tentang.update'), [
             'regulasi_list' => $regulasiData,
         ]);
 

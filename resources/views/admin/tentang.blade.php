@@ -1,178 +1,13 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kelola Tentang | Admin PPID Universitas Baiturrahmah</title>
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <!-- Meta SEO -->
-    <meta name="description" content="Kelola konten halaman menu Tentang secara dinamis dan modern.">
-    <meta name="author" content="Universitas Baiturrahmah">
-    
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body class="bg-slate-100 text-slate-800 font-sans antialiased overflow-x-hidden">
+@extends('layouts.admin')
 
-    <!-- ADMIN LAYOUT WRAPPER -->
-    <div class="flex min-h-screen">
+@section('title', 'Kelola Tentang')
 
-        <!-- SIDEBAR (Desktop & Mobile) -->
-        <aside id="admin-sidebar" class="w-64 bg-brand-green-950 text-slate-300 flex-shrink-0 flex flex-col justify-between transition-all duration-300 z-30 fixed top-0 bottom-0 left-0 -translate-x-full lg:translate-x-0 h-screen shadow-2xl">
-            <div>
-                <!-- Sidebar Logo Header -->
-                <div class="p-6 border-b border-brand-green-900 flex items-center justify-between">
-                    <a href="/" class="flex items-center space-x-3 group">
-                        <img src="/images/logo_unbrah.png" 
-                             alt="Logo Universitas Baiturrahmah" 
-                             class="w-10 h-10 object-contain brightness-95">
-                        <div class="flex flex-col">
-                            <span class="text-sm font-bold tracking-tight text-white font-display">PPID Admin</span>
-                            <span class="text-[9px] text-brand-gold-500 uppercase tracking-widest font-semibold">Unbrah Padang</span>
-                        </div>
-                    </a>
-                    <!-- Close button for mobile -->
-                    <button onclick="toggleSidebar()" class="p-1.5 rounded-lg hover:bg-brand-green-900 text-slate-400 hover:text-white cursor-pointer lg:hidden">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
-                    </button>
-                </div>
+@section('header-left')
+<h2 class="text-slate-800 font-bold text-sm font-display tracking-tight">Halaman Administrasi</h2>
+@endsection
 
-                <!-- Navigation items -->
-                <nav class="p-4 space-y-1.5 text-xs font-semibold">
-                    <span class="block px-3 py-2 text-[10px] text-brand-green-600 uppercase tracking-widest font-bold">Menu Utama</span>
-                    
-                    <a href="/admin" class="flex items-center space-x-3 hover:bg-brand-green-900/40 hover:text-white px-3 py-3 rounded-lg transition-all text-slate-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4zM14 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2v-4z"></path></svg>
-                        <span>Dashboard Utama</span>
-                    </a>
-
-                    <!-- Slide Show -->
-                    <a href="/admin/slide-show" class="flex items-center space-x-3 hover:bg-brand-green-900/40 hover:text-white px-3 py-3 rounded-lg transition-all text-slate-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                        <span>Slide Show</span>
-                    </a>
-
-                    <!-- Profil PPID -->
-                    <a href="/admin/profil-ppid" class="flex items-center space-x-3 hover:bg-brand-green-900/40 hover:text-white px-3 py-3 rounded-lg transition-all text-slate-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                        <span>Profil PPID</span>
-                    </a>
-
-                    <!-- Agenda Kegiatan -->
-                    <a href="/admin/agenda-kegiatan" class="flex items-center space-x-3 hover:bg-brand-green-900/40 hover:text-white px-3 py-3 rounded-lg transition-all text-slate-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                        <span>Agenda Kegiatan</span>
-                    </a>
-
-                    <span class="block px-3 py-2 text-[10px] text-brand-green-600 uppercase tracking-widest font-bold pt-4">Permohonan</span>
-
-                    <a href="/admin/permohonan" class="flex items-center space-x-3 hover:bg-brand-green-900/40 hover:text-white px-3 py-3 rounded-lg transition-all text-slate-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                        <span class="flex-1">Permohonan Informasi Publik</span>
-                        <span class="bg-brand-green-700/60 text-slate-200 text-[10px] px-2 py-0.5 rounded-full" id="sidebar-count-permohonan">{{ $sidebarCounts['permohonan'] }}</span>
-                    </a>
-
-                    <a href="/admin/keberatan" class="flex items-center space-x-3 hover:bg-brand-green-900/40 hover:text-white px-3 py-3 rounded-lg transition-all text-slate-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                        <span class="flex-1">Keberatan Informasi Publik</span>
-                        <span class="bg-brand-green-700/60 text-slate-200 text-[10px] px-2 py-0.5 rounded-full" id="sidebar-count-keberatan">{{ $sidebarCounts['keberatan'] }}</span>
-                    </a>
-
-                    <a href="/admin/penyalahgunaan" class="flex items-center space-x-3 hover:bg-brand-green-900/40 hover:text-white px-3 py-3 rounded-lg transition-all text-slate-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path></svg>
-                        <span class="flex-1">Penyalahgunaan Wewenang</span>
-                        <span class="bg-brand-green-700/60 text-slate-200 text-[10px] px-2 py-0.5 rounded-full" id="sidebar-count-penyalahgunaan">{{ $sidebarCounts['penyalahgunaan'] }}</span>
-                    </a>
-
-                    <a href="/admin/pengaduan" class="flex items-center space-x-3 hover:bg-brand-green-900/40 hover:text-white px-3 py-3 rounded-lg transition-all text-slate-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-                        <span class="flex-1">Pengaduan Layanan Kampus</span>
-                        <span class="bg-brand-green-700/60 text-slate-200 text-[10px] px-2 py-0.5 rounded-full" id="sidebar-count-pengaduan">{{ $sidebarCounts['pengaduan'] }}</span>
-                    </a>
-
-                    <span class="block px-3 py-2 text-[10px] text-brand-green-600 uppercase tracking-widest font-bold pt-4">Dokumen Profil</span>
-
-                    <!-- Fitur Baru: Kelola Tentang (Active Style) -->
-                    <a href="/admin/tentang" class="flex items-center space-x-3 bg-brand-green-900/60 text-brand-gold-500 border-l-4 border-brand-gold-500 px-3 py-3 rounded-lg transition-all">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                        <span class="flex-1">Kelola Tentang</span>
-                    </a>
-
-                    <!-- Fitur Baru: Informasi Publik Berkala -->
-                    <a href="/admin/informasi-publik-berkala" class="flex items-center space-x-3 hover:bg-brand-green-900/40 hover:text-white px-3 py-3 rounded-lg transition-all text-slate-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                        <span class="flex-1">Informasi Publik Berkala</span>
-                    </a>
-
-                    <!-- Fitur Baru: Informasi Serta Merta -->
-                    <a href="/admin/informasi-serta-merta" class="flex items-center space-x-3 hover:bg-brand-green-900/40 hover:text-white px-3 py-3 rounded-lg transition-all text-slate-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                        <span class="flex-1">Informasi Serta Merta</span>
-                    </a>
-
-                    <!-- Fitur Baru: Informasi Tersedia Setiap Saat -->
-                    <a href="/admin/informasi-tersedia-setiap-saat" class="flex items-center space-x-3 hover:bg-brand-green-900/40 hover:text-white px-3 py-3 rounded-lg transition-all text-slate-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                        <span class="flex-1">Informasi Tersedia Setiap Saat</span>
-                    </a>
-
-                    <!-- Fitur Baru: Kelola Galeri PPID -->
-                    <a href="/admin/galeri" class="flex items-center space-x-3 hover:bg-brand-green-900/40 hover:text-white px-3 py-3 rounded-lg transition-all text-slate-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                        <span class="flex-1">Kelola Galeri PPID</span>
-                    </a>
-
-                    <!-- Fitur Baru: Kelola Dokumen -->
-                    <a href="/admin/dokumen" class="flex items-center space-x-3 hover:bg-brand-green-900/40 hover:text-white px-3 py-3 rounded-lg transition-all text-slate-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path></svg>
-                        <span class="flex-1">Kelola Dokumen</span>
-                    </a>
-
-                </nav>
-            </div>
-
-            <!-- Profile Info Footer in Sidebar -->
-            <div class="p-4 border-t border-brand-green-900 flex items-center space-x-3">
-                <div class="relative">
-                    <span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 border border-brand-green-950 animate-pulse"></span>
-                    <div class="w-9 h-9 rounded-full bg-brand-gold-500/20 text-brand-gold-500 flex items-center justify-center font-bold text-xs uppercase">
-                        {{ $adminUser->initials }}
-                    </div>
-                </div>
-                <div class="flex flex-col">
-                    <span class="text-xs font-bold text-white leading-tight">{{ $adminUser->name }}</span>
-                    <span class="text-[9px] text-slate-500">Super Administrator</span>
-                </div>
-            </div>
-        </aside>
-
-        <!-- MAIN WINDOW WRAPPER -->
-        <div class="flex-1 flex flex-col min-h-screen pl-0 lg:pl-64 transition-all duration-300 overflow-y-auto">
-
-            <!-- MAIN HEADER -->
-            <header class="bg-white border-b border-slate-200 py-3 px-6 flex justify-between items-center shadow-sm">
-                <div class="flex items-center space-x-4">
-                    <!-- Mobile Hamburger trigger -->
-                    <button onclick="toggleSidebar()" class="p-2 rounded-lg hover:bg-slate-100 text-slate-600 focus:outline-none cursor-pointer lg:hidden">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path></svg>
-                    </button>
-                    <!-- Title for current view -->
-                    <h2 class="text-slate-800 font-bold text-sm font-display tracking-tight">Halaman Administrasi</h2>
-                </div>
-
-                <div class="flex items-center space-x-4">
-                    <span class="text-xs text-slate-500 font-semibold hidden md:inline-block" id="live-date">Jumat, 26 Juni 2026</span>
-                    <!-- Profile avatar -->
-                    <div class="w-8 h-8 rounded-full bg-brand-green-700 text-white flex items-center justify-center font-bold text-xs uppercase cursor-pointer">
-                        {{ $adminUser->initials }}
-                    </div>
-                </div>
-            </header>
-
-            <!-- MAIN CONTENT AREA -->
-            <main class="p-6 space-y-6">
-
-                <!-- HEADER SUMMARY -->
+@section('content')
+<!-- HEADER SUMMARY -->
                 <div>
                     <h1 class="text-2xl font-bold font-display tracking-tight text-slate-900 leading-tight">Kelola Konten Profil PPID</h1>
                     <p class="text-slate-500 text-xs mt-1">Perbarui narasi Tentang PPID, Visi & Misi, Struktur Organisasi, dan landasan regulasi.</p>
@@ -573,17 +408,12 @@
                     </div>
 
                 </div>
-            </main>
-        </div>
-    </div>
+@endsection
 
-    <!-- SCRIPTS -->
-    <script>
-        // Toggle Sidebar visibility (Mobile responsive)
-        function toggleSidebar() {
-            const sidebar = document.getElementById('admin-sidebar');
-            sidebar.classList.toggle('-translate-x-full');
-        }
+@section('scripts')
+<script>
+// Toggle Sidebar visibility (Mobile responsive)
+        
 
         // Switching Tabs client-side
         function switchTab(tabId) {
@@ -1329,6 +1159,757 @@
             // Render the Dynamic Pillars list
             renderPillarsList();
         });
-    </script>
-</body>
-</html>
+</script>
+@endsection
+
+@section('scripts')
+<script>
+// Toggle Sidebar visibility (Mobile responsive)
+        
+
+        // Switching Tabs client-side
+        function switchTab(tabId) {
+            // Hide all tab panels
+            document.querySelectorAll('.tab-panel').forEach(panel => {
+                panel.classList.remove('block');
+                panel.classList.add('hidden');
+            });
+            
+            // Show active panel
+            const activePanel = document.getElementById('panel-' + tabId);
+            if (activePanel) {
+                activePanel.classList.remove('hidden');
+                activePanel.classList.add('block');
+            }
+
+            // Reset tab styles
+            document.querySelectorAll('.tab-link').forEach(link => {
+                link.classList.remove('border-brand-green-700', 'text-brand-green-700');
+                link.classList.add('border-transparent', 'text-slate-400', 'hover:text-slate-600');
+            });
+
+            // Set active tab style
+            const activeBtn = document.getElementById('tab-btn-' + tabId);
+            if (activeBtn) {
+                activeBtn.classList.remove('border-transparent', 'text-slate-400', 'hover:text-slate-600');
+                activeBtn.classList.add('border-brand-green-700', 'text-brand-green-700');
+            }
+
+            // Store active tab in localStorage for page refresh persistence
+            localStorage.setItem('active_profil_tab', tabId);
+        }
+
+        // Dynamic Struktur Organisasi List Manager
+        const defaultStruktur = [
+            {"badge": "LPM", "name": "Lembaga Penjaminan Mutu"},
+            {"badge": "LPPM", "name": "Lembaga Penelitian & Pengabdian Masyarakat"},
+            {"badge": "UPTB", "name": "Unit Pelaksana Teknis Perpustakaan"},
+            {"badge": "UPTK", "name": "Unit Pelaksana Teknis Komputer"},
+            {"badge": "BAA", "name": "Biro Administrasi Akademik"},
+            {"badge": "BKK", "name": "Biro Kemahasiswaan & Kerjasama"}
+        ];
+
+        let strukturItems = [];
+
+        try {
+            const raw = {!! json_encode(setting('struktur_list')) !!};
+            if (raw) {
+                strukturItems = JSON.parse(raw);
+            } else {
+                strukturItems = defaultStruktur;
+            }
+        } catch(e) {
+            strukturItems = defaultStruktur;
+        }
+
+        let editingStrukturIndex = null;
+
+        function renderStrukturList() {
+            const container = document.getElementById('struktur-list-container');
+            const input = document.getElementById('struktur_list_input');
+            if (!container || !input) return;
+
+            input.value = JSON.stringify(strukturItems);
+            container.innerHTML = '';
+
+            if (strukturItems.length === 0) {
+                container.innerHTML = `<div class="p-6 text-center text-xs text-slate-400 font-medium">Belum ada lembaga/unit kerja yang ditambahkan.</div>`;
+                return;
+            }
+
+            strukturItems.forEach((item, index) => {
+                const itemEl = document.createElement('div');
+                itemEl.className = "flex items-center justify-between p-2.5 bg-white hover:bg-slate-100 rounded-xl transition-all duration-200 border border-slate-100 shadow-sm";
+                itemEl.innerHTML = `
+                    <div class="flex items-center space-x-3 flex-1 min-w-0">
+                        <span class="bg-brand-green-50 text-brand-green-700 font-bold px-2.5 py-1.5 rounded-lg text-[10px] uppercase tracking-wider min-w-[70px] text-center shrink-0 border border-brand-green-100">
+                            ${escapeHtml(item.badge)}
+                        </span>
+                        <span class="text-xs font-semibold text-slate-700 truncate">
+                            ${escapeHtml(item.name)}
+                        </span>
+                    </div>
+                    <div class="flex items-center space-x-1 shrink-0">
+                        <button type="button" onclick="editStrukturItem(${index})" class="p-1.5 rounded-lg text-brand-green-600 hover:bg-brand-green-50 transition-colors cursor-pointer">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                        </button>
+                        <button type="button" onclick="deleteStrukturItem(${index})" class="p-1.5 rounded-lg text-rose-500 hover:bg-rose-50 transition-colors cursor-pointer">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(itemEl);
+            });
+        }
+
+        function addStrukturItem() {
+            const badgeInput = document.getElementById('new-item-badge');
+            const nameInput = document.getElementById('new-item-name');
+            if (!badgeInput || !nameInput) return;
+
+            const badge = badgeInput.value.trim().toUpperCase();
+            const name = nameInput.value.trim();
+
+            if (!badge || !name) {
+                alert('Singkatan dan Nama Lembaga harus diisi.');
+                return;
+            }
+
+            if (editingStrukturIndex !== null) {
+                strukturItems[editingStrukturIndex] = { badge, name };
+                cancelStrukturEdit();
+            } else {
+                strukturItems.push({ badge, name });
+            }
+
+            badgeInput.value = '';
+            nameInput.value = '';
+
+            renderStrukturList();
+        }
+
+        function editStrukturItem(index) {
+            const item = strukturItems[index];
+            if (!item) return;
+
+            editingStrukturIndex = index;
+            
+            document.getElementById('new-item-badge').value = item.badge;
+            document.getElementById('new-item-name').value = item.name;
+            
+            document.getElementById('struktur-form-title').innerText = "Edit Lembaga / Unit Kerja";
+            document.getElementById('add-struktur-btn-text').innerText = "Simpan";
+            document.getElementById('cancel-struktur-edit-btn').classList.remove('hidden');
+
+            document.getElementById('new-item-badge').focus();
+        }
+
+        function cancelStrukturEdit() {
+            editingStrukturIndex = null;
+            document.getElementById('new-item-badge').value = '';
+            document.getElementById('new-item-name').value = '';
+            document.getElementById('struktur-form-title').innerText = "Tambah Lembaga / Unit Kerja";
+            document.getElementById('add-struktur-btn-text').innerText = "Tambah";
+            document.getElementById('cancel-struktur-edit-btn').classList.add('hidden');
+        }
+
+        function deleteStrukturItem(index) {
+            if (confirm('Apakah Anda yakin ingin menghapus lembaga ini?')) {
+                if (editingStrukturIndex === index) {
+                    cancelStrukturEdit();
+                }
+                strukturItems.splice(index, 1);
+                renderStrukturList();
+            }
+        }
+
+        // Dynamic Tugas & Fungsi List Manager
+        const defaultTugas = [
+            {
+                "title": "Pengumpulan & Klasifikasi Informasi",
+                "desc": "Tugas utama ini mencakup penyusunan Daftar Informasi Publik (DIP) secara rutin dan teratur dari seluruh unit kerja/fakultas di lingkungan Universitas Baiturrahmah."
+            },
+            {
+                "title": "Penyediaan & Pelayanan Informasi Publik",
+                "desc": "Mengelola pusat layanan data baik secara daring (online form pada portal web) maupun luring (meja layanan PPID di gedung rektorat)."
+            },
+            {
+                "title": "Pengujian Konsekuensi Informasi Dikecualikan",
+                "desc": "Melakukan analisis hukum yang mendalam sebelum menolak permohonan informasi tertentu."
+            },
+            {
+                "title": "Mediasi & Penyelesaian Sengketa Informasi",
+                "desc": "Menangani dan memberikan tanggapan atas keberatan tertulis yang dilayangkan oleh pemohon informasi."
+            }
+        ];
+
+        let tugasItems = [];
+        let editingTugasIndex = null;
+
+        try {
+            const rawTugas = {!! json_encode(setting('tugas_list')) !!};
+            if (rawTugas) {
+                tugasItems = JSON.parse(rawTugas);
+            } else {
+                tugasItems = defaultTugas;
+            }
+        } catch(e) {
+            tugasItems = defaultTugas;
+        }
+
+        function renderTugasList() {
+            const container = document.getElementById('tugas-list-container');
+            const input = document.getElementById('tugas_list_input');
+            if (!container || !input) return;
+
+            input.value = JSON.stringify(tugasItems);
+            container.innerHTML = '';
+
+            if (tugasItems.length === 0) {
+                container.innerHTML = `<div class="p-6 text-center text-xs text-slate-400 font-medium">Belum ada tugas & fungsi yang ditambahkan.</div>`;
+                return;
+            }
+
+            tugasItems.forEach((item, index) => {
+                const itemEl = document.createElement('div');
+                itemEl.className = "flex items-start justify-between p-4 bg-white hover:bg-slate-100 rounded-xl transition-all duration-200 border border-slate-100 shadow-sm gap-4";
+                
+                const indexStr = String(index + 1).padStart(2, '0');
+
+                itemEl.innerHTML = `
+                    <div class="flex items-start space-x-3 flex-1 min-w-0">
+                        <span class="w-7 h-7 bg-brand-green-50 text-brand-green-700 rounded-lg flex items-center justify-center font-bold text-xs shrink-0 border border-brand-green-100">
+                            ${indexStr}
+                        </span>
+                        <div class="flex flex-col min-w-0">
+                            <span class="text-xs font-bold text-slate-800">
+                                ${escapeHtml(item.title)}
+                            </span>
+                            <span class="text-[11px] text-slate-500 mt-1 whitespace-pre-line leading-relaxed">
+                                ${escapeHtml(item.desc)}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-1 shrink-0 mt-0.5">
+                        <button type="button" onclick="editTugasItem(${index})" class="p-1.5 rounded-lg text-brand-green-600 hover:bg-brand-green-50 transition-colors cursor-pointer">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                        </button>
+                        <button type="button" onclick="deleteTugasItem(${index})" class="p-1.5 rounded-lg text-rose-500 hover:bg-rose-50 transition-colors cursor-pointer">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(itemEl);
+            });
+        }
+
+        function addTugasItem() {
+            const titleInput = document.getElementById('new-tugas-title');
+            const descInput = document.getElementById('new-tugas-desc');
+            if (!titleInput || !descInput) return;
+
+            const title = titleInput.value.trim();
+            const desc = descInput.value.trim();
+
+            if (!title || !desc) {
+                alert('Judul dan Deskripsi Tugas harus diisi.');
+                return;
+            }
+
+            if (editingTugasIndex !== null) {
+                tugasItems[editingTugasIndex] = { title, desc };
+                cancelTugasEdit();
+            } else {
+                tugasItems.push({ title, desc });
+            }
+
+            titleInput.value = '';
+            descInput.value = '';
+
+            renderTugasList();
+        }
+
+        function editTugasItem(index) {
+            const item = tugasItems[index];
+            if (!item) return;
+
+            editingTugasIndex = index;
+            
+            document.getElementById('new-tugas-title').value = item.title;
+            document.getElementById('new-tugas-desc').value = item.desc;
+            
+            document.getElementById('tugas-form-title').innerText = "Form Edit Tugas & Fungsi";
+            document.getElementById('add-tugas-btn-text').innerText = "Simpan Tugas & Fungsi";
+            document.getElementById('cancel-tugas-edit-btn').classList.remove('hidden');
+
+            document.getElementById('new-tugas-title').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            document.getElementById('new-tugas-title').focus();
+        }
+
+        function cancelTugasEdit() {
+            editingTugasIndex = null;
+            document.getElementById('new-tugas-title').value = '';
+            document.getElementById('new-tugas-desc').value = '';
+            document.getElementById('tugas-form-title').innerText = "Form Tambah Tugas & Fungsi";
+            document.getElementById('add-tugas-btn-text').innerText = "Tambah Tugas & Fungsi";
+            document.getElementById('cancel-tugas-edit-btn').classList.add('hidden');
+        }
+
+        function deleteTugasItem(index) {
+            if (confirm('Apakah Anda yakin ingin menghapus tugas ini?')) {
+                if (editingTugasIndex === index) {
+                    cancelTugasEdit();
+                }
+                tugasItems.splice(index, 1);
+                renderTugasList();
+            }
+        }
+
+        // Dynamic Regulasi & Landasan Hukum List Manager
+        const defaultRegulasi = [
+            {
+                "type": {!! json_encode(setting('regulasi_1_type', 'Undang-Undang')) !!},
+                "title": {!! json_encode(setting('regulasi_1_title', 'Undang-Undang No. 14 Tahun 2008')) !!},
+                "desc": {!! json_encode(setting('regulasi_1_desc', 'Tentang Keterbukaan Informasi Publik (UU KIP). Regulasi utama tingkat nasional yang memberikan jaminan hukum atas hak masyarakat dalam memperoleh informasi publik.')) !!},
+                "link": "https://id.wikipedia.org/wiki/Undang-Undang_Keterbukaan_Informasi_Publik",
+                "file": {!! json_encode(setting('regulasi_1_file')) !!}
+            },
+            {
+                "type": {!! json_encode(setting('regulasi_2_type', 'Peraturan Pemerintah')) !!},
+                "title": {!! json_encode(setting('regulasi_2_title', 'Peraturan Pemerintah No. 61 Tahun 2010')) !!},
+                "desc": {!! json_encode(setting('regulasi_2_desc', 'Tentang Pelaksanaan Undang-Undang Keterbukaan Informasi Publik. Mengatur secara detil hak, tata cara pengajuan, penunjukan Pejabat Pengelola Informasi.')) !!},
+                "link": "",
+                "file": {!! json_encode(setting('regulasi_2_file')) !!}
+            },
+            {
+                "type": {!! json_encode(setting('regulasi_3_type', 'Peraturan Komisi Informasi')) !!},
+                "title": {!! json_encode(setting('regulasi_3_title', 'PERKI No. 1 Tahun 2021')) !!},
+                "desc": {!! json_encode(setting('regulasi_3_desc', 'Tentang Standar Layanan Informasi Publik (SLIP). Berisi petunjuk teknis operasional dan standardisasi bagi badan publik dalam mengumumkan layanan data.')) !!},
+                "link": "",
+                "file": {!! json_encode(setting('regulasi_3_file')) !!}
+            }
+        ];
+
+        let regulasiItems = [];
+        let editingRegulasiIndex = null;
+
+        try {
+            const rawRegulasi = {!! json_encode(setting('regulasi_list')) !!};
+            if (rawRegulasi) {
+                regulasiItems = JSON.parse(rawRegulasi);
+            } else {
+                regulasiItems = defaultRegulasi;
+            }
+        } catch(e) {
+            regulasiItems = defaultRegulasi;
+        }
+
+        function uploadRegulasiFile(input) {
+            const statusEl = document.getElementById('regulasi-upload-status');
+            const pathEl = document.getElementById('new-regulasi-file-path');
+            if (!input.files || input.files.length === 0) return;
+
+            const file = input.files[0];
+            if (file.type !== 'application/pdf') {
+                alert('Hanya diperbolehkan mengunggah file PDF.');
+                input.value = '';
+                return;
+            }
+
+            statusEl.innerText = "Mengunggah...";
+            statusEl.className = "text-[10px] text-brand-gold-600 font-semibold animate-pulse";
+
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('_token', '{{ csrf_token() }}');
+
+            fetch('{{ route("admin.upload-file") }}', {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    pathEl.value = data.path;
+                    statusEl.innerText = "Selesai: " + file.name;
+                    statusEl.className = "text-[10px] text-emerald-600 font-semibold";
+                } else {
+                    alert('Gagal mengunggah file: ' + data.message);
+                    statusEl.innerText = "Gagal mengunggah.";
+                    statusEl.className = "text-[10px] text-rose-500 font-semibold";
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert('Terjadi kesalahan saat mengunggah file.');
+                statusEl.innerText = "Gagal mengunggah.";
+                statusEl.className = "text-[10px] text-rose-500 font-semibold";
+            });
+        }
+
+        function renderRegulasiList() {
+            const container = document.getElementById('regulasi-list-container');
+            const input = document.getElementById('regulasi_list_input');
+            if (!container || !input) return;
+
+            input.value = JSON.stringify(regulasiItems);
+            container.innerHTML = '';
+
+            if (regulasiItems.length === 0) {
+                container.innerHTML = `<div class="p-6 text-center text-xs text-slate-400 font-medium">Belum ada regulasi yang ditambahkan.</div>`;
+                return;
+            }
+
+            regulasiItems.forEach((item, index) => {
+                const itemEl = document.createElement('div');
+                itemEl.className = "flex items-start justify-between p-4 bg-white hover:bg-slate-100 rounded-xl transition-all duration-200 border border-slate-100 shadow-sm gap-4";
+                
+                const fileHtml = item.file 
+                    ? `<span class="text-[10px] text-slate-400">Berkas: <a href="${item.file}" target="_blank" class="text-brand-green-600 font-semibold underline">Unduh PDF</a></span>`
+                    : `<span class="text-[10px] text-rose-400">Tidak ada berkas PDF.</span>`;
+                const linkHtml = item.link
+                    ? `<span class="text-[10px] text-slate-400">| Link: <a href="${item.link}" target="_blank" class="text-brand-green-600 font-semibold underline">Wikipedia / Info</a></span>`
+                    : '';
+
+                itemEl.innerHTML = `
+                    <div class="flex items-start space-x-3 flex-1 min-w-0">
+                        <span class="bg-brand-green-50 text-brand-green-700 font-bold px-2.5 py-1.5 rounded-lg text-[10px] uppercase tracking-wider text-center shrink-0 border border-brand-green-100 min-w-[120px]">
+                            ${escapeHtml(item.type)}
+                        </span>
+                        <div class="flex flex-col min-w-0">
+                            <span class="text-xs font-bold text-slate-800">
+                                ${escapeHtml(item.title)}
+                            </span>
+                            <span class="text-[11px] text-slate-500 mt-1 leading-relaxed">
+                                ${escapeHtml(item.desc)}
+                            </span>
+                            <div class="mt-2 flex items-center space-x-2">
+                                ${fileHtml}
+                                ${linkHtml}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-1 shrink-0 mt-0.5">
+                        <button type="button" onclick="editRegulasiItem(${index})" class="p-1.5 rounded-lg text-brand-green-600 hover:bg-brand-green-50 transition-colors cursor-pointer">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                        </button>
+                        <button type="button" onclick="deleteRegulasiItem(${index})" class="p-1.5 rounded-lg text-rose-500 hover:bg-rose-50 transition-colors cursor-pointer">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(itemEl);
+            });
+        }
+
+        function addRegulasiItem() {
+            const typeInput = document.getElementById('new-regulasi-type');
+            const titleInput = document.getElementById('new-regulasi-title');
+            const descInput = document.getElementById('new-regulasi-desc');
+            const linkInput = document.getElementById('new-regulasi-link');
+            const fileInput = document.getElementById('new-regulasi-file');
+            const filePathInput = document.getElementById('new-regulasi-file-path');
+
+            if (!typeInput || !titleInput || !descInput) return;
+
+            const type = typeInput.value.trim();
+            const title = titleInput.value.trim();
+            const desc = descInput.value.trim();
+            const link = linkInput ? linkInput.value.trim() : '';
+            const file = filePathInput ? filePathInput.value.trim() : '';
+
+            if (!type || !title || !desc) {
+                alert('Jenis Dokumen, Judul Dokumen, dan Deskripsi harus diisi.');
+                return;
+            }
+
+            if (editingRegulasiIndex !== null) {
+                const oldFile = regulasiItems[editingRegulasiIndex].file;
+                regulasiItems[editingRegulasiIndex] = { 
+                    type, 
+                    title, 
+                    desc, 
+                    link, 
+                    file: file || oldFile 
+                };
+                cancelRegulasiEdit();
+            } else {
+                regulasiItems.push({ type, title, desc, link, file });
+            }
+
+            typeInput.value = '';
+            titleInput.value = '';
+            descInput.value = '';
+            if (linkInput) linkInput.value = '';
+            if (fileInput) fileInput.value = '';
+            if (filePathInput) filePathInput.value = '';
+            
+            document.getElementById('regulasi-upload-status').innerText = "Belum ada file diunggah.";
+            document.getElementById('regulasi-upload-status').className = "text-[10px] text-slate-400 font-medium";
+
+            renderRegulasiList();
+        }
+
+        function editRegulasiItem(index) {
+            const item = regulasiItems[index];
+            if (!item) return;
+
+            editingRegulasiIndex = index;
+            
+            document.getElementById('new-regulasi-type').value = item.type;
+            document.getElementById('new-regulasi-title').value = item.title;
+            document.getElementById('new-regulasi-desc').value = item.desc;
+            document.getElementById('new-regulasi-link').value = item.link || '';
+            document.getElementById('new-regulasi-file-path').value = item.file || '';
+            
+            document.getElementById('regulasi-form-title').innerText = "Form Edit Regulasi";
+            document.getElementById('add-regulasi-btn-text').innerText = "Simpan Regulasi";
+            document.getElementById('cancel-regulasi-edit-btn').classList.remove('hidden');
+
+            if (item.file) {
+                const filename = item.file.substring(item.file.lastIndexOf('/') + 1);
+                document.getElementById('regulasi-upload-status').innerText = "Ada file: " + filename;
+                document.getElementById('regulasi-upload-status').className = "text-[10px] text-emerald-600 font-semibold";
+            } else {
+                document.getElementById('regulasi-upload-status').innerText = "Belum ada file diunggah.";
+                document.getElementById('regulasi-upload-status').className = "text-[10px] text-slate-400 font-medium";
+            }
+
+            document.getElementById('new-regulasi-type').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            document.getElementById('new-regulasi-type').focus();
+        }
+
+        function cancelRegulasiEdit() {
+            editingRegulasiIndex = null;
+            
+            document.getElementById('new-regulasi-type').value = '';
+            document.getElementById('new-regulasi-title').value = '';
+            document.getElementById('new-regulasi-desc').value = '';
+            document.getElementById('new-regulasi-link').value = '';
+            document.getElementById('new-regulasi-file-path').value = '';
+            document.getElementById('new-regulasi-file').value = '';
+            
+            document.getElementById('regulasi-form-title').innerText = "Form Tambah Regulasi";
+            document.getElementById('add-regulasi-btn-text').innerText = "Tambah Regulasi";
+            document.getElementById('cancel-regulasi-edit-btn').classList.add('hidden');
+            
+            document.getElementById('regulasi-upload-status').innerText = "Belum ada file diunggah.";
+            document.getElementById('regulasi-upload-status').className = "text-[10px] text-slate-400 font-medium";
+        }
+
+        function deleteRegulasiItem(index) {
+            if (confirm('Apakah Anda yakin ingin menghapus regulasi ini?')) {
+                if (editingRegulasiIndex === index) {
+                    cancelRegulasiEdit();
+                }
+                regulasiItems.splice(index, 1);
+                renderRegulasiList();
+            }
+        }
+
+        // Dynamic 4 Pillars list manager
+        const defaultPillars = [
+            {
+                "title": "Transparansi Mutlak",
+                "icon": "eye",
+                "desc": "Menyediakan informasi publik secara terbuka tanpa mempersulit prosedur, kecuali informasi yang dikecualikan hukum."
+            },
+            {
+                "title": "Ketepatan & Kecepatan",
+                "icon": "clock",
+                "desc": "Merespon permohonan informasi secepatnya dalam tenggat maksimal regulasi (10 + 7 hari kerja)."
+            },
+            {
+                "title": "Keadilan & Kesetaraan",
+                "icon": "scale",
+                "desc": "Melayani adil tanpa diskriminasi suku, agama, ras, golongan, selama tidak melanggar hukum."
+            },
+            {
+                "title": "Bebas Pungutan Biaya",
+                "icon": "check",
+                "desc": "Tanpa pungutan liar. Biaya penggandaan data fisik (hardcopy) sepenuhnya ditanggung pemohon."
+            }
+        ];
+
+        let pillarsItems = [];
+        let editingPillarsIndex = null;
+
+        try {
+            const rawPillars = {!! json_encode(setting('pillars_list')) !!};
+            if (rawPillars) {
+                pillarsItems = JSON.parse(rawPillars);
+            } else {
+                pillarsItems = defaultPillars;
+            }
+        } catch(e) {
+            pillarsItems = defaultPillars;
+        }
+
+        const iconLabelMap = {
+            'eye': 'Mata / Transparansi',
+            'clock': 'Jam / Kecepatan',
+            'scale': 'Timbangan / Keadilan',
+            'check': 'Bebas Biaya / Checkmark'
+        };
+
+        function renderPillarsList() {
+            const container = document.getElementById('pillars-list-container');
+            const input = document.getElementById('pillars_list_input');
+            if (!container || !input) return;
+
+            input.value = JSON.stringify(pillarsItems);
+            container.innerHTML = '';
+
+            if (pillarsItems.length === 0) {
+                container.innerHTML = `<div class="p-6 text-center text-xs text-slate-400 font-medium">Belum ada pilar komitmen yang ditambahkan.</div>`;
+                return;
+            }
+
+            pillarsItems.forEach((item, index) => {
+                const itemEl = document.createElement('div');
+                itemEl.className = "flex items-start justify-between p-4 bg-white hover:bg-slate-100 rounded-xl transition-all duration-200 border border-slate-100 shadow-sm gap-4";
+                
+                const iconName = iconLabelMap[item.icon] || item.icon;
+
+                itemEl.innerHTML = `
+                    <div class="flex items-start space-x-3 flex-1 min-w-0">
+                        <span class="bg-brand-green-50 text-brand-green-700 font-bold px-2.5 py-1.5 rounded-lg text-[10px] uppercase tracking-wider text-center shrink-0 border border-brand-green-100 min-w-[120px]">
+                            ${escapeHtml(iconName)}
+                        </span>
+                        <div class="flex flex-col min-w-0">
+                            <span class="text-xs font-bold text-slate-800">
+                                ${escapeHtml(item.title)}
+                            </span>
+                            <span class="text-[11px] text-slate-500 mt-1 leading-relaxed">
+                                ${escapeHtml(item.desc)}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-1 shrink-0 mt-0.5">
+                        <button type="button" onclick="editPillarsItem(${index})" class="p-1.5 rounded-lg text-brand-green-600 hover:bg-brand-green-50 transition-colors cursor-pointer">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                        </button>
+                        <button type="button" onclick="deletePillarsItem(${index})" class="p-1.5 rounded-lg text-rose-500 hover:bg-rose-50 transition-colors cursor-pointer">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(itemEl);
+            });
+        }
+
+        function addPillarsItem() {
+            const titleInput = document.getElementById('new-pillar-title');
+            const iconInput = document.getElementById('new-pillar-icon');
+            const descInput = document.getElementById('new-pillar-desc');
+
+            if (!titleInput || !iconInput || !descInput) return;
+
+            const title = titleInput.value.trim();
+            const icon = iconInput.value;
+            const desc = descInput.value.trim();
+
+            if (!title || !desc) {
+                alert('Judul dan Deskripsi Pilar harus diisi.');
+                return;
+            }
+
+            if (editingPillarsIndex !== null) {
+                pillarsItems[editingPillarsIndex] = { title, icon, desc };
+                cancelPillarsEdit();
+            } else {
+                pillarsItems.push({ title, icon, desc });
+            }
+
+            titleInput.value = '';
+            iconInput.value = 'eye';
+            descInput.value = '';
+
+            renderPillarsList();
+        }
+
+        function editPillarsItem(index) {
+            const item = pillarsItems[index];
+            if (!item) return;
+
+            editingPillarsIndex = index;
+            
+            document.getElementById('new-pillar-title').value = item.title;
+            document.getElementById('new-pillar-icon').value = item.icon || 'eye';
+            document.getElementById('new-pillar-desc').value = item.desc;
+            
+            document.getElementById('pillars-form-title').innerText = "Form Edit Pilar Komitmen";
+            document.getElementById('add-pillars-btn-text').innerText = "Simpan Pilar";
+            document.getElementById('cancel-pillars-edit-btn').classList.remove('hidden');
+
+            document.getElementById('new-pillar-title').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            document.getElementById('new-pillar-title').focus();
+        }
+
+        function cancelPillarsEdit() {
+            editingPillarsIndex = null;
+            
+            document.getElementById('new-pillar-title').value = '';
+            document.getElementById('new-pillar-icon').value = 'eye';
+            document.getElementById('new-pillar-desc').value = '';
+            
+            document.getElementById('pillars-form-title').innerText = "Form Tambah/Edit Pilar Komitmen";
+            document.getElementById('add-pillars-btn-text').innerText = "Tambah Pilar";
+            document.getElementById('cancel-pillars-edit-btn').classList.add('hidden');
+        }
+
+        function deletePillarsItem(index) {
+            if (confirm('Apakah Anda yakin ingin menghapus pilar komitmen ini?')) {
+                if (editingPillarsIndex === index) {
+                    cancelPillarsEdit();
+                }
+                pillarsItems.splice(index, 1);
+                renderPillarsList();
+            }
+        }
+
+        function escapeHtml(text) {
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // Live image previews
+        function previewImage(input, previewId) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById(previewId).setAttribute('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // Live formatted date
+        window.addEventListener('DOMContentLoaded', () => {
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('live-date').innerText = new Date().toLocaleDateString('id-ID', options);
+
+            // Restore active tab from localStorage if exists
+            const savedTab = localStorage.getItem('active_profil_tab');
+            if (savedTab) {
+                switchTab(savedTab);
+            }
+
+            // Render the Dynamic Struktur Organisasi list
+            renderStrukturList();
+
+            // Render the Dynamic Tugas & Fungsi list
+            renderTugasList();
+
+            // Render the Dynamic Regulasi list
+            renderRegulasiList();
+
+            // Render the Dynamic Pillars list
+            renderPillarsList();
+        });
+</script>
+@endsection

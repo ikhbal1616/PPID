@@ -1,201 +1,13 @@
-@php
-    $agendaJson = setting('agenda_kegiatan_list');
-    $agendas = $agendaJson ? json_decode($agendaJson, true) : [
-        [
-            'date' => '15 Juli 2026',
-            'title' => 'Sosialisasi Keterbukaan Informasi',
-            'desc' => 'Seminar dan workshop keterbukaan dokumen publik bagi seluruh jajaran struktural universitas.',
-            'location' => 'Kampus Unbrah'
-        ],
-        [
-            'date' => '28 Juli 2026',
-            'title' => 'Bimbingan Teknis Pengelola Data',
-            'desc' => 'Pelatihan operasional sistem informasi arsip bagi sekretariat fakultas untuk kecepatan layanan informasi.',
-            'location' => 'Gedung Rektorat'
-        ],
-        [
-            'date' => '12 Agustus 2026',
-            'title' => 'Audit Transparansi Berkala',
-            'desc' => 'Pemeriksaan ketersediaan berkas publik bersama Komisi Informasi Sumatera Barat untuk penilaian kepatuhan.',
-            'location' => 'Ruang VIP Senat'
-        ],
-        [
-            'date' => '25 Agustus 2026',
-            'title' => 'Evaluasi & Laporan PPID Tahunan',
-            'desc' => 'Penyusunan laporan tahunan indeks kepuasan layanan informasi masyarakat di lingkungan Unbrah.',
-            'location' => 'Aula Rektorat'
-        ]
-    ];
-@endphp
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kelola Agenda Kegiatan | Admin PPID Universitas Baiturrahmah</title>
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <!-- Meta SEO -->
-    <meta name="description" content="Kelola konten agenda, jadwal kegiatan, dan timeline beranda secara dinamis.">
-    <meta name="author" content="Universitas Baiturrahmah">
-    
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body class="bg-slate-100 text-slate-800 font-sans antialiased overflow-x-hidden">
+@extends('layouts.admin')
 
-    <!-- ADMIN LAYOUT WRAPPER -->
-    <div class="flex min-h-screen">
+@section('title', 'Kelola Agenda Kegiatan')
 
-        <!-- SIDEBAR (Desktop & Mobile) -->
-        <aside id="admin-sidebar" class="w-64 bg-brand-green-950 text-slate-300 flex-shrink-0 flex flex-col justify-between transition-all duration-300 z-30 fixed top-0 bottom-0 left-0 -translate-x-full lg:translate-x-0 h-screen shadow-2xl">
-            <div>
-                <!-- Sidebar Logo Header -->
-                <div class="p-6 border-b border-brand-green-900 flex items-center justify-between">
-                    <a href="/" class="flex items-center space-x-3 group">
-                        <img src="/images/logo_unbrah.png" 
-                             alt="Logo Universitas Baiturrahmah" 
-                             class="w-10 h-10 object-contain brightness-95">
-                        <div class="flex flex-col">
-                            <span class="text-sm font-bold tracking-tight text-white font-display">PPID Admin</span>
-                            <span class="text-[9px] text-brand-gold-500 uppercase tracking-widest font-semibold">Unbrah Padang</span>
-                        </div>
-                    </a>
-                    <!-- Close button for mobile -->
-                    <button onclick="toggleSidebar()" class="p-1.5 rounded-lg hover:bg-brand-green-900 text-slate-400 hover:text-white cursor-pointer lg:hidden">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
-                    </button>
-                </div>
+@section('header-left')
+<h2 class="text-slate-800 font-bold text-sm font-display tracking-tight">Halaman Administrasi</h2>
+@endsection
 
-                <!-- Navigation items -->
-                <nav class="p-4 space-y-1.5 text-xs font-semibold">
-                    <span class="block px-3 py-2 text-[10px] text-brand-green-600 uppercase tracking-widest font-bold">Menu Utama</span>
-                    
-                    <a href="/admin" class="flex items-center space-x-3 hover:bg-brand-green-900/40 hover:text-white px-3 py-3 rounded-lg transition-all text-slate-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4zM14 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2v-4z"></path></svg>
-                        <span>Dashboard Utama</span>
-                    </a>
-
-                    <!-- Slide Show -->
-                    <a href="/admin/slide-show" class="flex items-center space-x-3 hover:bg-brand-green-900/40 hover:text-white px-3 py-3 rounded-lg transition-all text-slate-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                        <span>Slide Show</span>
-                    </a>
-
-                    <!-- Profil PPID -->
-                    <a href="/admin/profil-ppid" class="flex items-center space-x-3 hover:bg-brand-green-900/40 hover:text-white px-3 py-3 rounded-lg transition-all text-slate-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                        <span>Profil PPID</span>
-                    </a>
-
-                    <!-- Agenda Kegiatan (Active Style) -->
-                    <a href="/admin/agenda-kegiatan" class="flex items-center space-x-3 bg-brand-green-900/60 text-brand-gold-500 border-l-4 border-brand-gold-500 px-3 py-3 rounded-lg transition-all">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                        <span>Agenda Kegiatan</span>
-                    </a>
-
-                    <span class="block px-3 py-2 text-[10px] text-brand-green-600 uppercase tracking-widest font-bold pt-4">Permohonan</span>
-
-                    <a href="/admin/permohonan" class="flex items-center space-x-3 hover:bg-brand-green-900/40 hover:text-white px-3 py-3 rounded-lg transition-all text-slate-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                        <span class="flex-1">Permohonan Informasi Publik</span>
-                        <span class="bg-brand-green-700/60 text-slate-200 text-[10px] px-2 py-0.5 rounded-full" id="sidebar-count-permohonan">0</span>
-                    </a>
-
-                    <a href="/admin/keberatan" class="flex items-center space-x-3 hover:bg-brand-green-900/40 hover:text-white px-3 py-3 rounded-lg transition-all text-slate-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                        <span class="flex-1">Keberatan Informasi Publik</span>
-                        <span class="bg-brand-green-700/60 text-slate-200 text-[10px] px-2 py-0.5 rounded-full" id="sidebar-count-keberatan">0</span>
-                    </a>
-
-                    <a href="/admin/penyalahgunaan" class="flex items-center space-x-3 hover:bg-brand-green-900/40 hover:text-white px-3 py-3 rounded-lg transition-all text-slate-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path></svg>
-                        <span class="flex-1">Penyalahgunaan Wewenang</span>
-                        <span class="bg-brand-green-700/60 text-slate-200 text-[10px] px-2 py-0.5 rounded-full" id="sidebar-count-penyalahgunaan">0</span>
-                    </a>
-
-                    <a href="/admin/pengaduan" class="flex items-center space-x-3 hover:bg-brand-green-900/40 hover:text-white px-3 py-3 rounded-lg transition-all text-slate-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-                        <span class="flex-1">Pengaduan Layanan Kampus</span>
-                        <span class="bg-brand-green-700/60 text-slate-200 text-[10px] px-2 py-0.5 rounded-full" id="sidebar-count-pengaduan">0</span>
-                    </a>
-
-                    <span class="block px-3 py-2 text-[10px] text-brand-green-600 uppercase tracking-widest font-bold pt-4">Dokumen Profil</span>
-
-                    <a href="/admin/tentang" class="flex items-center space-x-3 hover:bg-brand-green-900/40 hover:text-white px-3 py-3 rounded-lg transition-all text-slate-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                        <span class="flex-1">Kelola Tentang</span>
-                    </a>
-
-                    <a href="/admin/informasi-publik-berkala" class="flex items-center space-x-3 hover:bg-brand-green-900/40 hover:text-white px-3 py-3 rounded-lg transition-all text-slate-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                        <span class="flex-1">Informasi Publik Berkala</span>
-                    </a>
-
-                    <a href="/admin/informasi-serta-merta" class="flex items-center space-x-3 hover:bg-brand-green-900/40 hover:text-white px-3 py-3 rounded-lg transition-all text-slate-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                        <span class="flex-1">Informasi Serta Merta</span>
-                    </a>
-
-                    <a href="/admin/informasi-tersedia-setiap-saat" class="flex items-center space-x-3 hover:bg-brand-green-900/40 hover:text-white px-3 py-3 rounded-lg transition-all text-slate-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                        <span class="flex-1">Informasi Tersedia Setiap Saat</span>
-                    </a>
-
-                    <a href="/admin/galeri" class="flex items-center space-x-3 hover:bg-brand-green-900/40 hover:text-white px-3 py-3 rounded-lg transition-all text-slate-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                        <span class="flex-1">Kelola Galeri PPID</span>
-                    </a>
-
-                    <a href="/admin/dokumen" class="flex items-center space-x-3 hover:bg-brand-green-900/40 hover:text-white px-3 py-3 rounded-lg transition-all text-slate-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path></svg>
-                        <span class="flex-1">Kelola Dokumen</span>
-                    </a>
-
-                </nav>
-            </div>
-
-            <!-- Profile Info Footer in Sidebar -->
-            <div class="p-4 border-t border-brand-green-900 flex items-center space-x-3">
-                <div class="relative">
-                    <span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 border border-brand-green-950 animate-pulse"></span>
-                    <div class="w-9 h-9 rounded-full bg-brand-gold-500/20 text-brand-gold-500 flex items-center justify-center font-bold text-xs uppercase font-display">
-                        SA
-                    </div>
-                </div>
-                <div class="flex flex-col">
-                    <span class="text-xs font-bold text-white leading-tight">Admin PPID</span>
-                    <span class="text-[9px] text-slate-500">Super Administrator</span>
-                </div>
-            </div>
-        </aside>
-
-        <!-- MAIN WINDOW WRAPPER -->
-        <div class="flex-1 flex flex-col min-h-screen pl-0 lg:pl-64 transition-all duration-300 overflow-y-auto">
-
-            <!-- MAIN HEADER -->
-            <header class="bg-white border-b border-slate-200 py-3 px-6 flex justify-between items-center shadow-sm">
-                <div class="flex items-center space-x-4">
-                    <!-- Mobile Hamburger trigger -->
-                    <button onclick="toggleSidebar()" class="p-2 rounded-lg hover:bg-slate-100 text-slate-600 focus:outline-none cursor-pointer lg:hidden">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path></svg>
-                    </button>
-                    <!-- Title for current view -->
-                    <h2 class="text-slate-800 font-bold text-sm font-display tracking-tight">Halaman Administrasi</h2>
-                </div>
-
-                <div class="flex items-center space-x-4">
-                    <span class="text-xs text-slate-500 font-semibold hidden md:inline-block" id="live-date">Selasa, 30 Juni 2026</span>
-                    <!-- Profile avatar -->
-                    <div class="w-8 h-8 rounded-full bg-brand-green-700 text-white flex items-center justify-center font-bold text-xs uppercase cursor-pointer">
-                        SA
-                    </div>
-                </div>
-            </header>
-
-            <!-- MAIN CONTENT AREA -->
-            <main class="p-6 space-y-6">
-
-                <!-- HEADER SUMMARY -->
+@section('content')
+<!-- HEADER SUMMARY -->
                 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div>
                         <h1 class="text-2xl font-bold font-display tracking-tight text-slate-900 leading-tight">Kelola Agenda Kegiatan (Halaman Utama)</h1>
@@ -283,67 +95,11 @@
                         </div>
                     </form>
                 </div>
+@endsection
 
-            </main>
-
-        </div>
-
-    </div>
-
-    <!-- POP-UP MODAL EDIT/ADD FORM -->
-    <div id="agenda-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
-        <!-- Backdrop -->
-        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity" onclick="closeAgendaModal()"></div>
-        
-        <!-- Modal Content Container -->
-        <div class="relative bg-white rounded-3xl max-w-lg w-full p-6 md:p-8 space-y-4 shadow-2xl z-10 mx-4 transform transition-all scale-95 opacity-0 duration-300" id="modal-container">
-            <button type="button" onclick="closeAgendaModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 cursor-pointer">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-            
-            <h3 class="text-base font-bold text-slate-850 uppercase tracking-wider border-b border-slate-100 pb-3" id="modal-title">Edit Agenda Kegiatan</h3>
-            
-            <div class="space-y-3 pt-2">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div class="space-y-1">
-                        <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider">Tanggal Kegiatan</label>
-                        <input type="text" id="modal-input-date" class="w-full bg-slate-50 border border-slate-200 focus:border-brand-green-500 focus:bg-white text-slate-800 text-xs px-3 py-2.5 rounded-lg transition-all outline-none" required placeholder="Contoh: 15 Juli 2026">
-                    </div>
-                    <div class="space-y-1">
-                        <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider">Lokasi Kegiatan</label>
-                        <input type="text" id="modal-input-location" class="w-full bg-slate-50 border border-slate-200 focus:border-brand-green-500 focus:bg-white text-slate-800 text-xs px-3 py-2.5 rounded-lg transition-all outline-none" required placeholder="Contoh: Aula Kampus">
-                    </div>
-                </div>
-                
-                <div class="space-y-1">
-                    <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider">Nama/Judul Kegiatan</label>
-                    <input type="text" id="modal-input-title" class="w-full bg-slate-50 border border-slate-200 focus:border-brand-green-500 focus:bg-white text-slate-800 text-xs px-3 py-2.5 rounded-lg transition-all outline-none" required placeholder="Contoh: Sosialisasi UU KIP">
-                </div>
-
-                <div class="space-y-1">
-                    <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider">Deskripsi Singkat</label>
-                    <textarea id="modal-input-desc" rows="3" class="w-full bg-slate-50 border border-slate-200 focus:border-brand-green-500 focus:bg-white text-slate-800 text-xs px-3 py-2.5 rounded-lg transition-all outline-none resize-y" required placeholder="Contoh: Deskripsi singkat tentang agenda."></textarea>
-                </div>
-            </div>
-            
-            <div class="flex justify-end space-x-3 pt-4 border-t border-slate-100">
-                <button type="button" onclick="closeAgendaModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold rounded-xl transition-all cursor-pointer">Batal</button>
-                <button type="button" onclick="saveAgendaModal()" class="px-4 py-2 bg-brand-green-700 hover:bg-brand-green-800 text-white text-xs font-bold rounded-xl transition-all cursor-pointer flex items-center space-x-1">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
-                    <span>Simpan</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- GLOBAL JAVASCRIPT FOR SIDEBAR TOGGLE & DYNAMIC TIMELINE MANAGEMENT -->
-    <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById('admin-sidebar');
-            sidebar.classList.toggle('-translate-x-full');
-        }
-
-        window.addEventListener('DOMContentLoaded', () => {
+@section('scripts')
+<script>
+window.addEventListener('DOMContentLoaded', () => {
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             document.getElementById('live-date').innerText = new Date().toLocaleDateString('id-ID', options);
             
@@ -511,6 +267,5 @@
             };
             return text.replace(/[&<>"']/g, function(m) { return map[m]; });
         }
-    </script>
-</body>
-</html>
+</script>
+@endsection
