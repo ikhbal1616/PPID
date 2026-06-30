@@ -336,7 +336,42 @@ class PermohonanController extends Controller
             'pengaduan' => Permohonan::where('kategori', 'pengaduan')->count(),
         ];
 
-        return view('admin.agenda-kegiatan', compact('sidebarCounts'));
+        $agendaJson = setting('agenda_kegiatan_list');
+        $agendas = [];
+        if ($agendaJson) {
+            $agendas = json_decode($agendaJson, true);
+        }
+        
+        if (empty($agendas)) {
+            $agendas = [
+                [
+                    'date' => '15 Juli 2026',
+                    'title' => 'Sosialisasi Keterbukaan Informasi',
+                    'desc' => 'Seminar dan workshop keterbukaan dokumen publik bagi seluruh jajaran struktural universitas.',
+                    'location' => 'Kampus Unbrah'
+                ],
+                [
+                    'date' => '28 Juli 2026',
+                    'title' => 'Bimbingan Teknis Pengelola Data',
+                    'desc' => 'Pelatihan operasional sistem informasi arsip bagi sekretariat fakultas untuk kecepatan layanan informasi.',
+                    'location' => 'Gedung Rektorat'
+                ],
+                [
+                    'date' => '12 Agustus 2026',
+                    'title' => 'Audit Transparansi Berkala',
+                    'desc' => 'Pemeriksaan ketersediaan berkas publik bersama Komisi Informasi Sumatera Barat untuk penilaian kepatuhan.',
+                    'location' => 'Ruang VIP Senat'
+                ],
+                [
+                    'date' => '25 Agustus 2026',
+                    'title' => 'Evaluasi & Laporan PPID Tahunan',
+                    'desc' => 'Penyusunan laporan tahunan indeks kepuasan layanan informasi masyarakat di lingkungan Unbrah.',
+                    'location' => 'Aula Rektorat'
+                ]
+            ];
+        }
+
+        return view('admin.agenda-kegiatan', compact('sidebarCounts', 'agendas'));
     }
 
     /**
