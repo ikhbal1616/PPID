@@ -22,6 +22,27 @@
     <script src="/js/sweetalert2.js"></script>
     
     @yield('styles')
+    
+    <!-- Google Translate Custom Styling Override -->
+    <style>
+        .goog-te-banner-frame.skiptranslate,
+        .goog-te-banner-frame,
+        iframe.goog-te-banner-frame {
+            display: none !important;
+        }
+        body {
+            top: 0px !important;
+        }
+        .goog-tooltip,
+        .goog-tooltip:hover {
+            display: none !important;
+        }
+        .goog-text-highlight {
+            background-color: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+    </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased overflow-x-hidden">
 
@@ -43,16 +64,17 @@
                 </span>
             </div>
             <div class="flex items-center space-x-4">
-                <a href="/#news" class="hover:text-brand-gold-500 transition-colors">Arsip Berita</a>
+                <a href="/berita" class="hover:text-brand-gold-500 transition-colors">Arsip Berita</a>
                 <span>|</span>
                 <a href="#" class="hover:text-brand-gold-500 transition-colors">Sistem Informasi</a>
                 <span>|</span>
-                <!-- Language Toggle -->
-                <div class="flex items-center space-x-1 bg-brand-green-900/60 rounded px-2 py-0.5 border border-brand-green-800">
-                    <span class="text-brand-gold-500 font-semibold cursor-pointer">ID</span>
-                    <span class="text-slate-400">/</span>
-                    <span class="text-slate-400 hover:text-slate-200 cursor-pointer transition-colors">EN</span>
-                </div>
+                <!-- Language Toggle Switch (Desktop) -->
+                <button onclick="toggleLanguage()" id="lang-switch" class="relative inline-flex items-center h-6 w-14 rounded-full transition-colors duration-305 focus:outline-none cursor-pointer p-0.5 bg-brand-green-900 border border-brand-green-800">
+                    <span id="lang-switch-knob" class="pointer-events-none inline-block h-4.5 w-4.5 rounded-full bg-white shadow-md transform transition-transform duration-300 ease-in-out translate-x-0"></span>
+                    <span id="lang-switch-text" class="pointer-events-none absolute text-[10px] font-black uppercase tracking-wider select-none transition-all duration-300 text-brand-gold-500 right-2">
+                        ID
+                    </span>
+                </button>
             </div>
         </div>
     </div>
@@ -127,7 +149,7 @@
                         </div>
                     </div>
 
-                    <a href="/#news" class="hover:text-brand-green-600 transition-colors">Kilas Berita</a>
+                    <a href="/berita" class="{{ request()->is('berita*') ? 'text-brand-green-600 relative after:absolute after:bottom-[-6px] after:left-0 after:w-full after:h-[2px] after:bg-brand-green-500' : 'hover:text-brand-green-600 transition-colors py-2' }}">Kilas Berita</a>
                     <a href="/galeri" class="{{ request()->is('galeri*') ? 'text-brand-green-600 relative after:absolute after:bottom-[-6px] after:left-0 after:w-full after:h-[2px] after:bg-brand-green-500' : 'hover:text-brand-green-600 transition-colors py-2' }}">Galeri</a>
                     <a href="/dokumen" class="{{ request()->is('dokumen*') ? 'text-brand-green-600 relative after:absolute after:bottom-[-6px] after:left-0 after:w-full after:h-[2px] after:bg-brand-green-500' : 'hover:text-brand-green-600 transition-colors py-2' }}">Dokumen</a>
                 </nav>
@@ -135,7 +157,7 @@
                 <!-- Action Button & Mobile Nav Trigger -->
                 <div class="flex items-center space-x-4">
                     <!-- Call to Action (Form Cepat) -->
-                    <button onclick="openModal('permohonan')" class="hidden md:flex items-center whitespace-nowrap space-x-2 bg-gradient-to-r from-brand-green-600 to-brand-green-700 hover:from-brand-green-700 hover:to-brand-green-800 text-white font-semibold text-sm px-5 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer">
+                    <button onclick="openModal('permohonan')" class="hidden md:flex items-center whitespace-nowrap space-x-2 bg-gradient-to-r from-brand-green-900 to-brand-green-950 hover:from-brand-green-950 hover:to-brand-green-900 text-white font-semibold text-sm px-5 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer border border-brand-gold-500/20 hover:border-brand-gold-500/50">
                         <svg class="w-4 h-4 text-brand-gold-500 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
                         <span>Hubungi PPID</span>
                     </button>
@@ -182,9 +204,21 @@
                     </div>
                     <hr class="border-slate-100">
 
-                    <a href="/#news" class="block py-2 hover:text-brand-green-600">Kilas Berita</a>
+                    <a href="/berita" class="block py-2 {{ request()->is('berita*') ? 'text-brand-green-600 font-bold' : 'hover:text-brand-green-600' }}">Kilas Berita</a>
                     <a href="/galeri" class="block py-2 hover:text-brand-green-600">Galeri</a>
                     <a href="/dokumen" class="block py-2 hover:text-brand-green-600">Dokumen</a>
+                    
+                    <!-- Language Toggle Mobile Switch -->
+                    <hr class="border-slate-100">
+                    <div class="flex items-center justify-between py-2.5">
+                        <span class="text-slate-450 text-xs font-bold uppercase tracking-wider">Bahasa / Language</span>
+                        <button onclick="toggleLanguage()" id="lang-switch-mobile" class="relative inline-flex items-center h-6 w-14 rounded-full transition-colors duration-300 focus:outline-none cursor-pointer p-0.5 bg-slate-100 border border-slate-200">
+                            <span id="lang-switch-knob-mobile" class="pointer-events-none inline-block h-4.5 w-4.5 rounded-full bg-white shadow-md transform transition-transform duration-300 ease-in-out translate-x-0"></span>
+                            <span id="lang-switch-text-mobile" class="pointer-events-none absolute text-[10px] font-black uppercase tracking-wider select-none transition-all duration-300 text-slate-450 right-2">
+                                ID
+                            </span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -235,6 +269,7 @@
                         <li><a href="/regulasi" class="hover:text-white transition-colors">Regulasi Hukum</a></li>
                         <li><a href="/dokumen" class="hover:text-white transition-colors">Dokumen Publik</a></li>
                         <li><a href="/galeri" class="hover:text-white transition-colors">Galeri Kegiatan</a></li>
+                        <li><a href="/berita" class="hover:text-white transition-colors">Kilas Berita</a></li>
                     </ul>
                 </div>
 
@@ -676,6 +711,137 @@
             });
         }
     </script>
+    <!-- Google Translate Element Container (Hidden) -->
+    <div id="google_translate_element" class="hidden animate-none" style="display:none;"></div>
+
+    <!-- Google Translate Initialization Script -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'id',
+                includedLanguages: 'id,en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Language Toggle Action Script -->
+    <script type="text/javascript">
+        function changeLanguage(langCode) {
+            var cookieValue = "/id/" + langCode;
+            document.cookie = "googtrans=" + cookieValue + "; path=/";
+            document.cookie = "googtrans=" + cookieValue + "; path=/; domain=" + window.location.hostname;
+            
+            var hostParts = window.location.hostname.split('.');
+            if (hostParts.length > 2) {
+                var rootDomain = "." + hostParts.slice(-2).join('.');
+                document.cookie = "googtrans=" + cookieValue + "; path=/; domain=" + rootDomain;
+            }
+            
+            window.location.reload();
+        }
+
+        function toggleLanguage() {
+            var cookies = document.cookie.split(';');
+            var currentLang = 'id';
+            for (var i = 0; i < cookies.length; i++) {
+                var c = cookies[i].trim();
+                if (c.indexOf('googtrans=') === 0) {
+                    var val = c.substring('googtrans='.length, c.length);
+                    if (val.includes('/en')) {
+                        currentLang = 'en';
+                    }
+                    break;
+                }
+            }
+            var nextLang = (currentLang === 'id') ? 'en' : 'id';
+            changeLanguage(nextLang);
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var cookies = document.cookie.split(';');
+            var currentLang = 'id';
+            for (var i = 0; i < cookies.length; i++) {
+                var c = cookies[i].trim();
+                if (c.indexOf('googtrans=') === 0) {
+                    var val = c.substring('googtrans='.length, c.length);
+                    if (val.includes('/en')) {
+                        currentLang = 'en';
+                    }
+                    break;
+                }
+            }
+
+            var switchBtn = document.getElementById('lang-switch');
+            var switchKnob = document.getElementById('lang-switch-knob');
+            var switchText = document.getElementById('lang-switch-text');
+
+            var switchBtnMobile = document.getElementById('lang-switch-mobile');
+            var switchKnobMobile = document.getElementById('lang-switch-knob-mobile');
+            var switchTextMobile = document.getElementById('lang-switch-text-mobile');
+
+            if (currentLang === 'en') {
+                if (switchBtn) {
+                    switchBtn.classList.remove('bg-brand-green-900', 'border-brand-green-800');
+                    switchBtn.classList.add('bg-brand-gold-500', 'border-brand-gold-400');
+                }
+                if (switchKnob) {
+                    switchKnob.classList.remove('translate-x-0');
+                    switchKnob.classList.add('translate-x-[32px]');
+                }
+                if (switchText) {
+                    switchText.innerText = 'EN';
+                    switchText.classList.remove('right-2', 'text-brand-gold-500');
+                    switchText.classList.add('left-2', 'text-brand-green-950');
+                }
+
+                if (switchBtnMobile) {
+                    switchBtnMobile.classList.remove('bg-slate-100', 'border-slate-200');
+                    switchBtnMobile.classList.add('bg-brand-green-900', 'border-brand-green-850');
+                }
+                if (switchKnobMobile) {
+                    switchKnobMobile.classList.remove('translate-x-0');
+                    switchKnobMobile.classList.add('translate-x-[32px]');
+                }
+                if (switchTextMobile) {
+                    switchTextMobile.innerText = 'EN';
+                    switchTextMobile.classList.remove('right-2', 'text-slate-450');
+                    switchTextMobile.classList.add('left-2', 'text-brand-gold-500');
+                }
+            } else {
+                if (switchBtn) {
+                    switchBtn.classList.add('bg-brand-green-900', 'border-brand-green-800');
+                    switchBtn.classList.remove('bg-brand-gold-500', 'border-brand-gold-400');
+                }
+                if (switchKnob) {
+                    switchKnob.classList.add('translate-x-0');
+                    switchKnob.classList.remove('translate-x-[32px]');
+                }
+                if (switchText) {
+                    switchText.innerText = 'ID';
+                    switchText.classList.add('right-2', 'text-brand-gold-500');
+                    switchText.classList.remove('left-2', 'text-brand-green-950');
+                }
+
+                if (switchBtnMobile) {
+                    switchBtnMobile.classList.add('bg-slate-100', 'border-slate-200');
+                    switchBtnMobile.classList.remove('bg-brand-green-900', 'border-brand-green-850');
+                }
+                if (switchKnobMobile) {
+                    switchKnobMobile.classList.add('translate-x-0');
+                    switchKnobMobile.classList.remove('translate-x-[32px]');
+                }
+                if (switchTextMobile) {
+                    switchTextMobile.innerText = 'ID';
+                    switchTextMobile.classList.add('right-2', 'text-slate-450');
+                    switchTextMobile.classList.remove('left-2', 'text-brand-gold-500');
+                }
+            }
+        });
+    </script>
+
     @yield('scripts')
 </body>
 </html>

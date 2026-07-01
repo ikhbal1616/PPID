@@ -378,7 +378,7 @@
                 </div>
                 <h2 class="text-3xl sm:text-4xl font-bold font-display tracking-tight text-slate-900 leading-tight">Berita Terkini PPID Universitas Baiturrahmah</h2>
             </div>
-            <a href="#" class="mt-4 md:mt-0 flex items-center space-x-2 bg-brand-green-50 hover:bg-brand-green-100 text-brand-green-900 font-bold text-xs px-5 py-2.5 rounded-full transition-all duration-300 border border-brand-green-200">
+            <a href="/berita" class="mt-4 md:mt-0 flex items-center space-x-2 bg-brand-green-50 hover:bg-brand-green-100 text-brand-green-900 font-bold text-xs px-5 py-2.5 rounded-full transition-all duration-300 border border-brand-green-200">
                 <span>Lihat Seluruh Berita</span>
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
             </a>
@@ -409,7 +409,7 @@
                                 <span>Humas Unbrah</span>
                             </span>
                         </div>
-                        <a href="#" class="block">
+                        <a href="/berita/1" class="block">
                             <h3 class="text-xl sm:text-2xl font-bold font-display text-slate-900 group-hover:text-brand-green-600 transition-colors leading-tight">
                                 Universitas Baiturrahmah Sukses Gelar Forum Sosialisasi E-PPID Untuk Peningkatan Kualitas Layanan Informasi Publik
                             </h3>
@@ -440,7 +440,7 @@
                         <img src="/images/slider2.png" alt="Rektorat Unbrah meeting" class="w-20 h-20 rounded-xl object-cover flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
                         <div class="space-y-1">
                             <span class="text-[10px] font-bold text-brand-green-600">18 Juni 2026</span>
-                            <a href="#" class="block">
+                            <a href="/berita/2" class="block">
                                 <h4 class="font-bold text-xs text-slate-900 group-hover:text-brand-green-600 transition-colors line-clamp-2 leading-snug">
                                     Kolaborasi UNBRAH & Pemkot Padang Mengenai Integrasi Data PPID Terbuka Daerah
                                 </h4>
@@ -453,7 +453,7 @@
                         <img src="/images/slider3.png" alt="Information center Unbrah" class="w-20 h-20 rounded-xl object-cover flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
                         <div class="space-y-1">
                             <span class="text-[10px] font-bold text-brand-green-600">12 Juni 2026</span>
-                            <a href="#" class="block">
+                            <a href="/berita/3" class="block">
                                 <h4 class="font-bold text-xs text-slate-900 group-hover:text-brand-green-600 transition-colors line-clamp-2 leading-snug">
                                     Bimtek Standardisasi Pelayanan Informasi Publik Pejabat Daerah Sumatera Barat
                                 </h4>
@@ -466,7 +466,7 @@
                         <img src="/images/slider1.png" alt="Library Unbrah digital" class="w-20 h-20 rounded-xl object-cover flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
                         <div class="space-y-1">
                             <span class="text-[10px] font-bold text-brand-green-600">05 Juni 2026</span>
-                            <a href="#" class="block">
+                            <a href="/berita/4" class="block">
                                 <h4 class="font-bold text-xs text-slate-900 group-hover:text-brand-green-600 transition-colors line-clamp-2 leading-snug">
                                     Universitas Baiturrahmah Rilis Portal Data Publik Resmi Terintegrasi
                                 </h4>

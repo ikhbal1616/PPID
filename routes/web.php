@@ -66,6 +66,15 @@ Route::get('/dokumen', function () {
     return view('user.dokumen');
 });
 
+Route::get('/berita', function () {
+    return view('user.berita');
+});
+
+Route::get('/berita/{id}', function ($id) {
+    return view('user.berita-detail', compact('id'));
+});
+
+
 // Authentication Routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
