@@ -5,9 +5,11 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\PermohonanController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\BeritaController;
 
 Route::get('/', function () {
-    return view('user.halaman-utama');
+    $latestBerita = \App\Http\Controllers\BeritaController::fetchLatest(4);
+    return view('user.halaman-utama', compact('latestBerita'));
 });
 
 // Feedback & Satisfaction Survey
@@ -66,13 +68,8 @@ Route::get('/dokumen', function () {
     return view('user.dokumen');
 });
 
-Route::get('/berita', function () {
-    return view('user.berita');
-});
-
-Route::get('/berita/{id}', function ($id) {
-    return view('user.berita-detail', compact('id'));
-});
+Route::get('/berita', [BeritaController::class, 'index'])->name('berita.index');
+Route::get('/berita/{id}', [BeritaController::class, 'show'])->name('berita.show');
 
 
 // Authentication Routes
