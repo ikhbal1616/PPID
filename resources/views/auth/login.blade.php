@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log in | PPID Universitas Baiturrahmah</title>
+
+     <!-- Favicon -->
+    <link class="favicon" rel="icon" type="image/png" href="/images/logo_unbrah.png">
+    
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="Halaman masuk administrasi internal PPID Universitas Baiturrahmah.">

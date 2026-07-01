@@ -41,6 +41,11 @@ return [
      */
     'berita' => [
         'url' => env('BERITA_API_URL', 'https://unbrah.ac.id/api/berita'),
+        'skip_ssl' => env('BERITA_API_SKIP_SSL', false),
+    ],
+
+    'whatsapp' => [
+        'number' => env('PPID_WHATSAPP_NUMBER', '628116313712'),
     ],
 
 ];

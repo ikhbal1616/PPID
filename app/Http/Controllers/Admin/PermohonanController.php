@@ -597,6 +597,21 @@ class PermohonanController extends Controller
     /**
      * Upload a file via AJAX.
      */
+    /**
+     * Display the Contact edit page.
+     */
+    public function contactIndex()
+    {
+        $sidebarCounts = [
+            'permohonan' => Permohonan::where('kategori', 'permohonan')->count(),
+            'keberatan' => Permohonan::where('kategori', 'keberatan')->count(),
+            'penyalahgunaan' => Permohonan::where('kategori', 'penyalahgunaan')->count(),
+            'pengaduan' => Permohonan::where('kategori', 'pengaduan')->count(),
+        ];
+
+        return view('admin.contact', compact('sidebarCounts'));
+    }
+
     public function uploadFile(Request $request)
     {
         $request->validate([

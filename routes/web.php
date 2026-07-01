@@ -125,6 +125,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/admin/tentang/update', [PermohonanController::class, 'profilUpdate'])->name('admin.tentang.update');
         Route::get('/admin/slide-show', [PermohonanController::class, 'slideShowIndex'])->name('admin.slide-show.index');
         Route::post('/admin/slide-show/update', [PermohonanController::class, 'profilUpdate'])->name('admin.slide-show.update');
+        Route::get('/admin/contact', [PermohonanController::class, 'contactIndex'])->name('admin.contact.index');
+        Route::post('/admin/contact/update', [PermohonanController::class, 'profilUpdate'])->name('admin.contact.update');
         
         // New content routes added by teammate
         Route::get('/admin/profil-ppid', [PermohonanController::class, 'profilPpidIndex'])->name('admin.profil-ppid.index');

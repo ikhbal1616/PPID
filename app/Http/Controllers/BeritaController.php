@@ -19,13 +19,25 @@ class BeritaController extends Controller
     }
 
     /**
+     * Create HTTP client instance with optional SSL verification bypass based on config.
+     */
+    private static function httpClient(int $timeout = 10)
+    {
+        $request = Http::timeout($timeout);
+        if (config('services.berita.skip_ssl', false)) {
+            $request->withoutVerifying();
+        }
+        return $request;
+    }
+
+    /**
      * Fetch the latest N news items for use on the homepage.
      * Returns empty array on failure — view handles graceful fallback.
      */
     public static function fetchLatest(int $limit = 4): array
     {
         try {
-            $response = Http::timeout(10)->get(static::apiBase(), ['limit' => $limit]);
+            $response = static::httpClient(10)->get(static::apiBase(), ['limit' => $limit]);
             if ($response->successful()) {
                 return $response->json()['data'] ?? [];
             }
@@ -55,7 +67,7 @@ class BeritaController extends Controller
             if ($search) $params['search'] = $search;
             if ($tag)    $params['tag']    = $tag;
 
-            $response = Http::timeout(10)->get(static::apiBase(), $params);
+            $response = static::httpClient(10)->get(static::apiBase(), $params);
 
             if ($response->successful()) {
                 $json       = $response->json();
@@ -83,7 +95,7 @@ class BeritaController extends Controller
         $apiError = false;
 
         try {
-            $response = Http::timeout(10)->get(static::apiBase() . '/' . $id);
+            $response = static::httpClient(10)->get(static::apiBase() . '/' . $id);
 
             if ($response->successful()) {
                 $article = $response->json()['data'] ?? null;
@@ -98,7 +110,7 @@ class BeritaController extends Controller
 
         // Fetch related articles (latest, exclude current)
         try {
-            $relResp = Http::timeout(8)->get(static::apiBase(), ['limit' => 4]);
+            $relResp = static::httpClient(8)->get(static::apiBase(), ['limit' => 4]);
             if ($relResp->successful()) {
                 $allRecent = $relResp->json()['data'] ?? [];
                 $related   = array_filter($allRecent, fn($b) => $b['id'] !== $id);

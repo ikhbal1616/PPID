@@ -52,15 +52,15 @@
             <div class="flex items-center space-x-6">
                 <span class="flex items-center space-x-2">
                     <svg class="w-4 h-4 text-brand-gold-500 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                    <span>(0751) 4641913</span>
+                    <span>{{ setting('contact_phone', '(0751) 4641913') }}</span>
                 </span>
                 <span class="flex items-center space-x-2">
                     <svg class="w-4 h-4 text-brand-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                    <span>ppid@unbrah.ac.id</span>
+                    <span>{{ setting('contact_email', 'ppid@unbrah.ac.id') }}</span>
                 </span>
                 <span class="flex items-center space-x-2">
                     <svg class="w-4 h-4 text-brand-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    <span>Senin - Jumat: 08:00 - 16:00 WIB</span>
+                    <span>{{ setting('contact_hours', 'Senin - Jumat: 08:00 - 16:00 WIB') }}</span>
                 </span>
             </div>
             <div class="flex items-center space-x-4">
@@ -157,10 +157,10 @@
                 <!-- Action Button & Mobile Nav Trigger -->
                 <div class="flex items-center space-x-4">
                     <!-- Call to Action (Form Cepat) -->
-                    <button onclick="openModal('permohonan')" class="hidden md:flex items-center whitespace-nowrap space-x-2 bg-gradient-to-r from-brand-green-900 to-brand-green-950 hover:from-brand-green-950 hover:to-brand-green-900 text-white font-semibold text-sm px-5 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer border border-brand-gold-500/20 hover:border-brand-gold-500/50">
+                    <a href="https://wa.me/{{ setting('whatsapp_number', config('services.whatsapp.number', '628116313712')) }}?text={{ urlencode('Halo PPID Universitas Baiturrahmah, saya ingin menanyakan informasi.') }}" target="_blank" class="hidden md:flex items-center whitespace-nowrap space-x-2 bg-gradient-to-r from-brand-green-900 to-brand-green-950 hover:from-brand-green-950 hover:to-brand-green-900 text-white font-semibold text-sm px-5 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer border border-brand-gold-500/20 hover:border-brand-gold-500/50 no-underline">
                         <svg class="w-4 h-4 text-brand-gold-500 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
                         <span>Hubungi PPID</span>
-                    </button>
+                    </a>
 
                     <!-- Mobile Menu Button -->
                     <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg text-brand-green-950 hover:bg-brand-green-50 focus:outline-none transition-colors">
@@ -207,6 +207,12 @@
                     <a href="/berita" class="block py-2 {{ request()->is('berita*') ? 'text-brand-green-600 font-bold' : 'hover:text-brand-green-600' }}">Kilas Berita</a>
                     <a href="/galeri" class="block py-2 hover:text-brand-green-600">Galeri</a>
                     <a href="/dokumen" class="block py-2 hover:text-brand-green-600">Dokumen</a>
+
+                    <!-- WhatsApp Contact Link for Mobile -->
+                    <a href="https://wa.me/{{ setting('whatsapp_number', config('services.whatsapp.number', '628116313712')) }}?text={{ urlencode('Halo PPID Universitas Baiturrahmah, saya ingin menanyakan informasi.') }}" target="_blank" class="block py-2 text-brand-gold-600 hover:text-brand-gold-500 font-bold flex items-center space-x-1.5 no-underline">
+                        <svg class="w-4 h-4 text-brand-gold-500 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                        <span>Hubungi PPID (WhatsApp)</span>
+                    </a>
                     
                     <!-- Language Toggle Mobile Switch -->
                     <hr class="border-slate-100">
@@ -251,11 +257,11 @@
                     <div class="space-y-3 text-xs text-slate-300">
                         <div class="flex items-start space-x-3">
                             <svg class="w-4 h-4 text-brand-gold-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                            <span class="font-light">Jl. Raya By Pass KM 15, Aie Pacah, Kec. Koto Tangah, Kota Padang, Sumatera Barat 25176</span>
+                            <span class="font-light">{{ setting('contact_address', 'Jl. Raya By Pass KM 15, Aie Pacah, Kec. Koto Tangah, Kota Padang, Sumatera Barat 25176') }}</span>
                         </div>
                         <div class="flex items-center space-x-3">
                             <svg class="w-4 h-4 text-brand-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                            <span class="font-light">(0751) 4641913</span>
+                            <span class="font-light">{{ setting('contact_phone', '(0751) 4641913') }}</span>
                         </div>
                     </div>
                 </div>
