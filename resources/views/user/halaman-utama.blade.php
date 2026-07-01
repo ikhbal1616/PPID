@@ -536,34 +536,6 @@
             updateSlider();
             sliderInterval = setInterval(autoSlide, 5000);
         }
-
-        // --- 2. HEADER SCROLL EFFECT & MOBILE MENU ---
-        const header = document.getElementById('main-header');
-        const navbarBg = document.getElementById('navbar-bg');
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY >= 50) {
-                navbarBg.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-lg');
-                navbarBg.classList.remove('glass-light', 'shadow-md');
-            } else {
-                navbarBg.classList.add('glass-light', 'shadow-md');
-                navbarBg.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-lg');
-            }
-        });
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Close mobile menu when links are clicked
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-
         // --- 3. SCROLL REVEAL ANIMATIONS (IntersectionObserver) ---
         const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
         

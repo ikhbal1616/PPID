@@ -396,6 +396,51 @@
                         </div>
                     </div>
 
+                    <!-- WBS (Whistleblowing System) Extra Fields (Only visible for penyalahgunaan) -->
+                    <div id="wbs-extra-fields" class="space-y-4 mt-4 pt-4 border-t border-slate-200 hidden">
+                        <div class="space-y-1">
+                            <label for="pejabat_terlapor" class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider">Pejabat Yang Melakukan Penyalahgunaan</label>
+                            <input type="text" id="pejabat_terlapor" name="pejabat_terlapor" class="w-full bg-slate-50 border border-slate-200 focus:border-brand-green-500 focus:bg-white text-slate-800 text-xs px-3 py-2.5 rounded-xl transition-all outline-none" placeholder="Masukkan nama pejabat/staf terlapor">
+                        </div>
+                        <div class="space-y-1">
+                            <label for="unit_kerja_terlapor" class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider">Unit Kerja Terlapor</label>
+                            <select id="unit_kerja_terlapor" name="unit_kerja_terlapor" class="w-full bg-slate-50 border border-slate-200 focus:border-brand-green-500 focus:bg-white text-slate-800 text-xs px-3 py-2.5 rounded-xl transition-all outline-none">
+                                <option value="" disabled selected>Unit kerja terlapor...</option>
+                                <optgroup label="Fakultas">
+                                    <option value="Fakultas Kedokteran">Fakultas Kedokteran</option>
+                                    <option value="Fakultas Kedokteran Gigi">Fakultas Kedokteran Gigi</option>
+                                    <option value="Fakultas Ekonomi & Bisnis">Fakultas Ekonomi & Bisnis</option>
+                                    <option value="Fakultas Ilmu Kesehatan">Fakultas Ilmu Kesehatan</option>
+                                    <option value="Fakultas Vokasi">Fakultas Vokasi</option>
+                                </optgroup>
+                                <optgroup label="Prodi">
+                                    <option value="Prodi Administrasi Rumah Sakit">Prodi Administrasi Rumah Sakit</option>
+                                    <option value="Prodi Farmasi Klinis">Prodi Farmasi Klinis</option>
+                                    <option value="Prodi Kebidanan">Prodi Kebidanan</option>
+                                    <option value="Prodi Kedokteran">Prodi Kedokteran</option>
+                                    <option value="Prodi Keperawatan Anastesiologi">Prodi Keperawatan Anastesiologi</option>
+                                    <option value="Prodi Kesmas">Prodi Kesmas</option>
+                                    <option value="Prodi Kewirausahaan">Prodi Kewirausahaan</option>
+                                    <option value="Prodi Manajemen">Prodi Manajemen</option>
+                                    <option value="Prodi Pendidikan Dokter Gigi">Prodi Pendidikan Dokter Gigi</option>
+                                    <option value="Prodi Teknik Radiologi">Prodi Teknik Radiologi</option>
+                                    <option value="Profesi Bidan">Profesi Bidan</option>
+                                    <option value="Profesi Ners">Profesi Ners</option>
+                                </optgroup>
+                            </select>
+                        </div>
+
+                        <div class="space-y-1">
+                            <label for="judul_laporan" class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider">Judul Laporan</label>
+                            <input type="text" id="judul_laporan" name="judul_laporan" class="w-full bg-slate-50 border border-slate-200 focus:border-brand-green-500 focus:bg-white text-slate-800 text-xs px-3 py-2.5 rounded-xl transition-all outline-none" placeholder="Tuliskan ringkasan judul laporan dugaan pelanggaran">
+                        </div>
+
+                        <div class="space-y-1">
+                            <label for="isi_laporan" class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider">Uraian Detail Laporan Kasus</label>
+                            <textarea id="isi_laporan" name="isi_laporan" rows="4" class="w-full bg-slate-50 border border-slate-200 focus:border-brand-green-500 focus:bg-white text-slate-800 text-xs px-3 py-2.5 rounded-xl transition-all outline-none resize-none" placeholder="Uraikan detail fakta kejadian, kapan, siapa terlapor, saksi, kerugian, dan informasi pendukung lainnya..."></textarea>
+                        </div>
+                    </div>
+
                     <div class="pt-4 border-t border-slate-100 flex items-center justify-end space-x-2">
                         <button type="button" onclick="closeModal()" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs rounded-xl cursor-pointer transition-colors">Batal</button>
                         <button type="submit" id="btn-submit-ppid" class="px-5 py-2.5 bg-brand-green-700 hover:bg-brand-green-800 text-white font-bold text-xs rounded-xl shadow cursor-pointer transition-colors">Kirim Pengajuan</button>

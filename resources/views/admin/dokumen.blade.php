@@ -84,10 +84,6 @@
 
 @section('scripts')
 <script>
-// Sidebar Toggle Logic for Mobile
-        
-        }
-
         // Live Date formatting helper
         const liveDateEl = document.getElementById('live-date');
         if (liveDateEl) {

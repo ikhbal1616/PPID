@@ -27,7 +27,7 @@
 
         <!-- SIDEBAR (Desktop & Mobile) -->
         <aside id="admin-sidebar" class="w-64 bg-brand-green-950 text-slate-300 flex-shrink-0 flex flex-col justify-between transition-all duration-300 z-30 fixed top-0 bottom-0 left-0 -translate-x-full lg:translate-x-0 h-screen shadow-2xl">
-            <div>
+            <div class="flex flex-col flex-1 min-h-0 overflow-hidden">
                 <!-- Sidebar Logo Header -->
                 <div class="p-6 border-b border-brand-green-900 flex items-center justify-between">
                     <a href="/" class="flex items-center space-x-3 group">
@@ -46,7 +46,7 @@
                 </div>
 
                 <!-- Navigation items -->
-                <nav class="p-4 space-y-1.5 text-xs font-semibold">
+                <nav class="p-4 space-y-1.5 text-xs font-semibold flex-1 overflow-y-auto min-h-0">
                     <span class="block px-3 py-2 text-[10px] text-brand-green-600 uppercase tracking-widest font-bold">Menu Utama</span>
                     
                     <!-- Dashboard -->

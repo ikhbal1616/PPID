@@ -95,6 +95,52 @@
                         </div>
                     </form>
                 </div>
+
+                <!-- POP-UP MODAL EDIT/ADD FORM -->
+                <div id="agenda-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
+                    <!-- Backdrop -->
+                    <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity" onclick="closeAgendaModal()"></div>
+
+                    <!-- Modal Content Container -->
+                    <div class="relative bg-white rounded-3xl max-w-lg w-full p-6 md:p-8 space-y-4 shadow-2xl z-10 mx-4 transform transition-all scale-95 opacity-0 duration-300" id="modal-container">
+                        <button type="button" onclick="closeAgendaModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 cursor-pointer">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        </button>
+
+                        <h3 class="text-base font-bold text-slate-850 uppercase tracking-wider border-b border-slate-100 pb-3" id="modal-title">Edit Agenda Kegiatan</h3>
+
+                        <div class="space-y-3 pt-2">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div class="space-y-1">
+                                    <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider">Tanggal Kegiatan</label>
+                                    <input type="text" id="modal-input-date" class="w-full bg-slate-50 border border-slate-200 focus:border-brand-green-500 focus:bg-white text-slate-800 text-xs px-3 py-2.5 rounded-lg transition-all outline-none" required placeholder="Contoh: 15 Juli 2026">
+                                </div>
+                                <div class="space-y-1">
+                                    <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider">Lokasi Kegiatan</label>
+                                    <input type="text" id="modal-input-location" class="w-full bg-slate-50 border border-slate-200 focus:border-brand-green-500 focus:bg-white text-slate-800 text-xs px-3 py-2.5 rounded-lg transition-all outline-none" required placeholder="Contoh: Aula Kampus">
+                                </div>
+                            </div>
+
+                            <div class="space-y-1">
+                                <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider">Nama/Judul Kegiatan</label>
+                                <input type="text" id="modal-input-title" class="w-full bg-slate-50 border border-slate-200 focus:border-brand-green-500 focus:bg-white text-slate-800 text-xs px-3 py-2.5 rounded-lg transition-all outline-none" required placeholder="Contoh: Sosialisasi UU KIP">
+                            </div>
+
+                            <div class="space-y-1">
+                                <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider">Deskripsi Singkat</label>
+                                <textarea id="modal-input-desc" rows="3" class="w-full bg-slate-50 border border-slate-200 focus:border-brand-green-500 focus:bg-white text-slate-800 text-xs px-3 py-2.5 rounded-lg transition-all outline-none resize-y" required placeholder="Contoh: Deskripsi singkat tentang agenda."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-end space-x-3 pt-4 border-t border-slate-100">
+                            <button type="button" onclick="closeAgendaModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold rounded-xl transition-all cursor-pointer">Batal</button>
+                            <button type="button" onclick="saveAgendaModal()" class="px-4 py-2 bg-brand-green-700 hover:bg-brand-green-800 text-white text-xs font-bold rounded-xl transition-all cursor-pointer flex items-center space-x-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                                <span>Simpan</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
 @endsection
 
 @section('scripts')
