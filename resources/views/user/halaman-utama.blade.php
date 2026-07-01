@@ -384,16 +384,25 @@
             </a>
         </div>
 
+        @php
+            $featuredBerita = $latestBerita[0] ?? null;
+            $sidebarBerita  = array_slice($latestBerita, 1, 3);
+        @endphp
+
         <!-- 2 Column Layout (Featured & Sidebar) -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
             <!-- Column 1: Featured News (Left) -->
+            @if ($featuredBerita)
             <div class="reveal-left lg:col-span-8 bg-white border border-slate-100 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group flex flex-col justify-between">
                 <div>
                     <!-- Image with hover zoom -->
                     <div class="relative overflow-hidden h-96">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10 opacity-70"></div>
-                        <img src="/images/slider1.png" alt="Universitas Baiturrahmah PPID Award" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                        <span class="absolute top-4 left-4 z-20 bg-brand-green-900 text-white font-bold text-[10px] tracking-widest uppercase px-3 py-1.5 rounded-full">Akademik</span>
+                        <img src="{{ $featuredBerita['image'] }}" alt="{{ $featuredBerita['title'] }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='/images/slider1.png'">
+                        <span class="absolute top-4 left-4 z-20 bg-brand-green-900 text-white font-bold text-[10px] tracking-widest uppercase px-3 py-1.5 rounded-full">
+                            {{ $featuredBerita['tag'] ?? 'Berita' }}
+                        </span>
                     </div>
 
                     <!-- News details -->
@@ -401,31 +410,36 @@
                         <div class="flex items-center space-x-4 text-xs text-slate-400">
                             <span class="flex items-center space-x-1">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                                <span>22 Juni 2026</span>
+                                <span>{{ $featuredBerita['date'] ?? '-' }}</span>
                             </span>
                             <span>•</span>
                             <span class="flex items-center space-x-1">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                                <span>Humas Unbrah</span>
+                                <span>{{ $featuredBerita['author'] ?? 'Humas Unbrah' }}</span>
                             </span>
                         </div>
-                        <a href="/berita/1" class="block">
+                        <a href="/berita/{{ $featuredBerita['id'] }}" class="block">
                             <h3 class="text-xl sm:text-2xl font-bold font-display text-slate-900 group-hover:text-brand-green-600 transition-colors leading-tight">
-                                Universitas Baiturrahmah Sukses Gelar Forum Sosialisasi E-PPID Untuk Peningkatan Kualitas Layanan Informasi Publik
+                                {{ $featuredBerita['title'] }}
                             </h3>
                         </a>
                         <p class="text-slate-600 text-xs sm:text-sm leading-relaxed line-clamp-3">
-                            Forum sosialisasi ini bertujuan memperkenalkan platform E-PPID terpadu yang memfasilitasi publik dalam melakukan permohonan informasi akademik, kepengurusan data kemahasiswaan, hingga transparansi anggaran secara terstruktur. Rektor Unbrah menegaskan pentingnya keterbukaan demi meraih predikat Perguruan Tinggi Terinformatif tingkat nasional.
+                            {{ $featuredBerita['excerpt'] ?? '' }}
                         </p>
                     </div>
                 </div>
 
                 <div class="px-8 pb-8 pt-4 flex flex-wrap gap-2 border-t border-slate-50">
-                    <a href="#" class="bg-slate-100 hover:bg-brand-green-50 text-slate-600 hover:text-brand-green-900 text-[10px] font-bold px-3 py-1.5 rounded-md transition-colors">#transparansi</a>
-                    <a href="#" class="bg-slate-100 hover:bg-brand-green-50 text-slate-600 hover:text-brand-green-900 text-[10px] font-bold px-3 py-1.5 rounded-md transition-colors">#e-ppid</a>
-                    <a href="#" class="bg-slate-100 hover:bg-brand-green-50 text-slate-600 hover:text-brand-green-900 text-[10px] font-bold px-3 py-1.5 rounded-md transition-colors">#sumaterabarat</a>
+                    <span class="bg-slate-100 text-slate-600 text-[10px] font-bold px-3 py-1.5 rounded-md">
+                        #{{ strtolower(str_replace(' ', '-', $featuredBerita['tag'] ?? 'berita')) }}
+                    </span>
                 </div>
             </div>
+            @else
+            <div class="reveal-left lg:col-span-8 bg-white border border-slate-100 rounded-3xl overflow-hidden shadow-lg flex items-center justify-center h-64 text-slate-400 text-sm">
+                Berita sedang tidak tersedia.
+            </div>
+            @endif
 
             <!-- Column 2: News Sidebar (Right) -->
             <div class="reveal-right lg:col-span-4 space-y-6 flex flex-col">
@@ -435,44 +449,21 @@
                 </h3>
                 
                 <div class="space-y-6 overflow-y-auto flex-1 max-h-[500px] pr-2">
-                    <!-- Sidebar Item 1 -->
-                    <div class="group flex space-x-4 items-start pb-4 border-b border-slate-100">
-                        <img src="/images/slider2.png" alt="Rektorat Unbrah meeting" class="w-20 h-20 rounded-xl object-cover flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
+                    @forelse ($sidebarBerita as $item)
+                    <div class="group flex space-x-4 items-start pb-4 border-b border-slate-100 last:border-0 last:pb-0">
+                        <img src="{{ $item['image'] }}" alt="{{ $item['title'] }}" class="w-20 h-20 rounded-xl object-cover flex-shrink-0 group-hover:scale-105 transition-transform duration-300" onerror="this.src='/images/slider1.png'">
                         <div class="space-y-1">
-                            <span class="text-[10px] font-bold text-brand-green-600">18 Juni 2026</span>
-                            <a href="/berita/2" class="block">
+                            <span class="text-[10px] font-bold text-brand-green-600">{{ $item['date'] ?? '-' }}</span>
+                            <a href="/berita/{{ $item['id'] }}" class="block">
                                 <h4 class="font-bold text-xs text-slate-900 group-hover:text-brand-green-600 transition-colors line-clamp-2 leading-snug">
-                                    Kolaborasi UNBRAH & Pemkot Padang Mengenai Integrasi Data PPID Terbuka Daerah
+                                    {{ $item['title'] }}
                                 </h4>
                             </a>
                         </div>
                     </div>
-
-                    <!-- Sidebar Item 2 -->
-                    <div class="group flex space-x-4 items-start pb-4 border-b border-slate-100">
-                        <img src="/images/slider3.png" alt="Information center Unbrah" class="w-20 h-20 rounded-xl object-cover flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
-                        <div class="space-y-1">
-                            <span class="text-[10px] font-bold text-brand-green-600">12 Juni 2026</span>
-                            <a href="/berita/3" class="block">
-                                <h4 class="font-bold text-xs text-slate-900 group-hover:text-brand-green-600 transition-colors line-clamp-2 leading-snug">
-                                    Bimtek Standardisasi Pelayanan Informasi Publik Pejabat Daerah Sumatera Barat
-                                </h4>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Sidebar Item 3 -->
-                    <div class="group flex space-x-4 items-start pb-4 border-b border-slate-100">
-                        <img src="/images/slider1.png" alt="Library Unbrah digital" class="w-20 h-20 rounded-xl object-cover flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
-                        <div class="space-y-1">
-                            <span class="text-[10px] font-bold text-brand-green-600">05 Juni 2026</span>
-                            <a href="/berita/4" class="block">
-                                <h4 class="font-bold text-xs text-slate-900 group-hover:text-brand-green-600 transition-colors line-clamp-2 leading-snug">
-                                    Universitas Baiturrahmah Rilis Portal Data Publik Resmi Terintegrasi
-                                </h4>
-                            </a>
-                        </div>
-                    </div>
+                    @empty
+                    <p class="text-xs text-slate-400">Berita lainnya tidak tersedia.</p>
+                    @endforelse
                 </div>
             </div>
         </div>
