@@ -27,7 +27,7 @@
                     <div class="w-full bg-white text-slate-800 rounded-[24px] p-6 md:p-8 border border-slate-150 shadow-[0_10px_35px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_45px_rgba(0,0,0,0.06)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden h-full">
                         <div class="space-y-6">
                             <div class="space-y-2">
-                                <span class="block text-brand-green-700 font-bold text-[10px] md:text-xs uppercase tracking-widest font-display">Maklumat Pelayanan Informasi Publik</span>
+                                <span class="block text-brand-green-900 font-bold text-[10px] md:text-xs uppercase tracking-widest font-display">Maklumat Pelayanan Informasi Publik</span>
                                 <h2 class="text-xl md:text-2xl font-extrabold font-display leading-tight tracking-normal text-slate-800">
                                     PERNYATAAN KOMITMEN PELAYANAN
                                 </h2>
@@ -45,7 +45,7 @@
                         <!-- Authority/Signature representation -->
                         <div class="pt-6 mt-6 border-t border-slate-100 flex flex-col space-y-0.5">
                             <span class="text-[9px] text-slate-400 tracking-widest uppercase font-bold">Ditetapkan oleh</span>
-                            <span class="text-xs sm:text-sm font-bold text-brand-green-700 tracking-wider">PPID Universitas Baiturrahmah</span>
+                            <span class="text-xs sm:text-sm font-bold text-brand-green-900 tracking-wider">PPID Universitas Baiturrahmah</span>
                         </div>
                     </div>
                 </div>

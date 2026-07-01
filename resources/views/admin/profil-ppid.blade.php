@@ -29,7 +29,7 @@
 
                 <!-- MODERN PILL TAB NAVIGATION (UI Reference Style) -->
                 <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-2 flex items-center space-x-1 overflow-x-auto">
-                    <button type="button" onclick="switchTab('narasi')" id="tab-btn-narasi" class="tab-link px-5 py-2.5 text-xs font-bold font-display rounded-xl transition-all outline-none cursor-pointer bg-slate-100 text-brand-green-700">
+                    <button type="button" onclick="switchTab('narasi')" id="tab-btn-narasi" class="tab-link px-5 py-2.5 text-xs font-bold font-display rounded-xl transition-all outline-none cursor-pointer bg-slate-100 text-brand-green-900">
                         Narasi Utama
                     </button>
                     <button type="button" onclick="switchTab('layanan')" id="tab-btn-layanan" class="tab-link px-5 py-2.5 text-xs font-bold font-display rounded-xl transition-all outline-none cursor-pointer bg-transparent text-slate-500 hover:text-slate-800">
@@ -76,7 +76,7 @@
                                             <button type="button" onclick="removeCheckpoint(this)" class="absolute top-3 right-3 text-slate-400 hover:text-red-500 transition-colors cursor-pointer">
                                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                                             </button>
-                                            <h4 class="font-bold text-brand-green-700 text-xs uppercase tracking-wider">Poin Centang #{{ $index + 1 }}</h4>
+                                            <h4 class="font-bold text-brand-green-900 text-xs uppercase tracking-wider">Poin Centang #{{ $index + 1 }}</h4>
                                             <div class="space-y-3">
                                                 <div class="space-y-1">
                                                     <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider">Judul Poin</label>
@@ -94,7 +94,7 @@
                                     <!-- Tambah Poin Button -->
                                     <div class="flex justify-start pt-6">
                                         <button type="button" onclick="addCheckpoint()" class="px-5 py-3 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold rounded-xl transition-all cursor-pointer flex items-center space-x-2">
-                                            <svg class="w-4 h-4 text-brand-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
+                                            <svg class="w-4 h-4 text-brand-green-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
                                             <span>Tambah Poin Layanan Baru</span>
                                         </button>
                                     </div>
@@ -153,7 +153,7 @@
 
                         <!-- SUBMIT BUTTON -->
                         <div class="pt-6 border-t border-slate-100 flex justify-end">
-                            <button type="submit" class="px-6 py-3.5 bg-brand-green-700 hover:bg-brand-green-800 text-white font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform active:scale-[0.98] flex items-center space-x-2 text-xs cursor-pointer">
+                            <button type="submit" class="px-6 py-3.5 bg-brand-green-900 hover:bg-brand-green-950 text-white font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform active:scale-[0.98] flex items-center space-x-2 text-xs cursor-pointer">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path></svg>
                                 <span>Simpan Perubahan</span>
                             </button>
@@ -191,14 +191,14 @@ window.addEventListener('DOMContentLoaded', () => {
             
             // Reset all tab button styles to inactive (transparent bg, slate text)
             document.querySelectorAll('.tab-link').forEach(btn => {
-                btn.classList.remove('bg-slate-100', 'text-brand-green-700');
+                btn.classList.remove('bg-slate-100', 'text-brand-green-900');
                 btn.classList.add('bg-transparent', 'text-slate-500', 'hover:text-slate-800');
             });
             
             // Mark the active tab button (slate-100 bg, brand green text)
             const activeBtn = document.getElementById(`tab-btn-${tabName}`);
             activeBtn.classList.remove('bg-transparent', 'text-slate-500', 'hover:text-slate-800');
-            activeBtn.classList.add('bg-slate-100', 'text-brand-green-700');
+            activeBtn.classList.add('bg-slate-100', 'text-brand-green-900');
         }
 
         // DYNAMIC CHECKPOINTS JAVASCRIPT LOGIC
@@ -215,7 +215,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 <button type="button" onclick="removeCheckpoint(this)" class="absolute top-3 right-3 text-slate-400 hover:text-red-500 transition-colors cursor-pointer">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                 </button>
-                <h4 class="font-bold text-brand-green-700 text-xs uppercase tracking-wider">Poin Centang Baru</h4>
+                <h4 class="font-bold text-brand-green-900 text-xs uppercase tracking-wider">Poin Centang Baru</h4>
                 <div class="space-y-3">
                     <div class="space-y-1">
                         <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider">Judul Poin</label>

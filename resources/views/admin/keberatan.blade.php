@@ -49,7 +49,7 @@
                                 <span class="col-span-2 font-mono" id="detail-nik">-</span>
 
                                 <span class="text-slate-400 font-semibold">Alamat Email</span>
-                                <span class="col-span-2 text-brand-green-700 font-semibold font-mono" id="detail-email">-</span>
+                                <span class="col-span-2 text-brand-green-900 font-semibold font-mono" id="detail-email">-</span>
 
                                 <span class="text-slate-400 font-semibold">Nomor WhatsApp</span>
                                 <span class="col-span-2 font-mono" id="detail-telepon">-</span>
@@ -107,7 +107,7 @@
                         <div class="space-y-3" id="detail-response-file-container">
                             <h4 class="font-bold text-[11px] text-slate-800 uppercase tracking-wider border-b border-slate-100 pb-1">Lampirkan Berkas Pendukung (Opsional)</h4>
                             <input type="file" id="detail-response-file" class="w-full bg-slate-50 border border-slate-200 text-slate-800 text-xs px-3 py-2 rounded-xl transition-all outline-none">
-                            <div id="detail-response-file-preview" class="text-[11px] text-brand-green-700 font-semibold mt-1.5 hidden">
+                            <div id="detail-response-file-preview" class="text-[11px] text-brand-green-900 font-semibold mt-1.5 hidden">
                                 <!-- Link download file tanggapan -->
                             </div>
                         </div>
@@ -154,7 +154,7 @@
                 <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
                     <!-- Metric Card 1 -->
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 flex items-center space-x-4">
-                        <div class="p-3 bg-brand-green-50 rounded-xl text-brand-green-700">
+                        <div class="p-3 bg-brand-green-50 rounded-xl text-brand-green-900">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                         </div>
                         <div>
@@ -362,7 +362,7 @@
                 else if (report.kategori === 'pengaduan') categoryName = 'Pengaduan';
 
                 tr.innerHTML = `
-                    <td class="px-6 py-4 font-mono font-bold text-brand-green-700">${report.id}</td>
+                    <td class="px-6 py-4 font-mono font-bold text-brand-green-900">${report.id}</td>
                     <td class="px-6 py-4">
                         <div class="font-bold text-slate-900">${report.nama}</div>
                         <div class="text-[10px] text-slate-400 font-light mt-0.5">${report.email}</div>
@@ -379,7 +379,7 @@
                         </span>
                     </td>
                     <td class="px-6 py-4 text-right">
-                        <button onclick="openSlideOver('${report.id}')" class="px-3.5 py-1.5 bg-brand-green-50 text-brand-green-700 border border-brand-green-100 hover:bg-brand-green-600 hover:text-white rounded-lg font-bold text-[11px] shadow-sm transition-all hover:scale-105 cursor-pointer">Lihat Detail</button>
+                        <button onclick="openSlideOver('${report.id}')" class="px-3.5 py-1.5 bg-brand-green-50 text-brand-green-900 border border-brand-green-900/20 hover:bg-brand-green-900 hover:text-white rounded-lg font-bold text-[11px] shadow-sm transition-all hover:scale-105 cursor-pointer">Lihat Detail</button>
                     </td>
                 `;
                 tbody.appendChild(tr);
@@ -447,7 +447,7 @@
             if (responseFilePreview) {
                 if (report.file_tanggapan) {
                     responseFilePreview.innerHTML = `
-                        <a href="${report.file_tanggapan}" target="_blank" class="inline-flex items-center space-x-1 hover:underline text-brand-green-700">
+                        <a href="${report.file_tanggapan}" target="_blank" class="inline-flex items-center space-x-1 hover:underline text-brand-green-900">
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                             <span>Unduh Berkas Lampiran Tanggapan</span>
                         </a>
@@ -522,7 +522,7 @@
                 
                 // Show download button
                 downloadBtnContainer.innerHTML = `
-                    <a href="${report.file_bukti}" download class="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-brand-green-50 text-brand-green-700 hover:bg-brand-green-600 hover:text-white rounded-lg font-bold text-[10px] transition-all duration-200 border border-brand-green-100 shadow-sm cursor-pointer">
+                    <a href="${report.file_bukti}" download class="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-brand-green-50 text-brand-green-900 hover:bg-brand-green-900 hover:text-white rounded-lg font-bold text-[10px] transition-all duration-200 border border-brand-green-900/20 shadow-sm cursor-pointer">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                         <span>Unduh Berkas</span>
                     </a>

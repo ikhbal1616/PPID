@@ -25,7 +25,7 @@
                 <!-- Card 1: Total requests -->
                 <div class="bg-slate-50 border border-slate-100 rounded-3xl p-6 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
                     <div class="space-y-4">
-                        <div class="w-12 h-12 rounded-2xl bg-brand-green-50 text-brand-green-700 flex items-center justify-center shrink-0 shadow-sm group-hover:bg-brand-green-600 group-hover:text-white transition-colors duration-300">
+                        <div class="w-12 h-12 rounded-2xl bg-brand-green-50 text-brand-green-900 flex items-center justify-center shrink-0 shadow-sm group-hover:bg-brand-green-900 group-hover:text-white transition-colors duration-300">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                         </div>
                         <div>
@@ -39,11 +39,11 @@
                 <!-- Card 2: Completed -->
                 <div class="bg-slate-50 border border-slate-100 rounded-3xl p-6 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
                     <div class="space-y-4">
-                        <div class="w-12 h-12 rounded-2xl bg-brand-green-50 text-brand-green-700 flex items-center justify-center shrink-0 shadow-sm group-hover:bg-brand-green-600 group-hover:text-white transition-colors duration-300">
+                        <div class="w-12 h-12 rounded-2xl bg-brand-green-50 text-brand-green-900 flex items-center justify-center shrink-0 shadow-sm group-hover:bg-brand-green-900 group-hover:text-white transition-colors duration-300">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         </div>
                         <div>
-                            <span class="text-2xl sm:text-3xl font-extrabold text-brand-green-700 block font-display">{{ setting('angka_selesai_tindaklanjut', '328') }}</span>
+                            <span class="text-2xl sm:text-3xl font-extrabold text-brand-green-900 block font-display">{{ setting('angka_selesai_tindaklanjut', '328') }}</span>
                             <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider block mt-1">Selesai Ditindaklanjuti</span>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                 <!-- Card 3: Rejected -->
                 <div class="bg-slate-50 border border-slate-100 rounded-3xl p-6 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
                     <div class="space-y-4">
-                        <div class="w-12 h-12 rounded-2xl bg-brand-green-50 text-brand-green-700 flex items-center justify-center shrink-0 shadow-sm group-hover:bg-brand-green-600 group-hover:text-white transition-colors duration-300">
+                        <div class="w-12 h-12 rounded-2xl bg-brand-green-50 text-brand-green-900 flex items-center justify-center shrink-0 shadow-sm group-hover:bg-brand-green-900 group-hover:text-white transition-colors duration-300">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
                         </div>
                         <div>
@@ -67,7 +67,7 @@
                 <!-- Card 4: Average response time -->
                 <div class="bg-slate-50 border border-slate-100 rounded-3xl p-6 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
                     <div class="space-y-4">
-                        <div class="w-12 h-12 rounded-2xl bg-brand-green-50 text-brand-green-700 flex items-center justify-center shrink-0 shadow-sm group-hover:bg-brand-green-600 group-hover:text-white transition-colors duration-300">
+                        <div class="w-12 h-12 rounded-2xl bg-brand-green-50 text-brand-green-900 flex items-center justify-center shrink-0 shadow-sm group-hover:bg-brand-green-900 group-hover:text-white transition-colors duration-300">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         </div>
                         <div>
@@ -93,7 +93,7 @@
                                 <span>154 Pemohon (45%)</span>
                             </div>
                             <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
-                                <div class="bg-brand-green-700 h-full rounded-full" style="width: 45%"></div>
+                                <div class="bg-brand-green-900 h-full rounded-full" style="width: 45%"></div>
                             </div>
                         </div>
 
@@ -104,7 +104,7 @@
                                 <span>128 Pemohon (37%)</span>
                             </div>
                             <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
-                                <div class="bg-brand-green-600 h-full rounded-full" style="width: 37%"></div>
+                                <div class="bg-brand-green-900 h-full rounded-full" style="width: 37%"></div>
                             </div>
                         </div>
 
@@ -144,7 +144,7 @@
                                 <span>245 Pengajuan (72%)</span>
                             </div>
                             <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
-                                <div class="bg-brand-green-700 h-full rounded-full" style="width: 72%"></div>
+                                <div class="bg-brand-green-900 h-full rounded-full" style="width: 72%"></div>
                             </div>
                         </div>
 

@@ -126,10 +126,10 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <!-- Card 1 -->
             <div onclick="openModal('permohonan')" class="reveal group relative bg-white hover:bg-gradient-to-br hover:from-brand-green-900 hover:to-brand-green-950 rounded-2xl shadow-xl hover:shadow-2xl border border-slate-100 hover:border-brand-gold-500/50 p-6 flex flex-col justify-between h-72 transform hover:-translate-y-2 transition-all duration-500 cursor-pointer overflow-hidden">
-                <div class="absolute -right-10 -bottom-10 w-32 h-32 bg-brand-green-50 rounded-full group-hover:bg-brand-green-800/10 transition-colors duration-500"></div>
+                <div class="absolute -right-10 -bottom-10 w-32 h-32 bg-brand-green-50 rounded-full group-hover:bg-brand-green-950/10 transition-colors duration-500"></div>
                 <div>
                     <!-- Icon -->
-                    <div class="w-12 h-12 rounded-xl bg-brand-green-100 group-hover:bg-brand-gold-500 flex items-center justify-center text-brand-green-700 group-hover:text-brand-green-950 transition-colors duration-500 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-brand-green-100 group-hover:bg-brand-gold-500 flex items-center justify-center text-brand-green-900 group-hover:text-brand-green-950 transition-colors duration-500 mb-6">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                     </div>
                     <h3 class="text-lg font-bold font-display text-slate-900 group-hover:text-white leading-snug transition-colors duration-500">
@@ -147,9 +147,9 @@
 
             <!-- Card 2 -->
             <div onclick="openModal('keberatan')" class="reveal group relative bg-white hover:bg-gradient-to-br hover:from-brand-green-900 hover:to-brand-green-950 rounded-2xl shadow-xl hover:shadow-2xl border border-slate-100 hover:border-brand-gold-500/50 p-6 flex flex-col justify-between h-72 transform hover:-translate-y-2 transition-all duration-500 cursor-pointer overflow-hidden delay-100">
-                <div class="absolute -right-10 -bottom-10 w-32 h-32 bg-brand-green-50 rounded-full group-hover:bg-brand-green-800/10 transition-colors duration-500"></div>
+                <div class="absolute -right-10 -bottom-10 w-32 h-32 bg-brand-green-50 rounded-full group-hover:bg-brand-green-950/10 transition-colors duration-500"></div>
                 <div>
-                    <div class="w-12 h-12 rounded-xl bg-brand-green-100 group-hover:bg-brand-gold-500 flex items-center justify-center text-brand-green-700 group-hover:text-brand-green-950 transition-colors duration-500 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-brand-green-100 group-hover:bg-brand-gold-500 flex items-center justify-center text-brand-green-900 group-hover:text-brand-green-950 transition-colors duration-500 mb-6">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
                     </div>
                     <h3 class="text-lg font-bold font-display text-slate-900 group-hover:text-white leading-snug transition-colors duration-500">
@@ -167,9 +167,9 @@
 
             <!-- Card 3 -->
             <div onclick="openModal('penyalahgunaan')" class="reveal group relative bg-white hover:bg-gradient-to-br hover:from-brand-green-900 hover:to-brand-green-950 rounded-2xl shadow-xl hover:shadow-2xl border border-slate-100 hover:border-brand-gold-500/50 p-6 flex flex-col justify-between h-72 transform hover:-translate-y-2 transition-all duration-500 cursor-pointer overflow-hidden delay-200">
-                <div class="absolute -right-10 -bottom-10 w-32 h-32 bg-brand-green-50 rounded-full group-hover:bg-brand-green-800/10 transition-colors duration-500"></div>
+                <div class="absolute -right-10 -bottom-10 w-32 h-32 bg-brand-green-50 rounded-full group-hover:bg-brand-green-950/10 transition-colors duration-500"></div>
                 <div>
-                    <div class="w-12 h-12 rounded-xl bg-brand-green-100 group-hover:bg-brand-gold-500 flex items-center justify-center text-brand-green-700 group-hover:text-brand-green-950 transition-colors duration-500 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-brand-green-100 group-hover:bg-brand-gold-500 flex items-center justify-center text-brand-green-900 group-hover:text-brand-green-950 transition-colors duration-500 mb-6">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path></svg>
                     </div>
                     <h3 class="text-lg font-bold font-display text-slate-900 group-hover:text-white leading-snug transition-colors duration-500">
@@ -187,9 +187,9 @@
 
             <!-- Card 4 -->
             <div onclick="openModal('pengaduan')" class="reveal group relative bg-white hover:bg-gradient-to-br hover:from-brand-green-900 hover:to-brand-green-950 rounded-2xl shadow-xl hover:shadow-2xl border border-slate-100 hover:border-brand-gold-500/50 p-6 flex flex-col justify-between h-72 transform hover:-translate-y-2 transition-all duration-500 cursor-pointer overflow-hidden delay-300">
-                <div class="absolute -right-10 -bottom-10 w-32 h-32 bg-brand-green-50 rounded-full group-hover:bg-brand-green-800/10 transition-colors duration-500"></div>
+                <div class="absolute -right-10 -bottom-10 w-32 h-32 bg-brand-green-50 rounded-full group-hover:bg-brand-green-950/10 transition-colors duration-500"></div>
                 <div>
-                    <div class="w-12 h-12 rounded-xl bg-brand-green-100 group-hover:bg-brand-gold-500 flex items-center justify-center text-brand-green-700 group-hover:text-brand-green-950 transition-colors duration-500 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-brand-green-100 group-hover:bg-brand-gold-500 flex items-center justify-center text-brand-green-900 group-hover:text-brand-green-950 transition-colors duration-500 mb-6">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
                     </div>
                     <h3 class="text-lg font-bold font-display text-slate-900 group-hover:text-white leading-snug transition-colors duration-500">
@@ -211,7 +211,7 @@
     <section class="py-16 bg-slate-50 border-y border-slate-200">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
             <div class="space-y-2">
-                <span class="text-xs font-bold text-brand-green-700 uppercase tracking-widest bg-brand-green-50 px-3 py-1.5 rounded-full">Lacak Pengajuan Anda</span>
+                <span class="text-xs font-bold text-brand-green-900 uppercase tracking-widest bg-brand-green-50 px-3 py-1.5 rounded-full">Lacak Pengajuan Anda</span>
                 <h2 class="text-3xl font-bold font-display text-slate-900 tracking-tight">Cek Status Tiket PPID</h2>
                 <p class="text-slate-500 text-xs max-w-md mx-auto">Masukkan Nomor Tiket Pengajuan Anda untuk memantau proses verifikasi secara real-time.</p>
             </div>
@@ -223,7 +223,7 @@
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                     </span>
                     <input type="text" id="ticket-search-input" class="w-full bg-transparent text-slate-800 text-xs px-3 py-2.5 outline-none font-semibold font-mono" placeholder="Contoh: UNBRAH-PER-12345">
-                    <button onclick="performTicketSearch()" class="px-5 py-2.5 bg-brand-green-700 hover:bg-brand-green-800 text-white font-bold text-xs rounded-xl shadow-md cursor-pointer transition-colors shrink-0">Cari Tiket</button>
+                    <button onclick="performTicketSearch()" class="px-5 py-2.5 bg-brand-green-900 hover:bg-brand-green-950 text-white font-bold text-xs rounded-xl shadow-md cursor-pointer transition-colors shrink-0">Cari Tiket</button>
                 </div>
             </div>
 
@@ -369,7 +369,7 @@
                 </div>
                 <h2 class="text-3xl sm:text-4xl font-bold font-display tracking-tight text-slate-900 leading-tight">Berita Terkini PPID Universitas Baiturrahmah</h2>
             </div>
-            <a href="#" class="mt-4 md:mt-0 flex items-center space-x-2 bg-brand-green-50 hover:bg-brand-green-100 text-brand-green-700 font-bold text-xs px-5 py-2.5 rounded-full transition-all duration-300 border border-brand-green-200">
+            <a href="#" class="mt-4 md:mt-0 flex items-center space-x-2 bg-brand-green-50 hover:bg-brand-green-100 text-brand-green-900 font-bold text-xs px-5 py-2.5 rounded-full transition-all duration-300 border border-brand-green-200">
                 <span>Lihat Seluruh Berita</span>
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
             </a>
@@ -384,7 +384,7 @@
                     <div class="relative overflow-hidden h-96">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10 opacity-70"></div>
                         <img src="/images/slider1.png" alt="Universitas Baiturrahmah PPID Award" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                        <span class="absolute top-4 left-4 z-20 bg-brand-green-600 text-white font-bold text-[10px] tracking-widest uppercase px-3 py-1.5 rounded-full">Akademik</span>
+                        <span class="absolute top-4 left-4 z-20 bg-brand-green-900 text-white font-bold text-[10px] tracking-widest uppercase px-3 py-1.5 rounded-full">Akademik</span>
                     </div>
 
                     <!-- News details -->
@@ -412,9 +412,9 @@
                 </div>
 
                 <div class="px-8 pb-8 pt-4 flex flex-wrap gap-2 border-t border-slate-50">
-                    <a href="#" class="bg-slate-100 hover:bg-brand-green-50 text-slate-600 hover:text-brand-green-700 text-[10px] font-bold px-3 py-1.5 rounded-md transition-colors">#transparansi</a>
-                    <a href="#" class="bg-slate-100 hover:bg-brand-green-50 text-slate-600 hover:text-brand-green-700 text-[10px] font-bold px-3 py-1.5 rounded-md transition-colors">#e-ppid</a>
-                    <a href="#" class="bg-slate-100 hover:bg-brand-green-50 text-slate-600 hover:text-brand-green-700 text-[10px] font-bold px-3 py-1.5 rounded-md transition-colors">#sumaterabarat</a>
+                    <a href="#" class="bg-slate-100 hover:bg-brand-green-50 text-slate-600 hover:text-brand-green-900 text-[10px] font-bold px-3 py-1.5 rounded-md transition-colors">#transparansi</a>
+                    <a href="#" class="bg-slate-100 hover:bg-brand-green-50 text-slate-600 hover:text-brand-green-900 text-[10px] font-bold px-3 py-1.5 rounded-md transition-colors">#e-ppid</a>
+                    <a href="#" class="bg-slate-100 hover:bg-brand-green-50 text-slate-600 hover:text-brand-green-900 text-[10px] font-bold px-3 py-1.5 rounded-md transition-colors">#sumaterabarat</a>
                 </div>
             </div>
 

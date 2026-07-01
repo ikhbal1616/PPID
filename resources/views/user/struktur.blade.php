@@ -46,7 +46,7 @@
                 <div class="border-b border-slate-100 pb-4 flex justify-between items-center">
                     <div class="flex items-center space-x-2">
                         <h3 class="font-bold text-slate-800 text-sm uppercase tracking-wider">Daftar Lembaga / Unit Kerja</h3>
-                        <span class="bg-brand-green-50 text-brand-green-700 font-bold px-2 py-0.5 rounded-full text-[10px]">{{ count($strukturItems) }} Unit</span>
+                        <span class="bg-brand-green-50 text-brand-green-900 font-bold px-2 py-0.5 rounded-full text-[10px]">{{ count($strukturItems) }} Unit</span>
                     </div>
                 </div>
                 

@@ -60,9 +60,9 @@
                     <div class="bg-slate-50 border border-slate-100 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
                         <div class="space-y-4">
                             <div class="flex items-center justify-between">
-                                <span class="text-[10px] bg-brand-green-100 text-brand-green-700 font-bold px-3 py-1 rounded-full uppercase tracking-wider">Tugas & Fungsi {{ $itemNum }}</span>
+                                <span class="text-[10px] bg-brand-green-100 text-brand-green-900 font-bold px-3 py-1 rounded-full uppercase tracking-wider">Tugas & Fungsi {{ $itemNum }}</span>
                             </div>
-                            <h4 class="font-bold text-slate-800 text-lg group-hover:text-brand-green-700 transition-colors">{{ $item['title'] }}</h4>
+                            <h4 class="font-bold text-slate-800 text-lg group-hover:text-brand-green-900 transition-colors">{{ $item['title'] }}</h4>
                             <p class="text-slate-500 text-xs sm:text-sm font-light leading-relaxed">
                                 {!! nl2br(e($item['desc'])) !!}
                             </p>

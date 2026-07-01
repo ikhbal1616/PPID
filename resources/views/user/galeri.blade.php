@@ -22,7 +22,7 @@
             
             <!-- Category Filter Tabs -->
             <div class="flex items-center justify-start md:justify-center space-x-2 overflow-x-auto pb-4 scrollbar-none">
-                <button class="filter-btn active px-5 py-2.5 text-xs font-bold rounded-xl bg-brand-green-600 text-white shadow-md transition-all whitespace-nowrap cursor-pointer" data-category="all">Semua Foto</button>
+                <button class="filter-btn active px-5 py-2.5 text-xs font-bold rounded-xl bg-brand-green-900 text-white shadow-md transition-all whitespace-nowrap cursor-pointer" data-category="all">Semua Foto</button>
                 <button class="filter-btn px-5 py-2.5 text-xs font-bold rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 transition-all whitespace-nowrap cursor-pointer" data-category="sosialisasi">Sosialisasi & Bimtek</button>
                 <button class="filter-btn px-5 py-2.5 text-xs font-bold rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 transition-all whitespace-nowrap cursor-pointer" data-category="rapat">Rapat Kerja</button>
                 <button class="filter-btn px-5 py-2.5 text-xs font-bold rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 transition-all whitespace-nowrap cursor-pointer" data-category="monev">Monitoring & Evaluasi</button>
@@ -128,9 +128,9 @@
                             <div class="space-y-2">
                                 <div class="flex items-center justify-between text-[10px] font-bold text-slate-400 uppercase tracking-widest">
                                     <span>{{ formatIndoDate($item['date'] ?? '') }}</span>
-                                    <span class="text-brand-green-700 bg-brand-green-50 px-2 py-0.5 rounded">{{ $categoryBadgeMap[$item['category'] ?? 'sosialisasi'] ?? 'Sosialisasi' }}</span>
+                                    <span class="text-brand-green-900 bg-brand-green-50 px-2 py-0.5 rounded">{{ $categoryBadgeMap[$item['category'] ?? 'sosialisasi'] ?? 'Sosialisasi' }}</span>
                                 </div>
-                                <h4 class="font-bold text-slate-800 text-base leading-snug group-hover:text-brand-green-700 transition-colors">{{ $item['title'] }}</h4>
+                                <h4 class="font-bold text-slate-800 text-base leading-snug group-hover:text-brand-green-900 transition-colors">{{ $item['title'] }}</h4>
                                 <p class="text-xs text-slate-500 font-light leading-relaxed text-justify">
                                     {{ $item['description'] ?? '' }}
                                 </p>

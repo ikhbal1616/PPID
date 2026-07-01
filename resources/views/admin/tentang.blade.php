@@ -28,7 +28,7 @@
                 <!-- MODERN TAB NAVIGATION (Following Reference UI Style) -->
                 <div class="border-b border-slate-200 overflow-x-auto">
                     <nav class="flex space-x-8 text-xs font-bold font-display uppercase tracking-wider pb-1 min-w-[700px]">
-                        <button onclick="switchTab('profil')" id="tab-btn-profil" class="tab-link border-b-2 py-3 px-1 transition-all outline-none cursor-pointer border-brand-green-700 text-brand-green-700">
+                        <button onclick="switchTab('profil')" id="tab-btn-profil" class="tab-link border-b-2 py-3 px-1 transition-all outline-none cursor-pointer border-brand-green-700 text-brand-green-900">
                             Profil PPID
                         </button>
                         <button onclick="switchTab('visimisi')" id="tab-btn-visimisi" class="tab-link border-b-2 py-3 px-1 transition-all outline-none cursor-pointer border-transparent text-slate-400 hover:text-slate-600">
@@ -72,7 +72,7 @@
                             </div>
                             
                             <div class="pt-4 border-t border-slate-100 flex justify-end">
-                                <button type="submit" class="px-6 py-2.5 rounded-full bg-brand-green-600 hover:bg-brand-green-700 text-white text-xs font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer">Simpan Perubahan</button>
+                                <button type="submit" class="px-6 py-2.5 rounded-full bg-brand-green-900 hover:bg-brand-green-900 text-white text-xs font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer">Simpan Perubahan</button>
                             </div>
                         </form>
                     </div>
@@ -94,23 +94,23 @@
                                     
                                     <div class="space-y-3">
                                         <div class="flex items-center space-x-3">
-                                            <span class="w-8 h-8 rounded-lg bg-brand-green-50 text-brand-green-700 flex items-center justify-center font-bold text-xs shrink-0">01</span>
+                                            <span class="w-8 h-8 rounded-lg bg-brand-green-50 text-brand-green-900 flex items-center justify-center font-bold text-xs shrink-0">01</span>
                                             <input type="text" name="misi_1" value="{{ setting('misi_1', 'Meningkatkan pengelolaan dokumentasi dan sistem pelayanan informasi publik yang terintegrasi secara digital.') }}" class="w-full bg-slate-50 border border-slate-200 focus:border-brand-green-500 focus:bg-white text-slate-800 text-xs px-3.5 py-3 rounded-xl transition-all outline-none" required>
                                         </div>
                                         <div class="flex items-center space-x-3">
-                                            <span class="w-8 h-8 rounded-lg bg-brand-green-50 text-brand-green-700 flex items-center justify-center font-bold text-xs shrink-0">02</span>
+                                            <span class="w-8 h-8 rounded-lg bg-brand-green-50 text-brand-green-900 flex items-center justify-center font-bold text-xs shrink-0">02</span>
                                             <input type="text" name="misi_2" value="{{ setting('misi_2', 'Menyediakan akses informasi publik yang mudah, murah, tepat, akurat, dan tidak menyesatkan bagi pemohon.') }}" class="w-full bg-slate-50 border border-slate-200 focus:border-brand-green-500 focus:bg-white text-slate-800 text-xs px-3.5 py-3 rounded-xl transition-all outline-none" required>
                                         </div>
                                         <div class="flex items-center space-x-3">
-                                            <span class="w-8 h-8 rounded-lg bg-brand-green-50 text-brand-green-700 flex items-center justify-center font-bold text-xs shrink-0">03</span>
+                                            <span class="w-8 h-8 rounded-lg bg-brand-green-50 text-brand-green-900 flex items-center justify-center font-bold text-xs shrink-0">03</span>
                                             <input type="text" name="misi_3" value="{{ setting('misi_3', 'Mengembangkan kompetensi petugas pengelola informasi publik demi kualitas pelayanan yang prima dan ramah.') }}" class="w-full bg-slate-50 border border-slate-200 focus:border-brand-green-500 focus:bg-white text-slate-800 text-xs px-3.5 py-3 rounded-xl transition-all outline-none" required>
                                         </div>
                                         <div class="flex items-center space-x-3">
-                                            <span class="w-8 h-8 rounded-lg bg-brand-green-50 text-brand-green-700 flex items-center justify-center font-bold text-xs shrink-0">04</span>
+                                            <span class="w-8 h-8 rounded-lg bg-brand-green-50 text-brand-green-900 flex items-center justify-center font-bold text-xs shrink-0">04</span>
                                             <input type="text" name="misi_4" value="{{ setting('misi_4', 'Mewujudkan keterbukaan informasi di lingkungan kampus secara profesional, kredibel, dan bertanggung jawab sesuai konstitusi.') }}" class="w-full bg-slate-50 border border-slate-200 focus:border-brand-green-500 focus:bg-white text-slate-800 text-xs px-3.5 py-3 rounded-xl transition-all outline-none" required>
                                         </div>
                                         <div class="flex items-center space-x-3">
-                                            <span class="w-8 h-8 rounded-lg bg-brand-green-50 text-brand-green-700 flex items-center justify-center font-bold text-xs shrink-0">05</span>
+                                            <span class="w-8 h-8 rounded-lg bg-brand-green-50 text-brand-green-900 flex items-center justify-center font-bold text-xs shrink-0">05</span>
                                             <input type="text" name="misi_5" value="{{ setting('misi_5', 'Menyelaraskan regulasi internal kampus dengan undang-undang keterbukaan informasi publik secara berkelanjutan.') }}" class="w-full bg-slate-50 border border-slate-200 focus:border-brand-green-500 focus:bg-white text-slate-800 text-xs px-3.5 py-3 rounded-xl transition-all outline-none" required>
                                         </div>
                                     </div>
@@ -118,7 +118,7 @@
                             </div>
                             
                             <div class="pt-4 border-t border-slate-100 flex justify-end">
-                                <button type="submit" class="px-6 py-2.5 rounded-full bg-brand-green-600 hover:bg-brand-green-700 text-white text-xs font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer">Simpan Perubahan</button>
+                                <button type="submit" class="px-6 py-2.5 rounded-full bg-brand-green-900 hover:bg-brand-green-900 text-white text-xs font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer">Simpan Perubahan</button>
                             </div>
                         </form>
                     </div>
@@ -152,7 +152,7 @@
                                             <button type="button" id="cancel-struktur-edit-btn" onclick="cancelStrukturEdit()" class="hidden px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-xl text-xs font-bold transition-all cursor-pointer transform active:scale-95">
                                                 Batal
                                             </button>
-                                            <button type="button" id="add-struktur-btn" onclick="addStrukturItem()" class="px-4 py-2.5 bg-brand-green-600 hover:bg-brand-green-700 text-white rounded-xl text-xs font-bold transition-all shrink-0 flex items-center justify-center space-x-1.5 cursor-pointer transform active:scale-95 shadow-md">
+                                            <button type="button" id="add-struktur-btn" onclick="addStrukturItem()" class="px-4 py-2.5 bg-brand-green-900 hover:bg-brand-green-900 text-white rounded-xl text-xs font-bold transition-all shrink-0 flex items-center justify-center space-x-1.5 cursor-pointer transform active:scale-95 shadow-md">
                                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
                                                 <span id="add-struktur-btn-text">Tambah</span>
                                             </button>
@@ -184,7 +184,7 @@
                             </div>
                             
                             <div class="pt-4 border-t border-slate-100 flex justify-end">
-                                <button type="submit" class="px-6 py-2.5 rounded-full bg-brand-green-600 hover:bg-brand-green-700 text-white text-xs font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer">Simpan Perubahan</button>
+                                <button type="submit" class="px-6 py-2.5 rounded-full bg-brand-green-900 hover:bg-brand-green-900 text-white text-xs font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer">Simpan Perubahan</button>
                             </div>
                         </form>
                     </div>
@@ -213,7 +213,7 @@
                                         <button type="button" id="cancel-tugas-edit-btn" onclick="cancelTugasEdit()" class="hidden px-5 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-xl text-xs font-bold transition-all cursor-pointer transform active:scale-95">
                                             Batal
                                         </button>
-                                        <button type="button" id="add-tugas-btn" onclick="addTugasItem()" class="px-5 py-2.5 bg-brand-green-600 hover:bg-brand-green-700 text-white rounded-xl text-xs font-bold transition-all flex items-center space-x-1.5 cursor-pointer transform active:scale-95 shadow-md">
+                                        <button type="button" id="add-tugas-btn" onclick="addTugasItem()" class="px-5 py-2.5 bg-brand-green-900 hover:bg-brand-green-900 text-white rounded-xl text-xs font-bold transition-all flex items-center space-x-1.5 cursor-pointer transform active:scale-95 shadow-md">
                                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
                                             <span id="add-tugas-btn-text">Tambah Tugas & Fungsi</span>
                                         </button>
@@ -233,7 +233,7 @@
                             </div>
                             
                             <div class="pt-4 border-t border-slate-100 flex justify-end">
-                                <button type="submit" class="px-6 py-2.5 rounded-full bg-brand-green-600 hover:bg-brand-green-700 text-white text-xs font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer">Simpan Perubahan</button>
+                                <button type="submit" class="px-6 py-2.5 rounded-full bg-brand-green-900 hover:bg-brand-green-900 text-white text-xs font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer">Simpan Perubahan</button>
                             </div>
                         </form>
                     </div>
@@ -268,7 +268,7 @@
                             </div>
                             
                             <div class="pt-4 border-t border-slate-100 flex justify-end">
-                                <button type="submit" class="px-6 py-2.5 rounded-full bg-brand-green-600 hover:bg-brand-green-700 text-white text-xs font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer">Simpan Perubahan</button>
+                                <button type="submit" class="px-6 py-2.5 rounded-full bg-brand-green-900 hover:bg-brand-green-900 text-white text-xs font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer">Simpan Perubahan</button>
                             </div>
                         </form>
                     </div>
@@ -317,7 +317,7 @@
                                         <button type="button" id="cancel-regulasi-edit-btn" onclick="cancelRegulasiEdit()" class="hidden px-5 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-xl text-xs font-bold transition-all cursor-pointer transform active:scale-95">
                                             Batal
                                         </button>
-                                        <button type="button" id="add-regulasi-btn" onclick="addRegulasiItem()" class="px-5 py-2.5 bg-brand-green-600 hover:bg-brand-green-700 text-white rounded-xl text-xs font-bold transition-all flex items-center space-x-1.5 cursor-pointer transform active:scale-95 shadow-md">
+                                        <button type="button" id="add-regulasi-btn" onclick="addRegulasiItem()" class="px-5 py-2.5 bg-brand-green-900 hover:bg-brand-green-900 text-white rounded-xl text-xs font-bold transition-all flex items-center space-x-1.5 cursor-pointer transform active:scale-95 shadow-md">
                                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
                                             <span id="add-regulasi-btn-text">Tambah Regulasi</span>
                                         </button>
@@ -337,7 +337,7 @@
                             </div>
                             
                             <div class="pt-4 border-t border-slate-100 flex justify-end">
-                                <button type="submit" class="px-6 py-2.5 rounded-full bg-brand-green-600 hover:bg-brand-green-700 text-white text-xs font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer">Simpan Perubahan</button>
+                                <button type="submit" class="px-6 py-2.5 rounded-full bg-brand-green-900 hover:bg-brand-green-900 text-white text-xs font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer">Simpan Perubahan</button>
                             </div>
                         </form>
                     </div>
@@ -382,7 +382,7 @@
                                         <button type="button" id="cancel-pillars-edit-btn" onclick="cancelPillarsEdit()" class="hidden px-5 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-xl text-xs font-bold transition-all cursor-pointer transform active:scale-95">
                                             Batal
                                         </button>
-                                        <button type="button" id="add-pillars-btn" onclick="addPillarsItem()" class="px-5 py-2.5 bg-brand-green-600 hover:bg-brand-green-700 text-white rounded-xl text-xs font-bold transition-all flex items-center space-x-1.5 cursor-pointer transform active:scale-95 shadow-md">
+                                        <button type="button" id="add-pillars-btn" onclick="addPillarsItem()" class="px-5 py-2.5 bg-brand-green-900 hover:bg-brand-green-900 text-white rounded-xl text-xs font-bold transition-all flex items-center space-x-1.5 cursor-pointer transform active:scale-95 shadow-md">
                                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
                                             <span id="add-pillars-btn-text">Tambah Pilar</span>
                                         </button>
@@ -402,7 +402,7 @@
                             </div>
                             
                             <div class="pt-4 border-t border-slate-100 flex justify-end">
-                                <button type="submit" class="px-6 py-2.5 rounded-full bg-brand-green-600 hover:bg-brand-green-700 text-white text-xs font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer">Simpan Perubahan</button>
+                                <button type="submit" class="px-6 py-2.5 rounded-full bg-brand-green-900 hover:bg-brand-green-900 text-white text-xs font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer">Simpan Perubahan</button>
                             </div>
                         </form>
                     </div>
@@ -432,7 +432,7 @@
 
             // Reset tab styles
             document.querySelectorAll('.tab-link').forEach(link => {
-                link.classList.remove('border-brand-green-700', 'text-brand-green-700');
+                link.classList.remove('border-brand-green-700', 'text-brand-green-900');
                 link.classList.add('border-transparent', 'text-slate-400', 'hover:text-slate-600');
             });
 
@@ -440,7 +440,7 @@
             const activeBtn = document.getElementById('tab-btn-' + tabId);
             if (activeBtn) {
                 activeBtn.classList.remove('border-transparent', 'text-slate-400', 'hover:text-slate-600');
-                activeBtn.classList.add('border-brand-green-700', 'text-brand-green-700');
+                activeBtn.classList.add('border-brand-green-700', 'text-brand-green-900');
             }
 
             // Store active tab in localStorage for page refresh persistence
@@ -490,7 +490,7 @@
                 itemEl.className = "flex items-center justify-between p-2.5 bg-white hover:bg-slate-100 rounded-xl transition-all duration-200 border border-slate-100 shadow-sm";
                 itemEl.innerHTML = `
                     <div class="flex items-center space-x-3 flex-1 min-w-0">
-                        <span class="bg-brand-green-50 text-brand-green-700 font-bold px-2.5 py-1.5 rounded-lg text-[10px] uppercase tracking-wider min-w-[70px] text-center shrink-0 border border-brand-green-100">
+                        <span class="bg-brand-green-50 text-brand-green-900 font-bold px-2.5 py-1.5 rounded-lg text-[10px] uppercase tracking-wider min-w-[70px] text-center shrink-0 border border-brand-green-900/20">
                             ${escapeHtml(item.badge)}
                         </span>
                         <span class="text-xs font-semibold text-slate-700 truncate">
@@ -626,7 +626,7 @@
 
                 itemEl.innerHTML = `
                     <div class="flex items-start space-x-3 flex-1 min-w-0">
-                        <span class="w-7 h-7 bg-brand-green-50 text-brand-green-700 rounded-lg flex items-center justify-center font-bold text-xs shrink-0 border border-brand-green-100">
+                        <span class="w-7 h-7 bg-brand-green-50 text-brand-green-900 rounded-lg flex items-center justify-center font-bold text-xs shrink-0 border border-brand-green-900/20">
                             ${indexStr}
                         </span>
                         <div class="flex flex-col min-w-0">
@@ -821,7 +821,7 @@
 
                 itemEl.innerHTML = `
                     <div class="flex items-start space-x-3 flex-1 min-w-0">
-                        <span class="bg-brand-green-50 text-brand-green-700 font-bold px-2.5 py-1.5 rounded-lg text-[10px] uppercase tracking-wider text-center shrink-0 border border-brand-green-100 min-w-[120px]">
+                        <span class="bg-brand-green-50 text-brand-green-900 font-bold px-2.5 py-1.5 rounded-lg text-[10px] uppercase tracking-wider text-center shrink-0 border border-brand-green-900/20 min-w-[120px]">
                             ${escapeHtml(item.type)}
                         </span>
                         <div class="flex flex-col min-w-0">
@@ -1021,7 +1021,7 @@
 
                 itemEl.innerHTML = `
                     <div class="flex items-start space-x-3 flex-1 min-w-0">
-                        <span class="bg-brand-green-50 text-brand-green-700 font-bold px-2.5 py-1.5 rounded-lg text-[10px] uppercase tracking-wider text-center shrink-0 border border-brand-green-100 min-w-[120px]">
+                        <span class="bg-brand-green-50 text-brand-green-900 font-bold px-2.5 py-1.5 rounded-lg text-[10px] uppercase tracking-wider text-center shrink-0 border border-brand-green-900/20 min-w-[120px]">
                             ${escapeHtml(iconName)}
                         </span>
                         <div class="flex flex-col min-w-0">

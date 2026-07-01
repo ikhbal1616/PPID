@@ -36,7 +36,7 @@
                     <h3 class="text-sm font-bold text-slate-950 font-display uppercase tracking-wider">Daftar Slide Banner</h3>
                     <span class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-0.5 rounded-full" id="slide-count">0 Slide</span>
                 </div>
-                <button type="button" onclick="openSlideModalForAdd()" class="px-3.5 py-2 bg-brand-green-50 hover:bg-brand-green-100 text-brand-green-700 hover:text-brand-green-800 text-[11px] font-bold rounded-xl transition-all flex items-center space-x-1 cursor-pointer transform active:scale-95">
+                <button type="button" onclick="openSlideModalForAdd()" class="px-3.5 py-2 bg-brand-green-50 hover:bg-brand-green-100 text-brand-green-900 hover:text-brand-green-800 text-[11px] font-bold rounded-xl transition-all flex items-center space-x-1 cursor-pointer transform active:scale-95">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
                     <span>Tambah Slide Baru</span>
                 </button>
@@ -51,7 +51,7 @@
             <form action="{{ route('admin.slide-show.update') }}" method="POST" id="main-slideshow-form" class="pt-2">
                 @csrf
                 <input type="hidden" name="slides_list" id="slides_list_input">
-                <button type="submit" class="w-full py-3.5 bg-brand-green-700 hover:bg-brand-green-800 text-white font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform active:scale-[0.98] flex items-center justify-center space-x-2 text-xs cursor-pointer">
+                <button type="submit" class="w-full py-3.5 bg-brand-green-900 hover:bg-brand-green-950 text-white font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform active:scale-[0.98] flex items-center justify-center space-x-2 text-xs cursor-pointer">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path></svg>
                     <span>Simpan Seluruh Perubahan</span>
                 </button>
@@ -191,7 +191,7 @@
 
                     <div class="pt-3 border-t border-slate-100 flex justify-end gap-3">
                         <button type="button" onclick="closeSlideModal()" class="px-5 py-3 border border-slate-200 hover:bg-slate-50 text-slate-700 rounded-xl text-xs font-bold transition-all cursor-pointer transform active:scale-95 shadow-sm">Batal / Tutup</button>
-                        <button type="button" onclick="saveSlideItem()" id="submit-slide-btn" class="px-6 py-3 bg-brand-green-600 hover:bg-brand-green-700 text-white rounded-xl text-xs font-bold transition-all flex items-center space-x-1.5 cursor-pointer transform active:scale-95 shadow-md">
+                        <button type="button" onclick="saveSlideItem()" id="submit-slide-btn" class="px-6 py-3 bg-brand-green-900 hover:bg-brand-green-900 text-white rounded-xl text-xs font-bold transition-all flex items-center space-x-1.5 cursor-pointer transform active:scale-95 shadow-md">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                             <span id="submit-slide-btn-text">Tambahkan Slide</span>
                         </button>
@@ -354,7 +354,7 @@
             const isEditing = editingIndex === index ? 'border-brand-gold-500/80 bg-brand-gold-50/10' : 'border-slate-200 bg-slate-50/40';
             card.className = `p-4 border rounded-2xl flex flex-col md:flex-row items-center gap-4 transition-all duration-200 ${isEditing}`;
 
-            const badgeHtml = slide.badge ? `<span class="px-2 py-0.5 bg-brand-green-50 text-brand-green-700 text-[9px] font-bold rounded">${escapeHtml(slide.badge)}</span>` : '';
+            const badgeHtml = slide.badge ? `<span class="px-2 py-0.5 bg-brand-green-50 text-brand-green-900 text-[9px] font-bold rounded">${escapeHtml(slide.badge)}</span>` : '';
             const btn1Text = slide.button1_action !== 'none' ? (slide.button1_text || 'Button 1') : '';
             const btn2Text = slide.button2_action !== 'none' ? (slide.button2_text || 'Button 2') : '';
             
@@ -376,7 +376,7 @@
                 <!-- Slide Metadata Details -->
                 <div class="flex-1 space-y-1 text-left w-full">
                     <div class="flex items-center space-x-2 flex-wrap gap-y-1">
-                        <span class="bg-brand-green-700 text-white font-bold px-2 py-0.5 rounded text-[9px]">${(index + 1).toString().padStart(2, '0')}</span>
+                        <span class="bg-brand-green-900 text-white font-bold px-2 py-0.5 rounded text-[9px]">${(index + 1).toString().padStart(2, '0')}</span>
                         ${badgeHtml}
                         <h4 class="font-bold text-slate-800 text-xs">${escapeHtml(slide.title_line1)} <span class="text-brand-gold-600">${escapeHtml(slide.title_line2 || '')}</span></h4>
                     </div>
@@ -574,7 +574,7 @@
 
         document.getElementById('form-title').innerText = "Form Tambah/Edit Slide";
         document.getElementById('submit-slide-btn-text').innerText = "Tambahkan Slide";
-        document.getElementById('submit-slide-btn').className = "px-6 py-3 bg-brand-green-600 hover:bg-brand-green-700 text-white rounded-xl text-xs font-bold transition-all flex items-center space-x-1.5 cursor-pointer transform active:scale-95 shadow-md";
+        document.getElementById('submit-slide-btn').className = "px-6 py-3 bg-brand-green-900 hover:bg-brand-green-900 text-white rounded-xl text-xs font-bold transition-all flex items-center space-x-1.5 cursor-pointer transform active:scale-95 shadow-md";
 
         renderSlidesList();
     }

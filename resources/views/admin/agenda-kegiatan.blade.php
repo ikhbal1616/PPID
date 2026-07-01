@@ -58,7 +58,7 @@
                                 <div class="flex items-center justify-between border-b border-slate-100 pb-3">
                                     <h3 class="font-bold text-slate-900 text-sm uppercase tracking-wider">2. Daftar Agenda Timeline</h3>
                                     <!-- Add New button opens empty modal -->
-                                    <button type="button" onclick="openAgendaModal(-1)" class="px-4 py-2 bg-brand-green-700 hover:bg-brand-green-800 text-white text-xs font-bold rounded-xl transition-all cursor-pointer flex items-center space-x-2">
+                                    <button type="button" onclick="openAgendaModal(-1)" class="px-4 py-2 bg-brand-green-900 hover:bg-brand-green-950 text-white text-xs font-bold rounded-xl transition-all cursor-pointer flex items-center space-x-2">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
                                         <span>Tambah Kegiatan Baru</span>
                                     </button>
@@ -88,7 +88,7 @@
 
                         <!-- SUBMIT BUTTON -->
                         <div class="pt-6 border-t border-slate-100 flex justify-end">
-                            <button type="submit" class="px-6 py-3.5 bg-brand-green-700 hover:bg-brand-green-800 text-white font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform active:scale-[0.98] flex items-center space-x-2 text-xs cursor-pointer">
+                            <button type="submit" class="px-6 py-3.5 bg-brand-green-900 hover:bg-brand-green-950 text-white font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform active:scale-[0.98] flex items-center space-x-2 text-xs cursor-pointer">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path></svg>
                                 <span>Simpan Perubahan</span>
                             </button>
@@ -134,7 +134,7 @@
 
                         <div class="flex justify-end space-x-3 pt-4 border-t border-slate-100">
                             <button type="button" onclick="closeAgendaModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold rounded-xl transition-all cursor-pointer">Batal</button>
-                            <button type="button" onclick="saveAgendaModal()" class="px-4 py-2 bg-brand-green-700 hover:bg-brand-green-800 text-white text-xs font-bold rounded-xl transition-all cursor-pointer flex items-center space-x-1">
+                            <button type="button" onclick="saveAgendaModal()" class="px-4 py-2 bg-brand-green-900 hover:bg-brand-green-950 text-white text-xs font-bold rounded-xl transition-all cursor-pointer flex items-center space-x-1">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
                                 <span>Simpan</span>
                             </button>

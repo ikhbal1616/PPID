@@ -76,14 +76,14 @@
                     <div class="doc-item bg-white rounded-2xl shadow-sm border border-slate-200/60 overflow-hidden transition-all duration-300" data-category="{{ $categoryName }}">
                         <button class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none cursor-pointer group" onclick="toggleAccordion({{ $accordionId }})">
                             <div class="flex items-center space-x-4">
-                                <div class="w-10 h-10 rounded-xl bg-brand-green-50 text-brand-green-700 flex items-center justify-center font-bold text-sm shrink-0 group-hover:bg-brand-green-600 group-hover:text-white transition-colors duration-300">
+                                <div class="w-10 h-10 rounded-xl bg-brand-green-50 text-brand-green-900 flex items-center justify-center font-bold text-sm shrink-0 group-hover:bg-brand-green-900 group-hover:text-white transition-colors duration-300">
                                     {{ $displayIndex }}
                                 </div>
                                 <div class="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0 sm:space-x-3">
                                     <span class="font-bold text-slate-800 text-sm sm:text-base">{{ $item['title'] }}</span>
                                 </div>
                             </div>
-                            <svg id="arrow-{{ $accordionId }}" class="w-5 h-5 text-slate-400 group-hover:text-brand-green-700 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                            <svg id="arrow-{{ $accordionId }}" class="w-5 h-5 text-slate-400 group-hover:text-brand-green-900 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
                         <div id="content-{{ $accordionId }}" class="hidden px-6 pb-6 pt-4 border-t border-slate-100 text-slate-600 text-xs sm:text-sm leading-relaxed space-y-4">
                             @if (!empty($item['description']))
@@ -110,7 +110,7 @@
                                                 </div>
                                                 <span class="font-bold text-slate-700 group-hover:text-brand-green-800 transition-colors">{{ $fileItem['title'] }}</span>
                                             </div>
-                                            <span class="text-[11px] text-brand-green-700 font-bold uppercase flex items-center space-x-1 shrink-0">
+                                            <span class="text-[11px] text-brand-green-900 font-bold uppercase flex items-center space-x-1 shrink-0">
                                                 <span>Lihat</span>
                                                 <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                                             </span>

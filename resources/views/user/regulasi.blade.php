@@ -69,17 +69,17 @@
                     <div class="bg-slate-50 border border-slate-100 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
                         <div class="space-y-4">
                             <div class="flex items-center justify-between">
-                                <span class="text-[10px] bg-brand-green-100 text-brand-green-700 font-bold px-3 py-1 rounded-full uppercase tracking-wider">{{ $item['type'] }}</span>
+                                <span class="text-[10px] bg-brand-green-100 text-brand-green-900 font-bold px-3 py-1 rounded-full uppercase tracking-wider">{{ $item['type'] }}</span>
                                 <span class="text-xs text-slate-400">PDF</span>
                             </div>
-                            <h4 class="font-bold text-slate-800 text-lg group-hover:text-brand-green-700 transition-colors">{{ $item['title'] }}</h4>
+                            <h4 class="font-bold text-slate-800 text-lg group-hover:text-brand-green-900 transition-colors">{{ $item['title'] }}</h4>
                             <p class="text-slate-500 text-xs sm:text-sm font-light leading-relaxed">
                                 {{ $item['desc'] }}
                             </p>
                         </div>
                         <div class="pt-6 border-t border-slate-200/50 mt-6 flex items-center justify-between">
                             @if (!empty($item['link']))
-                                <a href="{{ $item['link'] }}" target="_blank" class="text-xs font-bold text-brand-green-600 hover:text-brand-green-700 flex items-center space-x-1.5">
+                                <a href="{{ $item['link'] }}" target="_blank" class="text-xs font-bold text-brand-green-600 hover:text-brand-green-900 flex items-center space-x-1.5">
                                     <span>Baca Selengkapnya</span>
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                                 </a>

@@ -69,7 +69,7 @@
                     <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden p-6 space-y-6">
                         <div class="flex items-center justify-between border-b border-slate-100 pb-3">
                             <h3 class="font-bold text-slate-900 text-sm uppercase tracking-wider">Daftar Kelompok Informasi</h3>
-                            <button type="button" onclick="createNewKelompok()" class="px-4 py-2 bg-brand-green-600 hover:bg-brand-green-700 text-white text-xs font-bold rounded-xl flex items-center space-x-1.5 transition-all shadow-md transform hover:-translate-y-0.5 active:scale-95 cursor-pointer">
+                            <button type="button" onclick="createNewKelompok()" class="px-4 py-2 bg-brand-green-900 hover:bg-brand-green-900 text-white text-xs font-bold rounded-xl flex items-center space-x-1.5 transition-all shadow-md transform hover:-translate-y-0.5 active:scale-95 cursor-pointer">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
                                 <span>Tambah Kelompok</span>
                             </button>
@@ -178,7 +178,7 @@
                                 ${kel.files.map((file, fIndex) => `
                                     <div class="flex items-center justify-between text-xs p-2.5 bg-slate-50/50 rounded-lg hover:bg-slate-50 transition-colors">
                                         <div class="flex items-center space-x-2.5">
-                                            <span class="px-2 py-0.5 bg-brand-green-50 text-brand-green-700 text-[9px] font-bold rounded">
+                                            <span class="px-2 py-0.5 bg-brand-green-50 text-brand-green-900 text-[9px] font-bold rounded">
                                                 ${escapeHtml(file.type)}
                                             </span>
                                             <span class="font-bold text-slate-700">${escapeHtml(file.title)}</span>
@@ -216,7 +216,7 @@
                     <div class="flex items-center justify-between gap-4 cursor-pointer select-none" onclick="toggleKelompokAccordion(${index})">
                         <div class="space-y-1">
                             <div class="flex items-center space-x-2 flex-wrap gap-y-1">
-                                <span class="bg-brand-green-700 text-white font-bold px-2 py-0.5 rounded-lg text-[10px]">
+                                <span class="bg-brand-green-900 text-white font-bold px-2 py-0.5 rounded-lg text-[10px]">
                                     ${(index + 1).toString().padStart(2, '0')}
                                 </span>
                                 <h4 class="font-bold text-slate-800 text-sm">${escapeHtml(kel.title)}</h4>
@@ -242,7 +242,7 @@
                         ${filesHtml}
 
                         <div class="flex justify-end pt-1">
-                            <button type="button" onclick="openFileFormPanel(${index})" class="text-xs font-bold text-brand-green-700 hover:text-brand-green-900 hover:bg-brand-green-50/50 px-3 py-1.5 rounded-lg flex items-center space-x-1.5 transition-all border border-brand-green-200/50 cursor-pointer whitespace-nowrap">
+                            <button type="button" onclick="openFileFormPanel(${index})" class="text-xs font-bold text-brand-green-900 hover:text-brand-green-900 hover:bg-brand-green-50/50 px-3 py-1.5 rounded-lg flex items-center space-x-1.5 transition-all border border-brand-green-200/50 cursor-pointer whitespace-nowrap">
                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
                                 <span>Tambah File/Tautan</span>
                             </button>

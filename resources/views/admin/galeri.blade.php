@@ -68,7 +68,7 @@
                 <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden p-6 space-y-6">
                     <div class="flex items-center justify-between border-b border-slate-100 pb-3">
                         <h3 class="font-bold text-slate-900 text-sm uppercase tracking-wider">Daftar Foto Galeri</h3>
-                        <button type="button" onclick="createNewPhoto()" class="px-4 py-2 bg-brand-green-600 hover:bg-brand-green-700 text-white text-xs font-bold rounded-xl flex items-center space-x-1.5 transition-all shadow-md transform hover:-translate-y-0.5 active:scale-95 cursor-pointer">
+                        <button type="button" onclick="createNewPhoto()" class="px-4 py-2 bg-brand-green-900 hover:bg-brand-green-900 text-white text-xs font-bold rounded-xl flex items-center space-x-1.5 transition-all shadow-md transform hover:-translate-y-0.5 active:scale-95 cursor-pointer">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
                             <span>Tambah Foto</span>
                         </button>

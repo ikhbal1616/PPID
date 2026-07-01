@@ -67,7 +67,7 @@
                          alt="Logo Universitas Baiturrahmah" 
                          class="w-18 h-18 object-contain filter drop-shadow group-hover:scale-105 transition-transform duration-300">
                     <div class="flex flex-col justify-center translate-y-[2px]">
-                        <span class="text-[11px] md:text-xs font-bold tracking-wider text-brand-green-700 uppercase leading-tight">Pejabat Pengelola<br>Informasi & Dokumentasi</span>
+                        <span class="text-[11px] md:text-xs font-bold tracking-wider text-brand-green-900 uppercase leading-tight">Pejabat Pengelola<br>Informasi & Dokumentasi</span>
                         <span class="text-2xl md:text-3xl font-bold tracking-tight text-brand-green-950 font-display group-hover:text-brand-green-600 transition-colors leading-tight -mt-1">PPID UNBRAH</span>
                     </div>
                 </a>
@@ -87,13 +87,13 @@
                         </button>
                         <!-- Dropdown -->
                         <div class="absolute top-full left-0 mt-1 w-56 rounded-xl bg-white shadow-xl border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 p-2 z-50">
-                            <a href="/profil" class="block px-4 py-2 text-xs rounded-lg {{ request()->is('profil') ? 'bg-brand-green-50 text-brand-green-700 font-bold' : 'hover:bg-brand-green-50 hover:text-brand-green-700 transition-colors' }}">Profil PPID</a>
-                            <a href="/visi-misi" class="block px-4 py-2 text-xs rounded-lg {{ request()->is('visi-misi') ? 'bg-brand-green-50 text-brand-green-700 font-bold' : 'hover:bg-brand-green-50 hover:text-brand-green-700 transition-colors' }}">Visi & Misi PPID</a>
-                            <a href="/struktur-organisasi" class="block px-4 py-2 text-xs rounded-lg {{ request()->is('struktur-organisasi') ? 'bg-brand-green-50 text-brand-green-700 font-bold' : 'hover:bg-brand-green-50 hover:text-brand-green-700 transition-colors' }}">Struktur Organisasi PPID</a>
-                            <a href="/tugas-fungsi" class="block px-4 py-2 text-xs rounded-lg {{ request()->is('tugas-fungsi') ? 'bg-brand-green-50 text-brand-green-700 font-bold' : 'hover:bg-brand-green-50 hover:text-brand-green-700 transition-colors' }}">Tugas & Fungsi PPID</a>
-                            <a href="/ppid-dalam-angka" class="block px-4 py-2 text-xs rounded-lg {{ request()->is('ppid-dalam-angka') ? 'bg-brand-green-50 text-brand-green-700 font-bold' : 'hover:bg-brand-green-50 hover:text-brand-green-700 transition-colors' }}">PPID Dalam Angka</a>
-                            <a href="/regulasi" class="block px-4 py-2 text-xs rounded-lg {{ request()->is('regulasi') ? 'bg-brand-green-50 text-brand-green-700 font-bold' : 'hover:bg-brand-green-50 hover:text-brand-green-700 transition-colors' }}">Regulasi PPID</a>
-                            <a href="/maklumat-pelayanan" class="block px-4 py-2 text-xs rounded-lg {{ request()->is('maklumat-pelayanan') ? 'bg-brand-green-50 text-brand-green-700 font-bold' : 'hover:bg-brand-green-50 hover:text-brand-green-700 transition-colors' }}">Maklumat PPID</a>
+                            <a href="/profil" class="block px-4 py-2 text-xs rounded-lg {{ request()->is('profil') ? 'bg-brand-green-50 text-brand-green-900 font-bold' : 'hover:bg-brand-green-50 hover:text-brand-green-900 transition-colors' }}">Profil PPID</a>
+                            <a href="/visi-misi" class="block px-4 py-2 text-xs rounded-lg {{ request()->is('visi-misi') ? 'bg-brand-green-50 text-brand-green-900 font-bold' : 'hover:bg-brand-green-50 hover:text-brand-green-900 transition-colors' }}">Visi & Misi PPID</a>
+                            <a href="/struktur-organisasi" class="block px-4 py-2 text-xs rounded-lg {{ request()->is('struktur-organisasi') ? 'bg-brand-green-50 text-brand-green-900 font-bold' : 'hover:bg-brand-green-50 hover:text-brand-green-900 transition-colors' }}">Struktur Organisasi PPID</a>
+                            <a href="/tugas-fungsi" class="block px-4 py-2 text-xs rounded-lg {{ request()->is('tugas-fungsi') ? 'bg-brand-green-50 text-brand-green-900 font-bold' : 'hover:bg-brand-green-50 hover:text-brand-green-900 transition-colors' }}">Tugas & Fungsi PPID</a>
+                            <a href="/ppid-dalam-angka" class="block px-4 py-2 text-xs rounded-lg {{ request()->is('ppid-dalam-angka') ? 'bg-brand-green-50 text-brand-green-900 font-bold' : 'hover:bg-brand-green-50 hover:text-brand-green-900 transition-colors' }}">PPID Dalam Angka</a>
+                            <a href="/regulasi" class="block px-4 py-2 text-xs rounded-lg {{ request()->is('regulasi') ? 'bg-brand-green-50 text-brand-green-900 font-bold' : 'hover:bg-brand-green-50 hover:text-brand-green-900 transition-colors' }}">Regulasi PPID</a>
+                            <a href="/maklumat-pelayanan" class="block px-4 py-2 text-xs rounded-lg {{ request()->is('maklumat-pelayanan') ? 'bg-brand-green-50 text-brand-green-900 font-bold' : 'hover:bg-brand-green-50 hover:text-brand-green-900 transition-colors' }}">Maklumat PPID</a>
                         </div>
                     </div>
                     
@@ -107,9 +107,9 @@
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
                         <div class="absolute top-full left-0 mt-1 w-56 rounded-xl bg-white shadow-xl border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 p-2 z-50">
-                            <a href="/informasi-publik-berkala" class="block px-4 py-2 text-xs rounded-lg {{ request()->is('informasi-publik-berkala') ? 'bg-brand-green-50 text-brand-green-700 font-bold' : 'hover:bg-brand-green-50 hover:text-brand-green-700 transition-colors' }}">Informasi Publik Berkala</a>
-                            <a href="/informasi-serta-merta" class="block px-4 py-2 text-xs rounded-lg {{ request()->is('informasi-serta-merta') ? 'bg-brand-green-50 text-brand-green-700 font-bold' : 'hover:bg-brand-green-50 hover:text-brand-green-700 transition-colors' }}">Informasi Serta Merta</a>
-                            <a href="/informasi-tersedia-setiap-saat" class="block px-4 py-2 text-xs rounded-lg {{ request()->is('informasi-tersedia-setiap-saat') ? 'bg-brand-green-50 text-brand-green-700 font-bold' : 'hover:bg-brand-green-50 hover:text-brand-green-700 transition-colors' }}">Informasi Tersedia Setiap Saat</a>
+                            <a href="/informasi-publik-berkala" class="block px-4 py-2 text-xs rounded-lg {{ request()->is('informasi-publik-berkala') ? 'bg-brand-green-50 text-brand-green-900 font-bold' : 'hover:bg-brand-green-50 hover:text-brand-green-900 transition-colors' }}">Informasi Publik Berkala</a>
+                            <a href="/informasi-serta-merta" class="block px-4 py-2 text-xs rounded-lg {{ request()->is('informasi-serta-merta') ? 'bg-brand-green-50 text-brand-green-900 font-bold' : 'hover:bg-brand-green-50 hover:text-brand-green-900 transition-colors' }}">Informasi Serta Merta</a>
+                            <a href="/informasi-tersedia-setiap-saat" class="block px-4 py-2 text-xs rounded-lg {{ request()->is('informasi-tersedia-setiap-saat') ? 'bg-brand-green-50 text-brand-green-900 font-bold' : 'hover:bg-brand-green-50 hover:text-brand-green-900 transition-colors' }}">Informasi Tersedia Setiap Saat</a>
                         </div>
                     </div>
 
@@ -120,10 +120,10 @@
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
                         <div class="absolute top-full left-0 mt-1 w-64 rounded-xl bg-white shadow-xl border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 p-2 z-50">
-                            <a href="javascript:void(0)" onclick="openModal('permohonan')" class="block px-4 py-2 text-xs rounded-lg hover:bg-brand-green-50 hover:text-brand-green-700 transition-colors">Permohonan Informasi</a>
-                            <a href="javascript:void(0)" onclick="openModal('keberatan')" class="block px-4 py-2 text-xs rounded-lg hover:bg-brand-green-50 hover:text-brand-green-700 transition-colors">Pengajuan Keberatan</a>
-                            <a href="javascript:void(0)" onclick="openModal('penyalahgunaan')" class="block px-4 py-2 text-xs rounded-lg hover:bg-brand-green-50 hover:text-brand-green-700 transition-colors">Penyalahgunaan Wewenang</a>
-                            <a href="javascript:void(0)" onclick="openModal('pengaduan')" class="block px-4 py-2 text-xs rounded-lg hover:bg-brand-green-50 hover:text-brand-green-700 transition-colors">Pengaduan Layanan</a>
+                            <a href="javascript:void(0)" onclick="openModal('permohonan')" class="block px-4 py-2 text-xs rounded-lg hover:bg-brand-green-50 hover:text-brand-green-900 transition-colors">Permohonan Informasi</a>
+                            <a href="javascript:void(0)" onclick="openModal('keberatan')" class="block px-4 py-2 text-xs rounded-lg hover:bg-brand-green-50 hover:text-brand-green-900 transition-colors">Pengajuan Keberatan</a>
+                            <a href="javascript:void(0)" onclick="openModal('penyalahgunaan')" class="block px-4 py-2 text-xs rounded-lg hover:bg-brand-green-50 hover:text-brand-green-900 transition-colors">Penyalahgunaan Wewenang</a>
+                            <a href="javascript:void(0)" onclick="openModal('pengaduan')" class="block px-4 py-2 text-xs rounded-lg hover:bg-brand-green-50 hover:text-brand-green-900 transition-colors">Pengaduan Layanan</a>
                         </div>
                     </div>
 
@@ -367,7 +367,7 @@
                                     <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                                 <div class="flex text-xs text-slate-600 justify-center">
-                                    <label for="file-upload" class="relative cursor-pointer rounded-md font-bold text-brand-green-600 hover:text-brand-green-700 focus-within:outline-none">
+                                    <label for="file-upload" class="relative cursor-pointer rounded-md font-bold text-brand-green-600 hover:text-brand-green-900 focus-within:outline-none">
                                         <span id="file-upload-label-text">Pilih file dokumen</span>
                                         <input id="file-upload" name="file_bukti" type="file" class="sr-only">
                                     </label>
@@ -446,7 +446,7 @@
 
                     <div class="pt-4 border-t border-slate-100 flex items-center justify-end space-x-2">
                         <button type="button" onclick="closeModal()" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs rounded-xl cursor-pointer transition-colors">Batal</button>
-                        <button type="submit" id="btn-submit-ppid" class="px-5 py-2.5 bg-brand-green-700 hover:bg-brand-green-800 text-white font-bold text-xs rounded-xl shadow cursor-pointer transition-colors">Kirim Pengajuan</button>
+                        <button type="submit" id="btn-submit-ppid" class="px-5 py-2.5 bg-brand-green-900 hover:bg-brand-green-950 text-white font-bold text-xs rounded-xl shadow cursor-pointer transition-colors">Kirim Pengajuan</button>
                     </div>
                 </form>
 
@@ -463,7 +463,7 @@
                         <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none mb-2">Nomor Tiket Anda</span>
                         <span class="text-xl font-mono font-bold text-brand-green-800" id="ticket-number-span">#UNBRAH-PER-XXXXX</span>
                     </div>
-                    <button onclick="closeModal()" class="px-6 py-2.5 bg-brand-green-700 hover:bg-brand-green-800 text-white font-bold text-xs rounded-xl shadow transition-colors cursor-pointer">Selesai & Tutup</button>
+                    <button onclick="closeModal()" class="px-6 py-2.5 bg-brand-green-900 hover:bg-brand-green-950 text-white font-bold text-xs rounded-xl shadow transition-colors cursor-pointer">Selesai & Tutup</button>
                 </div>
             </div>
         </div>

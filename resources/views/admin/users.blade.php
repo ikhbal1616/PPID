@@ -14,7 +14,7 @@
         <p class="text-slate-500 text-xs mt-1">Daftar pengguna admin, petugas, dan pimpinan yang terdaftar dalam sistem PPID.</p>
     </div>
     
-    <button onclick="openUserModal(-1)" class="px-4 py-2.5 bg-brand-green-700 hover:bg-brand-green-800 text-white text-xs font-bold rounded-xl transition-all cursor-pointer flex items-center space-x-2 shadow-md">
+    <button onclick="openUserModal(-1)" class="px-4 py-2.5 bg-brand-green-900 hover:bg-brand-green-950 text-white text-xs font-bold rounded-xl transition-all cursor-pointer flex items-center space-x-2 shadow-md">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
         <span>Tambah User Baru</span>
     </button>
@@ -39,7 +39,7 @@
                     <td class="px-6 py-4 font-mono text-slate-400">{{ $index + 1 }}</td>
                     <td class="px-6 py-4">
                         <div class="flex items-center space-x-3">
-                            <div class="w-8 h-8 rounded-full bg-brand-green-50 text-brand-green-700 flex items-center justify-center font-bold text-xs uppercase">
+                            <div class="w-8 h-8 rounded-full bg-brand-green-50 text-brand-green-900 flex items-center justify-center font-bold text-xs uppercase">
                                 {{ strtoupper(substr($u->name, 0, 2)) }}
                             </div>
                             <span class="font-bold text-slate-800">{{ $u->name }}</span>
@@ -59,7 +59,7 @@
                         @endif
                     </td>
                     <td class="px-6 py-4 text-right space-x-1.5 whitespace-nowrap">
-                        <button onclick="openUserModal({{ $index }})" class="px-3 py-1.5 bg-slate-50 text-slate-600 hover:bg-brand-green-50 hover:text-brand-green-700 border border-slate-200 hover:border-brand-green-100 rounded-lg font-bold text-[10px] transition-all cursor-pointer">Edit</button>
+                        <button onclick="openUserModal({{ $index }})" class="px-3 py-1.5 bg-slate-50 text-slate-600 hover:bg-brand-green-50 hover:text-brand-green-900 border border-slate-200 hover:border-brand-green-900/20 rounded-lg font-bold text-[10px] transition-all cursor-pointer">Edit</button>
                         @if ($u->id !== $adminUser->id)
                         <button onclick="deleteUser({{ $u->id }}, '{{ $u->name }}')" class="px-3 py-1.5 bg-rose-50 text-rose-600 hover:bg-rose-600 hover:text-white border border-rose-100 hover:border-transparent rounded-lg font-bold text-[10px] transition-all cursor-pointer">Hapus</button>
                         @endif
@@ -122,7 +122,7 @@
             <!-- Modal Footer Buttons -->
             <div class="pt-4 border-t border-slate-100 flex items-center justify-end space-x-3">
                 <button type="button" onclick="closeUserModal()" class="px-5 py-2.5 rounded-xl border border-slate-200 text-slate-500 hover:bg-slate-100 text-xs font-semibold transition-colors cursor-pointer">Batal</button>
-                <button type="submit" class="px-6 py-2.5 rounded-xl bg-brand-green-600 hover:bg-brand-green-700 text-white text-xs font-bold shadow-lg transition-all duration-300 cursor-pointer">Simpan User</button>
+                <button type="submit" class="px-6 py-2.5 rounded-xl bg-brand-green-900 hover:bg-brand-green-900 text-white text-xs font-bold shadow-lg transition-all duration-300 cursor-pointer">Simpan User</button>
             </div>
         </form>
     </div>

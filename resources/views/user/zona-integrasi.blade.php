@@ -67,7 +67,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- Area 1 -->
                     <div class="bg-slate-50 border border-slate-100 rounded-3xl p-6 hover:shadow-xl transition-all duration-300 space-y-4">
-                        <div class="w-10 h-10 rounded-2xl bg-brand-green-50 text-brand-green-700 flex items-center justify-center shadow-sm">
+                        <div class="w-10 h-10 rounded-2xl bg-brand-green-50 text-brand-green-900 flex items-center justify-center shadow-sm">
                             <span class="font-bold text-sm font-display">1</span>
                         </div>
                         <h4 class="font-bold text-slate-800 text-base">Manajemen Perubahan</h4>
@@ -78,7 +78,7 @@
 
                     <!-- Area 2 -->
                     <div class="bg-slate-50 border border-slate-100 rounded-3xl p-6 hover:shadow-xl transition-all duration-300 space-y-4">
-                        <div class="w-10 h-10 rounded-2xl bg-brand-green-50 text-brand-green-700 flex items-center justify-center shadow-sm">
+                        <div class="w-10 h-10 rounded-2xl bg-brand-green-50 text-brand-green-900 flex items-center justify-center shadow-sm">
                             <span class="font-bold text-sm font-display">2</span>
                         </div>
                         <h4 class="font-bold text-slate-800 text-base">Penataan Tatalaksana</h4>
@@ -89,7 +89,7 @@
 
                     <!-- Area 3 -->
                     <div class="bg-slate-50 border border-slate-100 rounded-3xl p-6 hover:shadow-xl transition-all duration-300 space-y-4">
-                        <div class="w-10 h-10 rounded-2xl bg-brand-green-50 text-brand-green-700 flex items-center justify-center shadow-sm">
+                        <div class="w-10 h-10 rounded-2xl bg-brand-green-50 text-brand-green-900 flex items-center justify-center shadow-sm">
                             <span class="font-bold text-sm font-display">3</span>
                         </div>
                         <h4 class="font-bold text-slate-800 text-base">Penataan Sistem Manajemen SDM</h4>
@@ -100,7 +100,7 @@
 
                     <!-- Area 4 -->
                     <div class="bg-slate-50 border border-slate-100 rounded-3xl p-6 hover:shadow-xl transition-all duration-300 space-y-4">
-                        <div class="w-10 h-10 rounded-2xl bg-brand-green-50 text-brand-green-700 flex items-center justify-center shadow-sm">
+                        <div class="w-10 h-10 rounded-2xl bg-brand-green-50 text-brand-green-900 flex items-center justify-center shadow-sm">
                             <span class="font-bold text-sm font-display">4</span>
                         </div>
                         <h4 class="font-bold text-slate-800 text-base">Penguatan Akuntabilitas</h4>
@@ -111,7 +111,7 @@
 
                     <!-- Area 5 -->
                     <div class="bg-slate-50 border border-slate-100 rounded-3xl p-6 hover:shadow-xl transition-all duration-300 space-y-4">
-                        <div class="w-10 h-10 rounded-2xl bg-brand-green-50 text-brand-green-700 flex items-center justify-center shadow-sm">
+                        <div class="w-10 h-10 rounded-2xl bg-brand-green-50 text-brand-green-900 flex items-center justify-center shadow-sm">
                             <span class="font-bold text-sm font-display">5</span>
                         </div>
                         <h4 class="font-bold text-slate-800 text-base">Penguatan Pengawasan</h4>
@@ -122,7 +122,7 @@
 
                     <!-- Area 6 -->
                     <div class="bg-slate-50 border border-slate-100 rounded-3xl p-6 hover:shadow-xl transition-all duration-300 space-y-4">
-                        <div class="w-10 h-10 rounded-2xl bg-brand-green-50 text-brand-green-700 flex items-center justify-center shadow-sm">
+                        <div class="w-10 h-10 rounded-2xl bg-brand-green-50 text-brand-green-900 flex items-center justify-center shadow-sm">
                             <span class="font-bold text-sm font-display">6</span>
                         </div>
                         <h4 class="font-bold text-slate-800 text-base">Peningkatan Kualitas Pelayanan</h4>
