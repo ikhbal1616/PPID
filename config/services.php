@@ -35,4 +35,12 @@ return [
         ],
     ],
 
+    /*
+     * API Berita Universitas Baiturrahmah
+     * Override BERITA_API_URL di .env jika API tidak bisa diakses dari jaringan lokal.
+     */
+    'berita' => [
+        'url' => env('BERITA_API_URL', 'https://unbrah.ac.id/api/berita'),
+    ],
+
 ];
