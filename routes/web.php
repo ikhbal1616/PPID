@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\PermohonanController;
+use App\Http\Controllers\Admin\UserController;
 
 Route::get('/', function () {
     return view('user.halaman-utama');
@@ -136,6 +137,14 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin/dokumen', [PermohonanController::class, 'dokumenIndex'])->name('admin.dokumen.index');
         Route::post('/admin/dokumen/update', [PermohonanController::class, 'profilUpdate'])->name('admin.dokumen.update');
+    });
+
+    // Super Admin Only: User Management CRUD
+    Route::middleware(['role:admin'])->group(function () {
+        Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
+        Route::post('/admin/users', [UserController::class, 'store'])->name('admin.users.store');
+        Route::post('/admin/users/{id}/update', [UserController::class, 'update'])->name('admin.users.update');
+        Route::delete('/admin/users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
     });
 });
 
