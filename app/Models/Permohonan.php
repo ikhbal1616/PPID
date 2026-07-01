@@ -27,5 +27,7 @@ class Permohonan extends Model
         'status',
         'tanggapan',
         'file_tanggapan',
+        'rating',
+        'ulasan_kepuasan',
     ];
 }

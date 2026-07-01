@@ -194,6 +194,9 @@
                     <p class="intro-text">
                         Kabar baik! Laporan/permohonan informasi Anda telah **selesai diproses** oleh tim petugas PPID Universitas Baiturrahmah.
                     </p>
+                    <div style="margin: 22px 0; text-align: center;">
+                        <a href="{{ url('/evaluasi/' . str_replace('#', '', $permohonan->ticket_number)) }}" style="display: inline-block; padding: 12px 24px; background-color: #003316; color: #ffffff; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 13px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">Bantu Kami Menilai - Berikan Evaluasi Kepuasan</a>
+                    </div>
                 @elseif ($permohonan->status === 'Ditolak')
                     <p class="intro-text">
                         Kami ingin menginformasikan bahwa laporan/permohonan informasi Anda **ditolak / dikecualikan** oleh petugas PPID setelah melalui proses peninjauan.

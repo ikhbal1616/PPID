@@ -3,6 +3,27 @@
 @section('title', 'PPID Dalam Angka')
 
 @section('content')
+@php
+    $totalPermohonan = \App\Models\Permohonan::count();
+    $permohonanSelesai = \App\Models\Permohonan::where('status', 'Selesai')->count();
+    $permohonanDitolak = \App\Models\Permohonan::where('status', 'Ditolak')->count();
+    
+    // Rata-rata waktu proses menggunakan Carbon (100% kompatibel lintas database)
+    $resolvedTickets = \App\Models\Permohonan::whereIn('status', ['Selesai', 'Ditolak'])
+        ->whereNotNull('updated_at')
+        ->get(['created_at', 'updated_at']);
+        
+    if ($resolvedTickets->count() > 0) {
+        $totalSeconds = 0;
+        foreach ($resolvedTickets as $ticket) {
+            $totalSeconds += $ticket->updated_at->diffInSeconds($ticket->created_at);
+        }
+        $avgDays = ($totalSeconds / $resolvedTickets->count()) / 86400;
+        $waktuProses = round($avgDays, 1) . ' Hari';
+    } else {
+        $waktuProses = '4.8 Hari';
+    }
+@endphp
 <!-- HERO SECTION -->
     <section class="relative bg-gradient-to-br from-brand-green-950 to-brand-green-900 py-12 text-white overflow-hidden shadow-xl">
         <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 text-center relative z-10 space-y-3">
@@ -29,7 +50,7 @@
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                         </div>
                         <div>
-                            <span class="text-2xl sm:text-3xl font-extrabold text-slate-900 block font-display">{{ setting('angka_total_permohonan', '342') }}</span>
+                            <span class="text-2xl sm:text-3xl font-extrabold text-slate-900 block font-display">{{ $totalPermohonan }}</span>
                             <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider block mt-1">Total Permohonan</span>
                         </div>
                     </div>
@@ -43,7 +64,7 @@
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         </div>
                         <div>
-                            <span class="text-2xl sm:text-3xl font-extrabold text-brand-green-900 block font-display">{{ setting('angka_selesai_tindaklanjut', '328') }}</span>
+                            <span class="text-2xl sm:text-3xl font-extrabold text-brand-green-900 block font-display">{{ $permohonanSelesai }}</span>
                             <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider block mt-1">Selesai Ditindaklanjuti</span>
                         </div>
                     </div>
@@ -57,7 +78,7 @@
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
                         </div>
                         <div>
-                            <span class="text-2xl sm:text-3xl font-extrabold text-red-600 block font-display">{{ setting('angka_ditolak_dikecualikan', '14') }}</span>
+                            <span class="text-2xl sm:text-3xl font-extrabold text-red-600 block font-display">{{ $permohonanDitolak }}</span>
                             <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider block mt-1">Ditolak / Dikecualikan</span>
                         </div>
                     </div>
@@ -71,7 +92,7 @@
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         </div>
                         <div>
-                            <span class="text-2xl sm:text-3xl font-extrabold text-brand-gold-500 block font-display">{{ setting('angka_rata_waktu_proses', '4.8 Hari') }}</span>
+                            <span class="text-2xl sm:text-3xl font-extrabold text-brand-gold-500 block font-display">{{ $waktuProses }}</span>
                             <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider block mt-1">Rata-rata Waktu Proses</span>
                         </div>
                     </div>

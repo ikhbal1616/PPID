@@ -317,6 +317,7 @@ class PermohonanController extends Controller
                 'bentuk_informasi' => $permohonan->bentuk_informasi,
                 'cara_mendapatkan' => $permohonan->cara_mendapatkan,
                 'file_tanggapan' => $permohonan->file_tanggapan,
+                'rating' => $permohonan->rating,
             ]
         ]);
     }

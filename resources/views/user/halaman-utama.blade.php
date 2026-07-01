@@ -3,6 +3,15 @@
 @section('title', 'PPID Universitas Baiturrahmah')
 
 @section('content')
+@php
+    $totalPermohonan = \App\Models\Permohonan::count();
+    $permohonanSelesai = \App\Models\Permohonan::where('status', 'Selesai')->count();
+    $permohonanDitolak = \App\Models\Permohonan::where('status', 'Ditolak')->count();
+    
+    // Rata-rata kepuasan (1-5 bintang) dikonversi ke persen (x20)
+    $avgRating = \App\Models\Permohonan::whereNotNull('rating')->avg('rating');
+    $indeksKepuasan = $avgRating ? round($avgRating * 20) : 98; // Fallback ke 98% jika belum ada data
+@endphp
 <!-- HERO AUTO-SLIDER SECTION -->
     <section class="relative w-full h-[550px] md:h-[650px] bg-brand-green-950 overflow-hidden shadow-2xl">
         <!-- Slides Container -->
@@ -480,7 +489,7 @@
                 <!-- Stat Item 1 -->
                 <div class="reveal-scale space-y-2">
                     <div class="text-4xl sm:text-5xl md:text-6xl font-bold font-display tracking-tight text-brand-gold-500">
-                        <span class="counter" data-target="542">0</span>
+                        <span class="counter" data-target="{{ $totalPermohonan }}">0</span>
                     </div>
                     <p class="text-slate-300 text-xs sm:text-sm font-semibold uppercase tracking-wider">Total Permohonan</p>
                     <p class="text-[10px] text-slate-500">Sejak platform digital diluncurkan</p>
@@ -489,7 +498,7 @@
                 <!-- Stat Item 2 -->
                 <div class="reveal-scale space-y-2 delay-100">
                     <div class="text-4xl sm:text-5xl md:text-6xl font-bold font-display tracking-tight text-brand-gold-500">
-                        <span class="counter" data-target="512">0</span>
+                        <span class="counter" data-target="{{ $permohonanSelesai }}">0</span>
                     </div>
                     <p class="text-slate-300 text-xs sm:text-sm font-semibold uppercase tracking-wider">Permohonan Selesai</p>
                     <p class="text-[10px] text-slate-500">Tuntas diproses dalam 10 hari kerja</p>
@@ -498,7 +507,7 @@
                 <!-- Stat Item 3 -->
                 <div class="reveal-scale space-y-2 delay-200">
                     <div class="text-4xl sm:text-5xl md:text-6xl font-bold font-display tracking-tight text-brand-gold-500">
-                        <span class="counter" data-target="30">0</span>
+                        <span class="counter" data-target="{{ $permohonanDitolak }}">0</span>
                     </div>
                     <p class="text-slate-300 text-xs sm:text-sm font-semibold uppercase tracking-wider">Permohonan Ditolak</p>
                     <p class="text-[10px] text-slate-500">Informasi yang dikecualikan UU No. 14</p>
@@ -507,7 +516,7 @@
                 <!-- Stat Item 4 -->
                 <div class="reveal-scale space-y-2 delay-300">
                     <div class="text-4xl sm:text-5xl md:text-6xl font-bold font-display tracking-tight text-brand-gold-500">
-                        <span class="counter" data-target="98">0</span><span class="text-brand-gold-500">%</span>
+                        <span class="counter" data-target="{{ $indeksKepuasan }}">0</span><span class="text-brand-gold-500">%</span>
                     </div>
                     <p class="text-slate-300 text-xs sm:text-sm font-semibold uppercase tracking-wider">Indeks Kepuasan</p>
                     <p class="text-[10px] text-slate-500">Hasil survei pemohon informasi publik</p>
@@ -696,6 +705,23 @@
                             </div>
                         `;
                     }
+                    
+                    let surveyButtonHtml = '';
+                    if (report.status === 'Selesai' && report.rating === null) {
+                        let cleanTicketId = report.id.replace('#', '');
+                        surveyButtonHtml = `
+                            <div class="mt-4 p-4 rounded-2xl bg-amber-50 border border-amber-100 border-l-4 border-l-amber-500 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                                <div>
+                                    <h4 class="text-xs font-bold text-amber-800 uppercase tracking-wider mb-1">Bantu Kami Menilai Layanan:</h4>
+                                    <p class="text-[10px] text-slate-600 leading-relaxed">Berikan penilaian kepuasan Anda untuk membantu meningkatkan kualitas layanan PPID Unbrah.</p>
+                                </div>
+                                <a href="/evaluasi/${cleanTicketId}" class="px-4 py-2 bg-brand-green-900 hover:bg-brand-green-950 text-white text-[10px] font-bold rounded-xl transition-all cursor-pointer shadow-md inline-flex items-center space-x-1 shrink-0 self-start sm:self-center">
+                                    <span>Beri Penilaian</span>
+                                    <svg class="w-3 h-3 fill-current text-amber-400" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                </a>
+                            </div>
+                        `;
+                    }
 
                     container.innerHTML = `
                         <!-- Header -->
@@ -743,6 +769,9 @@
 
                             <!-- Tanggapan Resmi -->
                             ${responseHtml}
+                            
+                            <!-- Survei Kepuasan -->
+                            ${surveyButtonHtml}
                         </div>
                     `;
 

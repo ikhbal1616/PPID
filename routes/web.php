@@ -4,10 +4,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\PermohonanController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\FeedbackController;
 
 Route::get('/', function () {
     return view('user.halaman-utama');
 });
+
+// Feedback & Satisfaction Survey
+Route::get('/evaluasi/{ticketNumber}', [FeedbackController::class, 'show'])->name('feedback.show');
+Route::post('/evaluasi/{ticketNumber}', [FeedbackController::class, 'store'])->name('feedback.store');
 
 Route::get('/profil', function () {
     return view('user.profil');
