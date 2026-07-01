@@ -184,22 +184,22 @@
                 
                 @if ($permohonan->status === 'Pending')
                     <p class="intro-text">
-                        Terima kasih telah mengajukan laporan/permohonan informasi ke PPID Universitas Baiturrahmah. Laporan Anda telah berhasil kami terima dengan nomor tiket **#{{ $permohonan->id }}**. Saat ini berkas Anda sedang berada dalam antrean menunggu verifikasi oleh petugas kami.
+                        Terima kasih telah mengajukan laporan/permohonan informasi ke PPID Universitas Baiturrahmah. Laporan Anda telah berhasil kami terima dengan nomor tiket <strong>{{ $permohonan->ticket_number }}</strong>. Saat ini berkas Anda sedang berada dalam antrean menunggu verifikasi oleh petugas kami.
                     </p>
                 @elseif ($permohonan->status === 'Ditinjau')
                     <p class="intro-text">
-                        Terima kasih telah menghubungi PPID Universitas Baiturrahmah. Kami ingin menginformasikan bahwa berkas laporan/permohonan Anda saat ini **sedang ditinjau** dan diproses oleh petugas kami.
+                        Terima kasih telah menghubungi PPID Universitas Baiturrahmah. Kami ingin menginformasikan bahwa berkas laporan/permohonan Anda saat ini <strong style="color: #d97706;">sedang ditinjau</strong> dan diproses oleh petugas kami.
                     </p>
                 @elseif ($permohonan->status === 'Selesai')
                     <p class="intro-text">
-                        Kabar baik! Laporan/permohonan informasi Anda telah **selesai diproses** oleh tim petugas PPID Universitas Baiturrahmah.
+                        Kabar baik! Laporan/permohonan informasi Anda telah <strong style="color: #16a34a;">selesai diproses</strong> oleh tim petugas PPID Universitas Baiturrahmah.
                     </p>
                     <div style="margin: 22px 0; text-align: center;">
                         <a href="{{ url('/evaluasi/' . str_replace('#', '', $permohonan->ticket_number)) }}" style="display: inline-block; padding: 12px 24px; background-color: #003316; color: #ffffff; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 13px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">Bantu Kami Menilai - Berikan Evaluasi Kepuasan</a>
                     </div>
                 @elseif ($permohonan->status === 'Ditolak')
                     <p class="intro-text">
-                        Kami ingin menginformasikan bahwa laporan/permohonan informasi Anda **ditolak / dikecualikan** oleh petugas PPID setelah melalui proses peninjauan.
+                        Kami ingin menginformasikan bahwa laporan/permohonan informasi Anda <strong style="color: #dc2626;">ditolak / dikecualikan</strong> oleh petugas PPID setelah melalui proses peninjauan.
                     </p>
                 @endif
 
@@ -207,7 +207,7 @@
                 <div class="ticket-card">
                     <div class="ticket-row">
                         <span class="label">Nomor Tiket</span>
-                        <span class="value ticket-id">#{{ $permohonan->id }}</span>
+                        <span class="value ticket-id">{{ $permohonan->ticket_number }}</span>
                     </div>
                     <div class="ticket-row">
                         <span class="label">Subjek Laporan</span>
@@ -215,7 +215,7 @@
                     </div>
                     <div class="ticket-row">
                         <span class="label">Tanggal Laporan</span>
-                        <span class="value">{{ $permohonan->tanggal }}</span>
+                        <span class="value">{{ $permohonan->created_at->format('d M Y H:i') }} WIB</span>
                     </div>
                     <div class="ticket-row">
                         <span class="label">Kategori</span>

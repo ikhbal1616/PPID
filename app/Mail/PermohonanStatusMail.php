@@ -36,7 +36,7 @@ class PermohonanStatusMail extends Mailable
             $statusLabel = 'Sedang Ditinjau';
         }
 
-        return $this->subject("[PPID Unbrah] {$subjectPrefix} Laporan #{$this->permohonan->id} - {$statusLabel}")
+        return $this->subject("[PPID Unbrah] {$subjectPrefix} Laporan {$this->permohonan->ticket_number} - {$statusLabel}")
                     ->view('emails.status-permohonan');
     }
 }

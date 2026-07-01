@@ -92,6 +92,12 @@
                         <span class="bg-brand-green-900/60 text-slate-200 text-[10px] px-2 py-0.5 rounded-full" id="sidebar-count-pengaduan">{{ $globalSidebarCounts['pengaduan'] ?? 0 }}</span>
                     </a>
 
+                    {{-- Indeks Kepuasan --}}
+                    <a href="/admin/feedback" class="flex items-center space-x-3 px-3 py-3 rounded-lg transition-all {{ request()->is('admin/feedback*') ? 'bg-brand-green-900/60 text-brand-gold-500 border-l-4 border-brand-gold-500' : 'text-slate-400 hover:bg-brand-green-900/40 hover:text-white' }}">
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <span class="flex-1">Indeks Kepuasan</span>
+                    </a>
+
                     @if(in_array($adminUser->role, ['admin', 'petugas']))
                     <span class="block px-3 py-2 text-[10px] text-brand-green-600 uppercase tracking-widest font-bold pt-4">Dokumen Profil</span>
 

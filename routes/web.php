@@ -151,6 +151,9 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/admin/users/{id}/update', [UserController::class, 'update'])->name('admin.users.update');
         Route::delete('/admin/users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
     });
+
+    // Feedback / Satisfaction Survey Dashboard (all admin roles)
+    Route::get('/admin/feedback', [FeedbackController::class, 'adminIndex'])->name('admin.feedback.index');
 });
 
 

@@ -60,11 +60,35 @@ class SatisfactionSurveyTest extends TestCase
     public function test_cannot_view_evaluation_page_for_unresolved_ticket()
     {
         $ticketId = str_replace('#', '', $this->pendingPermohonan->ticket_number);
-        
+
         $response = $this->get("/evaluasi/{$ticketId}");
-        
-        // Should redirect back to home
-        $response->assertRedirect('/');
+
+        // Should render fallback page with 403 status (not a redirect)
+        $response->assertStatus(403)
+                 ->assertSee('Evaluasi Belum Dapat Diisi');
+    }
+
+    public function test_cannot_view_evaluation_page_for_invalid_ticket()
+    {
+        $response = $this->get('/evaluasi/UNBRAH-PER-00000');
+
+        // Unknown ticket number should render fallback with 404
+        $response->assertStatus(404)
+                 ->assertSee('Nomor Tiket Tidak Valid');
+    }
+
+    public function test_shows_already_rated_fallback_page_on_revisit()
+    {
+        // Pre-fill the rating so it's already been submitted
+        $this->resolvedPermohonan->update(['rating' => 4, 'ulasan_kepuasan' => 'Pelayanan baik']);
+
+        $ticketId = str_replace('#', '', $this->resolvedPermohonan->ticket_number);
+        $response = $this->get("/evaluasi/{$ticketId}");
+
+        // Should render the 'already_rated' fallback, HTTP 200 (not an error)
+        $response->assertStatus(200)
+                 ->assertSee('Evaluasi Sudah Pernah Dikirimkan')
+                 ->assertSee('4/5');
     }
 
     public function test_can_submit_satisfaction_survey()

@@ -587,7 +587,11 @@
             formData.append('nik', document.getElementById('nik').value);
             formData.append('telepon', document.getElementById('telepon').value);
             formData.append('alamat', document.getElementById('alamat').value);
-            formData.append('perincian', document.getElementById('perincian').value);
+            let perincianVal = document.getElementById('perincian').value;
+            if (document.getElementById('form-type-field').value === 'penyalahgunaan') {
+                perincianVal = document.getElementById('isi_laporan').value;
+            }
+            formData.append('perincian', perincianVal);
 
             const fileInput = document.getElementById('file-upload');
             if (fileInput.files.length > 0) {

@@ -8,27 +8,61 @@ use Illuminate\Http\Request;
 class FeedbackController extends Controller
 {
     /**
-     * Display the satisfaction survey form.
+     * Admin dashboard: list all submitted feedback/ratings with stats.
+     */
+    public function adminIndex(Request $request)
+    {
+        $query = Permohonan::whereNotNull('rating')->orderByDesc('updated_at');
+
+        // Optional filter by rating star
+        if ($request->filled('rating')) {
+            $query->where('rating', (int) $request->rating);
+        }
+
+        $feedbacks    = $query->paginate(15);
+        $allFeedbacks = Permohonan::whereNotNull('rating')->get(['rating']);
+
+        return view('admin.feedback', compact('feedbacks', 'allFeedbacks'));
+    }
+
+    /**
+     * Display the satisfaction survey form or a fallback page if access is blocked.
      */
     public function show($ticketNumber)
     {
         // Normalize ticket number (ensure leading #)
         $normalizedTicket = str_starts_with($ticketNumber, 'UNBRAH-') ? '#' . $ticketNumber : $ticketNumber;
-        
+
         $permohonan = Permohonan::where('ticket_number', $normalizedTicket)->first();
-        
+
+        // Guard 1: ticket does not exist
         if (!$permohonan) {
-            abort(404, 'Tiket laporan tidak ditemukan.');
+            return response(
+                view('user.survei-fallback', ['reason' => 'not_found']),
+                404
+            );
         }
 
-        // Guard: only resolved tickets can be rated
+        // Guard 2: ticket exists but not yet resolved
         if ($permohonan->status !== 'Selesai') {
-            return redirect('/')->with('error', 'Evaluasi kepuasan pelanggan hanya dapat diisi untuk laporan yang telah selesai diproses.');
+            return response(
+                view('user.survei-fallback', [
+                    'reason'      => 'not_finished',
+                    'permohonan'  => $permohonan,
+                ]),
+                403
+            );
         }
 
-        // Guard: prevent double ratings
+        // Guard 3: user already submitted a rating for this ticket
         if (!is_null($permohonan->rating)) {
-            return redirect('/')->with('info', 'Anda telah memberikan penilaian kepuasan untuk tiket ini sebelumnya. Terima kasih!');
+            return response(
+                view('user.survei-fallback', [
+                    'reason'      => 'already_rated',
+                    'permohonan'  => $permohonan,
+                ]),
+                200  // 200 so no browser error — content is valid, just already done
+            );
         }
 
         return view('user.survei', compact('permohonan'));

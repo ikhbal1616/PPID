@@ -11,7 +11,7 @@
             <span class="bg-gradient-to-r from-brand-gold-500 to-brand-gold-100 bg-clip-text text-transparent">Pelayanan PPID</span>
         </h1>
         <p class="text-sm md:text-base text-slate-300/90 max-w-2xl mx-auto font-light leading-relaxed">
-            Bantu kami meningkatkan kualitas layanan dengan memberikan penilaian dan umpan balik Anda untuk Tiket #{{ $permohonan->id }}.
+            Bantu kami meningkatkan kualitas layanan dengan memberikan penilaian dan umpan balik Anda untuk Tiket {{ $permohonan->ticket_number }}.
         </p>
     </div>
 </section>
@@ -24,7 +24,7 @@
             <!-- Header Info -->
             <div class="text-center pb-6 border-b border-slate-100 space-y-2">
                 <span class="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold bg-brand-green-50 text-brand-green-900 border border-brand-green-100 uppercase tracking-wider">
-                    Tiket: #{{ $permohonan->id }}
+                    Tiket: {{ $permohonan->ticket_number }}
                 </span>
                 <h3 class="text-lg font-bold text-slate-900 font-display mt-2">{{ $permohonan->subjek }}</h3>
                 <p class="text-[11px] text-slate-400">Diajukan oleh: <span class="font-bold text-slate-500">{{ $permohonan->nama }}</span></p>
@@ -137,7 +137,7 @@
 
         const ulasan = document.getElementById('ulasan_kepuasan').value.trim();
 
-        fetch(`/evaluasi/{{ $permohonan->ticket_number }}`, {
+        fetch(`/evaluasi/{{ str_replace('#', '', $permohonan->ticket_number) }}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
