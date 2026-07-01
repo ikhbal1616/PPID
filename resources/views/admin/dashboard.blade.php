@@ -154,6 +154,50 @@
                     </div>
                 </div>
 
+                <!-- WELCOME BANNER (Gambar 1 style, adjusted to brand colors) -->
+                <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-green-950 via-brand-green-900 to-brand-green-950 border border-brand-gold-500/15 shadow-xl p-6 md:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                    <!-- Decorative glowing orb background -->
+                    <div class="absolute -right-16 -top-16 w-64 h-64 bg-brand-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                    <div class="absolute -left-16 -bottom-16 w-64 h-64 bg-brand-green-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                    <!-- Left Column (Welcome Text & Status) -->
+                    <div class="relative z-10 space-y-3.5 flex-1">
+                        <!-- Status Pill -->
+                        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-green-900/60 border border-brand-green-500/25 text-[10px] font-bold tracking-wider uppercase text-emerald-400">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]"></span>
+                            <span>Sistem Berjalan Normal</span>
+                        </div>
+                        
+                        <!-- Welcome Header -->
+                        <div>
+                            <h2 class="text-xl md:text-2xl font-bold font-display text-white tracking-tight leading-tight">
+                                Selamat datang, <span class="text-brand-gold-500 font-extrabold">{{ auth()->user()->name }}</span> 👋
+                            </h2>
+                            <p class="text-slate-300 text-xs mt-1.5 max-w-2xl font-medium leading-relaxed">
+                                Kelola data permohonan informasi publik dan pengaduan PPID Universitas Baiturrahmah dengan kendali penuh.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Right Column (Local Time Widget) -->
+                    <div class="relative z-10 w-full md:w-auto shrink-0 self-stretch md:self-auto flex items-center md:items-stretch">
+                        <div class="w-full md:w-48 bg-brand-green-950/70 border border-brand-gold-500/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center shadow-lg backdrop-blur-md">
+                            <span class="text-[9px] font-bold tracking-widest text-slate-400 uppercase">WAKTU LOKAL</span>
+                            <span id="dashboard-clock" class="text-2xl md:text-3xl font-extrabold font-mono text-white tracking-wider my-1 bg-gradient-to-r from-white to-slate-200 bg-clip-text text-transparent">
+                                00:00:00
+                            </span>
+                            <div class="flex items-center gap-1.5 mt-1">
+                                <span class="px-2 py-0.5 rounded bg-brand-green-900/80 border border-brand-green-700/30 text-[9px] font-bold text-slate-300 tracking-wider">
+                                    WIB
+                                </span>
+                                <span id="dashboard-date" class="px-2 py-0.5 rounded bg-brand-gold-500/10 border border-brand-gold-500/20 text-[9px] font-bold text-brand-gold-500 tracking-wider">
+                                    -- --- ----
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- METRIC CARDS ROW (Grid of 4) -->
                 <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
                     <!-- Metric Card 1 -->
@@ -250,33 +294,33 @@
                             </defs>
 
                             <!-- Gradient Area under curve -->
-                            <path d="M 50 200 L 180 160 L 320 180 L 460 90 L 600 120 L 740 60 L 880 80 L 880 220 L 50 220 Z" fill="url(#chart-gradient)"></path>
+                            <path d="M 50 220 L 50 200 C 100 200, 150 163, 200 160 C 250 157, 300 192, 350 180 C 400 168, 450 100, 500 90 C 550 80, 600 125, 650 120 C 700 115, 750 67, 800 60 C 850 53, 900 80, 950 80 L 950 220 Z" fill="url(#chart-gradient)"></path>
 
                             <!-- Line Path -->
-                            <path d="M 50 200 Q 115 180 180 160 T 320 180 T 460 90 T 600 120 T 740 60 T 880 80" fill="none" stroke="#009A44" stroke-width="3" stroke-linecap="round"></path>
+                            <path d="M 50 200 C 100 200, 150 163, 200 160 C 250 157, 300 192, 350 180 C 400 168, 450 100, 500 90 C 550 80, 600 125, 650 120 C 700 115, 750 67, 800 60 C 850 53, 900 80, 950 80" fill="none" stroke="#009A44" stroke-width="3" stroke-linecap="round"></path>
                             
                             <!-- Average benchmark dashed line -->
                             <line x1="50" y1="120" x2="950" y2="120" stroke="#EDC97F" stroke-width="1.5" stroke-dasharray="6,4"></line>
 
                             <!-- Dots/Nodes with hover triggers in HTML/JS -->
                             <circle cx="50" cy="200" r="6" fill="#ffffff" stroke="#009A44" stroke-width="3" class="cursor-pointer hover:r-8 hover:fill-brand-gold-500 transition-all" onclick="showChartValue(50, 200, 'Januari: 12 Laporan')"></circle>
-                            <circle cx="180" cy="160" r="6" fill="#ffffff" stroke="#009A44" stroke-width="3" class="cursor-pointer hover:r-8 hover:fill-brand-gold-500 transition-all" onclick="showChartValue(180, 160, 'Februari: 22 Laporan')"></circle>
-                            <circle cx="320" cy="180" r="6" fill="#ffffff" stroke="#009A44" stroke-width="3" class="cursor-pointer hover:r-8 hover:fill-brand-gold-500 transition-all" onclick="showChartValue(320, 180, 'Maret: 18 Laporan')"></circle>
-                            <circle cx="460" cy="90" r="6" fill="#ffffff" stroke="#009A44" stroke-width="3" class="cursor-pointer hover:r-8 hover:fill-brand-gold-500 transition-all" onclick="showChartValue(460, 90, 'April: 45 Laporan')"></circle>
-                            <circle cx="600" cy="120" r="6" fill="#ffffff" stroke="#009A44" stroke-width="3" class="cursor-pointer hover:r-8 hover:fill-brand-gold-500 transition-all" onclick="showChartValue(600, 120, 'Mei: 34 Laporan')"></circle>
-                            <circle cx="740" cy="60" r="6" fill="#ffffff" stroke="#009A44" stroke-width="3" class="cursor-pointer hover:r-8 hover:fill-brand-gold-500 transition-all" onclick="showChartValue(740, 60, 'Juni: 58 Laporan')"></circle>
-                            <circle cx="880" cy="80" r="6" fill="#ffffff" stroke="#009A44" stroke-width="3" class="cursor-pointer hover:r-8 hover:fill-brand-gold-500 transition-all" onclick="showChartValue(880, 80, 'Juli: 52 Laporan')"></circle>
+                            <circle cx="200" cy="160" r="6" fill="#ffffff" stroke="#009A44" stroke-width="3" class="cursor-pointer hover:r-8 hover:fill-brand-gold-500 transition-all" onclick="showChartValue(200, 160, 'Februari: 22 Laporan')"></circle>
+                            <circle cx="350" cy="180" r="6" fill="#ffffff" stroke="#009A44" stroke-width="3" class="cursor-pointer hover:r-8 hover:fill-brand-gold-500 transition-all" onclick="showChartValue(350, 180, 'Maret: 18 Laporan')"></circle>
+                            <circle cx="500" cy="90" r="6" fill="#ffffff" stroke="#009A44" stroke-width="3" class="cursor-pointer hover:r-8 hover:fill-brand-gold-500 transition-all" onclick="showChartValue(500, 90, 'April: 45 Laporan')"></circle>
+                            <circle cx="650" cy="120" r="6" fill="#ffffff" stroke="#009A44" stroke-width="3" class="cursor-pointer hover:r-8 hover:fill-brand-gold-500 transition-all" onclick="showChartValue(650, 120, 'Mei: 34 Laporan')"></circle>
+                            <circle cx="800" cy="60" r="6" fill="#ffffff" stroke="#009A44" stroke-width="3" class="cursor-pointer hover:r-8 hover:fill-brand-gold-500 transition-all" onclick="showChartValue(800, 60, 'Juni: 58 Laporan')"></circle>
+                            <circle cx="950" cy="80" r="6" fill="#ffffff" stroke="#009A44" stroke-width="3" class="cursor-pointer hover:r-8 hover:fill-brand-gold-500 transition-all" onclick="showChartValue(950, 80, 'Juli: 52 Laporan')"></circle>
                         </svg>
 
                         <!-- X Axis Labels -->
-                        <div class="absolute bottom-[-24px] left-0 right-0 flex justify-between text-[10px] font-bold text-slate-400 px-6">
-                            <span>Jan</span>
-                            <span>Feb</span>
-                            <span>Mar</span>
-                            <span>Apr</span>
-                            <span>Mei</span>
-                            <span>Jun</span>
-                            <span>Jul</span>
+                        <div class="absolute bottom-[-24px] left-0 right-0 text-[10px] font-bold text-slate-400">
+                            <span class="absolute -translate-x-1/2" style="left: 5%">Jan</span>
+                            <span class="absolute -translate-x-1/2" style="left: 20%">Feb</span>
+                            <span class="absolute -translate-x-1/2" style="left: 35%">Mar</span>
+                            <span class="absolute -translate-x-1/2" style="left: 50%">Apr</span>
+                            <span class="absolute -translate-x-1/2" style="left: 65%">Mei</span>
+                            <span class="absolute -translate-x-1/2" style="left: 80%">Jun</span>
+                            <span class="absolute -translate-x-1/2" style="left: 95%">Jul</span>
                         </div>
                     </div>
                 </div>
@@ -788,5 +832,31 @@
                 tooltip.classList.add('hidden');
             }, 3000);
         }
+
+        // Digital Clock & Date Update
+        function updateDashboardClock() {
+            const clockEl = document.getElementById('dashboard-clock');
+            const dateEl = document.getElementById('dashboard-date');
+            if (!clockEl || !dateEl) return;
+
+            const now = new Date();
+            
+            // Format Time (HH:MM:SS)
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            clockEl.textContent = `${hours}:${minutes}:${seconds}`;
+
+            // Format Date (DD MMM YYYY) e.g. "01 Jul 2026"
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+            
+            const date = String(now.getDate()).padStart(2, '0');
+            const month = months[now.getMonth()];
+            const year = now.getFullYear();
+            dateEl.textContent = `${date} ${month} ${year}`;
+        }
+        
+        setInterval(updateDashboardClock, 1000);
+        updateDashboardClock(); // run immediately
 </script>
 @endsection
