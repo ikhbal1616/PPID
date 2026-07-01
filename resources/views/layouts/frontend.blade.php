@@ -10,6 +10,9 @@
     <meta name="description" content="Portal Resmi Pejabat Pengelola Informasi dan Dokumentasi (PPID) Universitas Baiturrahmah. Memberikan akses informasi publik secara transparan, akurat, dan akuntabel sesuai UU No. 14 Tahun 2008.">
     <meta name="author" content="Universitas Baiturrahmah">
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/images/logo_unbrah.png">
+    
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     
     <!-- Alpine.js (Local Offline) -->
@@ -272,7 +275,7 @@
     <!-- INTERACTIVE MODAL FORMS (Shared Globally) -->
     <div id="form-modal" class="fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <!-- Backdrop -->
-        <div class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300" onclick="closeModal()"></div>
+        <div class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300"></div>
 
         <!-- Scrollable content alignment helper -->
         <div class="flex min-h-screen items-center justify-center p-4 text-center sm:p-0">

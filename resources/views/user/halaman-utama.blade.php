@@ -207,6 +207,33 @@
         </div>
     </section>
 
+    <!-- LACAK TIKET / CEK STATUS SECTION -->
+    <section class="py-16 bg-slate-50 border-y border-slate-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
+            <div class="space-y-2">
+                <span class="text-xs font-bold text-brand-green-700 uppercase tracking-widest bg-brand-green-50 px-3 py-1.5 rounded-full">Lacak Pengajuan Anda</span>
+                <h2 class="text-3xl font-bold font-display text-slate-900 tracking-tight">Cek Status Tiket PPID</h2>
+                <p class="text-slate-500 text-xs max-w-md mx-auto">Masukkan Nomor Tiket Pengajuan Anda untuk memantau proses verifikasi secara real-time.</p>
+            </div>
+
+            <!-- Search Form -->
+            <div class="max-w-md mx-auto relative">
+                <div class="flex items-center bg-white rounded-2xl shadow-md border border-slate-200 p-1.5 focus-within:ring-2 focus-within:ring-brand-green-600 focus-within:border-transparent transition-all">
+                    <span class="pl-3 text-slate-400">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </span>
+                    <input type="text" id="ticket-search-input" class="w-full bg-transparent text-slate-800 text-xs px-3 py-2.5 outline-none font-semibold font-mono" placeholder="Contoh: UNBRAH-PER-12345">
+                    <button onclick="performTicketSearch()" class="px-5 py-2.5 bg-brand-green-700 hover:bg-brand-green-800 text-white font-bold text-xs rounded-xl shadow-md cursor-pointer transition-colors shrink-0">Cari Tiket</button>
+                </div>
+            </div>
+
+            <!-- Results container -->
+            <div id="search-results-container" class="hidden text-left max-w-2xl mx-auto bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden transform scale-95 opacity-0 transition-all duration-300">
+                <!-- Injected dynamically by JS -->
+            </div>
+        </div>
+    </section>
+
     <!-- PROFIL / ABOUT SECTION -->
     <section id="about" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -245,19 +272,22 @@
             </div>
 
             <!-- YouTube Video Embed Widget / Image Widget -->
-            <div class="reveal-right relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white group">
-                <div class="absolute inset-0 bg-brand-green-950/20 group-hover:bg-brand-green-950/10 transition-colors z-10 duration-300"></div>
-                <!-- Mock YouTube Video / Image Preview (Using slider image for high visual appeal) -->
-                <img src="{{ setting('profil_ppid_video_image', '/images/slider2.png') }}" alt="PPID Video Preview" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-700">
-                <!-- Play Button Action -->
-                <div class="absolute inset-0 flex items-center justify-center z-20">
-                    <a href="{{ setting('profil_ppid_video_url', 'https://www.youtube.com/embed/jXZVBE2wbs0') }}" target="_blank" class="w-16 h-16 rounded-full bg-brand-gold-500 hover:bg-brand-gold-600 text-brand-green-950 flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-300 cursor-pointer">
-                        <svg class="w-8 h-8 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
-                    </a>
-                </div>
-                <div class="absolute bottom-4 left-4 right-4 z-20 bg-brand-green-950/80 backdrop-blur rounded-xl p-3 border border-white/15">
-                    <span class="text-brand-gold-500 text-[10px] font-bold tracking-widest uppercase">{{ setting('profil_ppid_video_label', 'Video Profil') }}</span>
-                    <h4 class="text-white text-xs font-bold mt-0.5">{{ setting('profil_ppid_video_title', 'Panduan Alur Permohonan Informasi Publik Unbrah') }}</h4>
+            <div id="video-widget-container" class="reveal-right relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white group h-80 bg-slate-900">
+                <div id="video-preview-state" class="absolute inset-0 flex flex-col justify-between">
+                    <div class="absolute inset-0 bg-brand-green-950/20 group-hover:bg-brand-green-950/10 transition-colors z-10 duration-300"></div>
+                    <img src="{{ setting('profil_ppid_video_image', '/images/slider2.png') }}" alt="PPID Video Preview" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    
+                    <!-- Play Button Action -->
+                    <div class="absolute inset-0 flex items-center justify-center z-20">
+                        <button onclick="playProfileVideo('{{ setting('profil_ppid_video_url', 'https://www.youtube.com/embed/jXZVBE2wbs0') }}')" class="w-16 h-16 rounded-full bg-brand-gold-500 hover:bg-brand-gold-600 text-brand-green-950 flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-300 cursor-pointer border-none outline-none focus:outline-none">
+                            <svg class="w-8 h-8 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+                        </button>
+                    </div>
+                    
+                    <div class="absolute bottom-4 left-4 right-4 z-20 bg-brand-green-950/80 backdrop-blur rounded-xl p-3 border border-white/15">
+                        <span class="text-brand-gold-500 text-[10px] font-bold tracking-widest uppercase block">{{ setting('profil_ppid_video_label', 'Video Profil') }}</span>
+                        <h4 class="text-white text-xs font-bold mt-0.5 block">{{ setting('profil_ppid_video_title', 'Panduan Alur Permohonan Informasi Publik Unbrah') }}</h4>
+                    </div>
                 </div>
             </div>
         </div>
@@ -597,6 +627,171 @@
         const statsSection = document.querySelector('.bg-gradient-to-br.from-brand-green-900');
         if (statsSection) {
             counterObserver.observe(statsSection);
+        }
+
+        // --- 5. TICKET SEARCH LOGIC ---
+        function performTicketSearch() {
+            const inputVal = document.getElementById('ticket-search-input').value.trim();
+            const container = document.getElementById('search-results-container');
+
+            if (!inputVal) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Input Kosong',
+                    text: 'Silakan masukkan nomor tiket pengajuan Anda terlebih dahulu.'
+                });
+                return;
+            }
+
+            // Fetch from backend
+            fetch(`/cek-tiket?id=${encodeURIComponent(inputVal)}`)
+                .then(res => {
+                    if (!res.ok) {
+                        return res.json().then(err => { throw new Error(err.message || 'Tiket tidak ditemukan'); });
+                    }
+                    return res.json();
+                })
+                .then(resData => {
+                    const report = resData.data;
+                    
+                    // Render status badges and layouts
+                    let badgeClass = '';
+                    if (report.status === 'Pending') badgeClass = 'bg-amber-100 text-amber-700';
+                    else if (report.status === 'Ditinjau') badgeClass = 'bg-blue-100 text-blue-700';
+                    else if (report.status === 'Selesai') badgeClass = 'bg-emerald-100 text-emerald-700';
+                    else if (report.status === 'Ditolak') badgeClass = 'bg-rose-100 text-rose-700';
+
+                    let categoryName = report.kategori;
+                    if (report.kategori === 'penyalahgunaan') categoryName = 'Penyalahgunaan Wewenang';
+                    else if (report.kategori === 'permohonan') categoryName = 'Permohonan Informasi';
+                    else if (report.kategori === 'keberatan') categoryName = 'Keberatan Informasi';
+                    else if (report.kategori === 'pengaduan') categoryName = 'Pengaduan Layanan';
+
+                    let responseHtml = '';
+                    if (report.tanggapan) {
+                        let fileLinkHtml = '';
+                        if (report.file_tanggapan) {
+                            fileLinkHtml = `
+                                <div class="mt-2.5 pt-2 border-t border-emerald-200/50">
+                                    <a href="${report.file_tanggapan}" target="_blank" class="inline-flex items-center space-x-1 font-bold text-[11px] text-emerald-700 hover:underline">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                                        <span>Unduh Berkas Lampiran Jawaban Resmi</span>
+                                    </a>
+                                </div>
+                            `;
+                        }
+
+                        responseHtml = `
+                            <div class="mt-4 p-4 rounded-2xl bg-emerald-50 border border-emerald-100 border-l-4 border-l-emerald-600">
+                                <h4 class="text-xs font-bold text-emerald-800 uppercase tracking-wider mb-1">Tanggapan Petugas PPID:</h4>
+                                <p class="text-xs text-slate-800 leading-relaxed italic">"${report.tanggapan}"</p>
+                                ${fileLinkHtml}
+                            </div>
+                        `;
+                    } else {
+                        responseHtml = `
+                            <div class="mt-4 p-4 rounded-2xl bg-slate-50 border border-slate-100 border-l-4 border-l-slate-400">
+                                <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Tanggapan Resmi:</h4>
+                                <p class="text-xs text-slate-400 leading-relaxed italic">Belum ada tanggapan resmi dari petugas.</p>
+                            </div>
+                        `;
+                    }
+
+                    container.innerHTML = `
+                        <!-- Header -->
+                        <div class="bg-gradient-to-r from-brand-green-900 to-brand-green-950 px-6 py-4 flex justify-between items-center text-white">
+                            <div>
+                                <h3 class="text-sm font-bold font-display">Hasil Lacak Tiket #${report.id}</h3>
+                                <p class="text-[9px] text-brand-gold-500 tracking-wider uppercase font-semibold mt-0.5">${categoryName}</p>
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-[9px] font-bold ${badgeClass}">
+                                ${report.status === 'Ditinjau' ? 'Sedang Ditinjau' : report.status}
+                            </span>
+                        </div>
+
+                        <!-- Body Grid -->
+                        <div class="p-6 space-y-4 text-xs leading-relaxed text-slate-600">
+                            <!-- Identitas Pemohon -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="space-y-1">
+                                    <span class="text-slate-400 font-bold uppercase text-[9px] tracking-wider block">Nama Pengaju (Disamarkan)</span>
+                                    <span class="font-bold text-slate-800 text-sm block">${report.nama}</span>
+                                </div>
+                                <div class="space-y-1">
+                                    <span class="text-slate-400 font-bold uppercase text-[9px] tracking-wider block">NIK / No. KTP (Disamarkan)</span>
+                                    <span class="font-semibold text-slate-800 block font-mono">${report.nik}</span>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1.5 border-t border-slate-100">
+                                <div class="space-y-1">
+                                    <span class="text-slate-400 font-bold uppercase text-[9px] tracking-wider block">Alamat Email</span>
+                                    <span class="font-semibold text-slate-800 block font-mono">${report.email}</span>
+                                </div>
+                                <div class="space-y-1">
+                                    <span class="text-slate-400 font-bold uppercase text-[9px] tracking-wider block">No. WhatsApp</span>
+                                    <span class="font-semibold text-slate-800 block font-mono">${report.telepon}</span>
+                                </div>
+                            </div>
+
+                            <!-- Perincian -->
+                            <div class="pt-3 border-t border-slate-100 space-y-1">
+                                <span class="text-slate-400 font-bold uppercase text-[9px] tracking-wider block">Subjek Laporan</span>
+                                <span class="font-bold text-slate-800 block">${report.subjek}</span>
+                                <p class="text-slate-500 mt-1 leading-relaxed text-justify bg-slate-50 p-3.5 rounded-xl border border-slate-150">${report.perincian}</p>
+                            </div>
+
+                            <!-- Tanggapan Resmi -->
+                            ${responseHtml}
+                        </div>
+                    `;
+
+                    // Trigger animations
+                    container.classList.remove('hidden');
+                    void container.offsetWidth;
+                    container.classList.remove('scale-95', 'opacity-0');
+                    container.classList.add('scale-100', 'opacity-100');
+                })
+                .catch(err => {
+                    console.error(err);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Tiket Tidak Ditemukan',
+                        text: err.message || 'Terjadi kesalahan saat melacak nomor tiket pengajuan Anda.'
+                    });
+                    container.classList.add('hidden');
+                });
+        }
+
+        // --- 6. INLINE VIDEO PLAYER ---
+        function playProfileVideo(url) {
+            const container = document.getElementById('video-widget-container');
+            
+            // Parse YouTube URL to find Video ID
+            let embedUrl = url;
+            let videoId = '';
+            
+            try {
+                if (url.includes('youtube.com/watch')) {
+                    const urlParams = new URLSearchParams(new URL(url).search);
+                    videoId = urlParams.get('v');
+                } else if (url.includes('youtu.be/')) {
+                    videoId = url.split('youtu.be/')[1].split('?')[0];
+                } else if (url.includes('youtube.com/embed/')) {
+                    videoId = url.split('youtube.com/embed/')[1].split('?')[0];
+                }
+            } catch (e) {
+                console.error("Error parsing YouTube URL:", e);
+            }
+            
+            if (videoId) {
+                embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+            }
+            
+            // Swap container content with autoplay iframe
+            container.innerHTML = `
+                <iframe src="${embedUrl}" class="w-full h-full border-none rounded-3xl" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            `;
         }
 </script>
 @endsection

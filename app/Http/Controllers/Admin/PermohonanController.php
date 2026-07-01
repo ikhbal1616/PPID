@@ -7,6 +7,9 @@ use App\Models\Permohonan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
+use App\Mail\PermohonanStatusMail;
 
 class PermohonanController extends Controller
 {
@@ -120,12 +123,68 @@ class PermohonanController extends Controller
         $request->validate([
             'status' => 'required|in:Pending,Ditinjau,Selesai,Ditolak',
             'tanggapan' => 'nullable|string',
+            'file_tanggapan' => 'nullable|file|mimes:png,jpg,jpeg,pdf,doc,docx,xls,xlsx,zip,rar|max:10240',
         ]);
+
+        $currentStatus = $permohonan->status;
+        $newStatus = $request->status;
+
+        // 1. Guard against illegal transitions
+        if ($currentStatus === 'Pending' && $newStatus !== 'Ditinjau') {
+            return response()->json([
+                'success' => false,
+                'message' => 'Transisi status ilegal: Berkas Pending hanya bisa diubah ke Ditinjau.'
+            ], 422);
+        }
+
+        if ($currentStatus === 'Ditinjau' && !in_array($newStatus, ['Selesai', 'Ditolak'])) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Transisi status ilegal: Berkas Ditinjau hanya bisa diubah ke Selesai atau Ditolak.'
+            ], 422);
+        }
+
+        if (in_array($currentStatus, ['Selesai', 'Ditolak'])) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Status laporan sudah dikunci dan tidak dapat diubah lagi.'
+            ], 422);
+        }
+
+        // 2. Validate tanggapan requirement for final states
+        if (in_array($newStatus, ['Selesai', 'Ditolak']) && empty(trim($request->tanggapan))) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Tanggapan resmi wajib diisi untuk menyelesaikan atau menolak laporan.'
+            ], 422);
+        }
+
+        // Handle file_tanggapan upload
+        $filePath = $permohonan->file_tanggapan;
+        if ($request->hasFile('file_tanggapan')) {
+            $file = $request->file('file_tanggapan');
+            $filename = time() . '_response_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
+            
+            if (!File::exists(public_path('uploads'))) {
+                File::makeDirectory(public_path('uploads'), 0755, true);
+            }
+            
+            $file->move(public_path('uploads'), $filename);
+            $filePath = '/uploads/' . $filename;
+        }
 
         $permohonan->update([
             'status' => $request->status,
             'tanggapan' => $request->tanggapan,
+            'file_tanggapan' => $filePath,
         ]);
+
+        // Send Email Notification
+        try {
+            Mail::to($permohonan->email)->send(new PermohonanStatusMail($permohonan));
+        } catch (\Exception $e) {
+            Log::warning("Gagal mengirim email notifikasi untuk tiket #{$permohonan->id}: " . $e->getMessage());
+        }
 
         return response()->json([
             'success' => true,
@@ -197,11 +256,120 @@ class PermohonanController extends Controller
             'status' => 'Pending',
         ]);
 
+        // Send Submission Confirmation Email
+        try {
+            Mail::to($permohonan->email)->send(new PermohonanStatusMail($permohonan));
+        } catch (\Exception $e) {
+            Log::warning("Gagal mengirim email konfirmasi pengajuan untuk tiket #{$permohonan->id}: " . $e->getMessage());
+        }
+
         return response()->json([
             'success' => true,
             'ticket_number' => $ticketNumber,
             'message' => 'Laporan berhasil dikirim.'
         ]);
+    }
+
+    /**
+     * Cek status tiket untuk publik dengan masking PII data.
+     */
+    public function cekTiket(Request $request)
+    {
+        $id = trim($request->query('id') ?? $request->query('ticket_number') ?? '');
+        
+        // Normalisasi input (menghapus karakter # jika ada)
+        $id = str_replace('#', '', $id);
+        
+        if (empty($id)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Nomor tiket tidak boleh kosong.'
+            ], 400);
+        }
+
+        // Cari permohonan dengan ticket_number (baik yang dengan # atau tanpa # di DB)
+        $permohonan = Permohonan::where('ticket_number', $id)
+            ->orWhere('ticket_number', "#{$id}")
+            ->first();
+
+        if (!$permohonan) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Nomor tiket tidak ditemukan.'
+            ], 404);
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'id' => $permohonan->ticket_number,
+                'nama' => $this->maskName($permohonan->nama),
+                'email' => $this->maskEmail($permohonan->email),
+                'nik' => $this->maskNik($permohonan->nik),
+                'telepon' => $this->maskPhone($permohonan->telepon),
+                'alamat' => $permohonan->alamat,
+                'kategori' => $permohonan->kategori,
+                'subjek' => $permohonan->subjek,
+                'tanggal' => $permohonan->created_at->translatedFormat('d F Y'),
+                'status' => $permohonan->status,
+                'perincian' => $permohonan->perincian,
+                'tanggapan' => $permohonan->tanggapan,
+                'bentuk_informasi' => $permohonan->bentuk_informasi,
+                'cara_mendapatkan' => $permohonan->cara_mendapatkan,
+                'file_tanggapan' => $permohonan->file_tanggapan,
+            ]
+        ]);
+    }
+
+    private function maskName($name)
+    {
+        $name = trim($name);
+        $len = strlen($name);
+        if ($len <= 2) return $name;
+        return $name[0] . str_repeat('*', $len - 2) . $name[$len - 1];
+    }
+
+    private function maskEmail($email)
+    {
+        $parts = explode('@', $email);
+        if (count($parts) < 2) return $email;
+        $user = $parts[0];
+        $domain = $parts[1];
+        
+        $userLen = strlen($user);
+        if ($userLen <= 2) {
+            $maskedUser = $user;
+        } else {
+            $maskedUser = substr($user, 0, 2) . str_repeat('*', $userLen - 2);
+        }
+        
+        $domParts = explode('.', $domain);
+        $domName = $domParts[0];
+        $domLen = strlen($domName);
+        if ($domLen <= 2) {
+            $maskedDomName = $domName;
+        } else {
+            $maskedDomName = substr($domName, 0, 2) . str_repeat('*', $domLen - 2);
+        }
+        
+        $domParts[0] = $maskedDomName;
+        return $maskedUser . '@' . implode('.', $domParts);
+    }
+
+    private function maskNik($nik)
+    {
+        $nik = trim($nik);
+        $len = strlen($nik);
+        if ($len <= 8) return str_repeat('*', $len);
+        return substr($nik, 0, 4) . str_repeat('*', $len - 8) . substr($nik, -4);
+    }
+
+    private function maskPhone($phone)
+    {
+        $phone = trim($phone);
+        $len = strlen($phone);
+        if ($len <= 6) return str_repeat('*', $len);
+        return substr($phone, 0, 4) . str_repeat('*', $len - 6) . substr($phone, -2);
     }
 
     /**

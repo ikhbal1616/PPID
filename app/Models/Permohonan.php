@@ -26,5 +26,6 @@ class Permohonan extends Model
         'file_bukti',
         'status',
         'tanggapan',
+        'file_tanggapan',
     ];
 }

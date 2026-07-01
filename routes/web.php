@@ -67,6 +67,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Permohonan (Public Forms submission)
 Route::post('/permohonan', [PermohonanController::class, 'store'])->name('permohonan.store');
+Route::get('/cek-tiket', [PermohonanController::class, 'cekTiket'])->name('permohonan.cek-tiket');
 
 // Protected Admin Routes
 Route::middleware(['auth'])->group(function () {

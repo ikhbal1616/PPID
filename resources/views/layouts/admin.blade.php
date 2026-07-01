@@ -10,6 +10,9 @@
     <meta name="description" content="Dashboard Administrasi Internal PPID Universitas Baiturrahmah.">
     <meta name="author" content="Universitas Baiturrahmah">
     
+    <!-- Favicon -->
+    <link class="favicon" rel="icon" type="image/png" href="/images/logo_unbrah.png">
+    
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     
     <!-- Alpine.js (Local Offline) -->
