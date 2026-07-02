@@ -846,6 +846,51 @@
                 }
             }
         });
+
+        // Toggle Accordion untuk Halaman Informasi/Dokumen
+        function toggleAccordion(id) {
+            const content = document.getElementById('content-' + id);
+            const arrow = document.getElementById('arrow-' + id);
+            if (content && arrow) {
+                if (content.classList.contains('hidden')) {
+                    content.classList.remove('hidden');
+                    arrow.classList.add('rotate-180');
+                } else {
+                    content.classList.add('hidden');
+                    arrow.classList.remove('rotate-180');
+                }
+            }
+        }
+
+        // Live search filter untuk Accordion Dokumen
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('doc-search');
+            if (searchInput) {
+                searchInput.addEventListener('input', (e) => {
+                    const query = e.target.value.toLowerCase().trim();
+                    const docItems = document.querySelectorAll('.doc-item');
+                    
+                    docItems.forEach(item => {
+                        const titleEl = item.querySelector('.font-bold');
+                        const descEl = item.querySelector('p');
+                        const files = item.querySelectorAll('a');
+                        
+                        let textToSearch = '';
+                        if (titleEl) textToSearch += titleEl.textContent.toLowerCase() + ' ';
+                        if (descEl) textToSearch += descEl.textContent.toLowerCase() + ' ';
+                        files.forEach(f => {
+                            textToSearch += f.textContent.toLowerCase() + ' ';
+                        });
+                        
+                        if (textToSearch.includes(query)) {
+                            item.classList.remove('hidden');
+                        } else {
+                            item.classList.add('hidden');
+                        }
+                    });
+                });
+            }
+        });
     </script>
 
     @yield('scripts')
