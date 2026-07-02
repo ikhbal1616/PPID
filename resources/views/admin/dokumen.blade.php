@@ -80,6 +80,140 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- KELOMPOK MODAL -->
+                <div id="kelompok-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto hidden" role="dialog" aria-modal="true">
+                    <!-- Backdrop -->
+                    <div class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300" onclick="closeKelompokModal()"></div>
+
+                    <!-- Modal Content -->
+                    <div class="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl flex flex-col justify-between transform scale-95 opacity-0 transition-all duration-300 ease-out border border-slate-100 overflow-hidden z-10" id="kelompok-modal-container">
+                        <!-- Header -->
+                        <div class="bg-gradient-to-r from-brand-green-900 to-brand-green-950 px-6 py-5 flex justify-between items-center text-white">
+                            <div>
+                                <h3 class="text-sm font-bold font-display" id="form-kelompok-title">Form Tambah Kelompok</h3>
+                                <p class="text-[9px] text-brand-gold-500 tracking-wider uppercase font-semibold mt-0.5">Kelompok Dokumen PPID</p>
+                            </div>
+                            <button type="button" onclick="closeKelompokModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer border-none outline-none focus:outline-none">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                            </button>
+                        </div>
+
+                        <!-- Form Body -->
+                        <div class="p-6 space-y-4 text-xs text-slate-700">
+                            <div class="space-y-1.5">
+                                <label for="kel-title" class="block font-bold text-slate-600 uppercase tracking-wider text-[10px]">Judul Kelompok</label>
+                                <input type="text" id="kel-title" class="w-full bg-slate-50 border border-slate-200 focus:border-brand-green-500 focus:bg-white text-slate-800 text-xs px-3.5 py-2.5 rounded-xl transition-all outline-none" required placeholder="Masukkan judul kelompok dokumen...">
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="space-y-1.5">
+                                    <label for="kel-category" class="block font-bold text-slate-600 uppercase tracking-wider text-[10px]">Kategori</label>
+                                    <select id="kel-category" class="w-full bg-slate-50 border border-slate-200 focus:border-brand-green-500 focus:bg-white text-slate-800 text-xs px-3.5 py-2.5 rounded-xl transition-all outline-none cursor-pointer">
+                                        <option value="profil">Profil & Akademik</option>
+                                        <option value="lppm">Penelitian & LPPM</option>
+                                        <option value="kinerja">Kinerja & Regulasi</option>
+                                        <option value="layanan">Layanan & Laporan</option>
+                                    </select>
+                                </div>
+                                <div class="space-y-1.5">
+                                    <label for="kel-badge" class="block font-bold text-slate-600 uppercase tracking-wider text-[10px]">Tipe Badge (Opsional)</label>
+                                    <input type="text" id="kel-badge" class="w-full bg-slate-50 border border-slate-200 focus:border-brand-green-500 focus:bg-white text-slate-800 text-xs px-3.5 py-2.5 rounded-xl transition-all outline-none" placeholder="Contoh: Rencana, Laporan, SK">
+                                </div>
+                            </div>
+
+                            <div class="space-y-1.5">
+                                <label for="kel-desc" class="block font-bold text-slate-600 uppercase tracking-wider text-[10px]">Deskripsi Singkat</label>
+                                <textarea id="kel-desc" rows="2" class="w-full bg-slate-50 border border-slate-200 focus:border-brand-green-500 focus:bg-white text-slate-800 text-xs px-3.5 py-2.5 rounded-xl transition-all outline-none resize-none" placeholder="Masukkan deskripsi mengenai kelompok dokumen ini..."></textarea>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4 hidden">
+                                <div class="space-y-1.5">
+                                    <label for="kel-link-url" class="block font-bold text-slate-600 uppercase tracking-wider text-[10px]">Link Tautan Langsung (Opsional)</label>
+                                    <input type="text" id="kel-link-url" class="w-full bg-slate-50 border border-slate-200 focus:border-brand-green-500 focus:bg-white text-slate-800 text-xs px-3.5 py-2.5 rounded-xl transition-all outline-none" placeholder="https://example.com/...">
+                                </div>
+                                <div class="space-y-1.5">
+                                    <label for="kel-link-label" class="block font-bold text-slate-600 uppercase tracking-wider text-[10px]">Label Tautan Langsung</label>
+                                    <input type="text" id="kel-link-label" class="w-full bg-slate-50 border border-slate-200 focus:border-brand-green-500 focus:bg-white text-slate-800 text-xs px-3.5 py-2.5 rounded-xl transition-all outline-none" placeholder="Contoh: Buka Link, Selengkapnya">
+                                </div>
+                            </div>
+
+                            <!-- Modal Footer Buttons -->
+                            <div class="pt-4 border-t border-slate-100 flex items-center justify-end space-x-3">
+                                <button type="button" onclick="closeKelompokModal()" class="px-5 py-2.5 rounded-xl border border-slate-200 text-slate-500 hover:bg-slate-100 text-xs font-semibold transition-colors cursor-pointer">Batal</button>
+                                <button type="button" onclick="saveKelompokItem()" class="px-6 py-2.5 rounded-xl bg-brand-green-900 hover:bg-brand-green-950 text-white text-xs font-bold shadow-lg transition-all duration-300 cursor-pointer">
+                                    <span id="save-kel-btn-text">Simpan Kelompok</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FILE/TAUTAN MODAL -->
+                <div id="file-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto hidden" role="dialog" aria-modal="true">
+                    <!-- Backdrop -->
+                    <div class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300" onclick="closeFileFormPanel()"></div>
+
+                    <!-- Modal Content -->
+                    <div class="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl flex flex-col justify-between transform scale-95 opacity-0 transition-all duration-300 ease-out border border-slate-100 overflow-hidden z-10" id="file-modal-container">
+                        <!-- Header -->
+                        <div class="bg-gradient-to-r from-brand-green-900 to-brand-green-950 px-6 py-5 flex justify-between items-center text-white">
+                            <div>
+                                <h3 class="text-sm font-bold font-display" id="form-file-title">Tambah File ke Kelompok</h3>
+                                <p class="text-[9px] text-brand-gold-500 tracking-wider uppercase font-semibold mt-0.5" id="active-kel-display-title">Judul Kelompok</p>
+                            </div>
+                            <button type="button" onclick="closeFileFormPanel()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer border-none outline-none focus:outline-none">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                            </button>
+                        </div>
+
+                        <!-- Form Body -->
+                        <div class="p-6 space-y-4 text-xs text-slate-700">
+                            <input type="hidden" id="file-kel-index">
+
+                            <div class="space-y-1.5">
+                                <label for="file-title" class="block font-bold text-slate-600 uppercase tracking-wider text-[10px]">Nama/Judul File atau Tautan</label>
+                                <input type="text" id="file-title" class="w-full bg-slate-50 border border-slate-200 focus:border-brand-green-500 focus:bg-white text-slate-800 text-xs px-3.5 py-2.5 rounded-xl transition-all outline-none" required placeholder="Contoh: Rencana Strategis, Link Pendaftaran...">
+                            </div>
+
+                            <div class="space-y-1.5">
+                                <label for="file-type" class="block font-bold text-slate-600 uppercase tracking-wider text-[10px]">Tipe Berkas / Tautan</label>
+                                <select id="file-type" onchange="toggleFileTypeInput(this.value)" class="w-full bg-slate-50 border border-slate-200 focus:border-brand-green-500 focus:bg-white text-slate-800 text-xs px-3.5 py-2.5 rounded-xl transition-all outline-none cursor-pointer" required>
+                                    <option value="" disabled selected>Pilih tipe...</option>
+                                    <option value="PDF">Dokumen PDF (Unggah)</option>
+                                    <option value="Gambar">Gambar (Unggah)</option>
+                                    <option value="Link">Tautan URL / Halaman</option>
+                                </select>
+                            </div>
+
+                            <!-- Upload Container (PDF / Gambar) -->
+                            <div id="file-pdf-upload-container" class="space-y-2 hidden">
+                                <label id="upload-label" class="block font-bold text-slate-600 uppercase tracking-wider text-[10px]">Unggah File PDF (Maks. 10MB)</label>
+                                <div class="flex items-center space-x-3">
+                                    <label class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl transition-colors cursor-pointer border border-slate-200">
+                                        <span id="upload-btn-label">Pilih File PDF</span>
+                                        <input type="file" id="file-pdf-uploader" accept=".pdf" onchange="uploadBerkasFile(this)" class="hidden">
+                                    </label>
+                                    <span id="file-upload-status" class="text-[10px] text-slate-400 font-medium">Belum ada file diunggah.</span>
+                                </div>
+                            </div>
+
+                            <!-- URL input -->
+                            <div id="file-url-container" class="space-y-1.5 hidden">
+                                <label for="file-url" class="block font-bold text-slate-600 uppercase tracking-wider text-[10px]">Alamat URL / Tautan</label>
+                                <input type="text" id="file-url" class="w-full bg-slate-50 border border-slate-200 focus:border-brand-green-500 focus:bg-white text-slate-800 text-xs px-3.5 py-2.5 rounded-xl transition-all outline-none" placeholder="/halaman-internal atau https://example.com/...">
+                            </div>
+
+                            <!-- Modal Footer Buttons -->
+                            <div class="pt-4 border-t border-slate-100 flex items-center justify-end space-x-3">
+                                <button type="button" onclick="closeFileFormPanel()" class="px-5 py-2.5 rounded-xl border border-slate-200 text-slate-500 hover:bg-slate-100 text-xs font-semibold transition-colors cursor-pointer">Batal</button>
+                                <button type="button" onclick="saveFileItem()" class="px-6 py-2.5 rounded-xl bg-brand-green-900 hover:bg-brand-green-950 text-white text-xs font-bold shadow-lg transition-all duration-300 cursor-pointer">
+                                    <span id="save-file-btn-text">Tambahkan Berkas</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 @endsection
 
 @section('scripts')
@@ -450,7 +584,7 @@
             document.getElementById('file-url').value = file.url;
             document.getElementById('file-pdf-uploader').value = '';
             
-            if (file.type === 'PDF' && file.url.startsWith('/uploads/')) {
+            if ((file.type === 'PDF' || file.type === 'Gambar') && file.url.startsWith('/uploads/')) {
                 document.getElementById('file-upload-status').innerText = "File terunggah: " + file.url.split('/').pop();
                 document.getElementById('file-upload-status').className = "text-[10px] text-emerald-600 font-semibold";
             } else {
@@ -489,10 +623,25 @@
             const pdfContainer = document.getElementById('file-pdf-upload-container');
             const urlContainer = document.getElementById('file-url-container');
             const urlInput = document.getElementById('file-url');
+            const uploaderInput = document.getElementById('file-pdf-uploader');
+            const uploadLabel = document.getElementById('upload-label');
+            const uploadBtnLabel = document.getElementById('upload-btn-label');
             
             if (type === 'PDF') {
                 pdfContainer.classList.remove('hidden');
                 urlContainer.classList.add('hidden');
+                if (uploadLabel) uploadLabel.innerText = "Unggah File PDF (Maks. 10MB)";
+                if (uploadBtnLabel) uploadBtnLabel.innerText = "Pilih File PDF";
+                if (uploaderInput) uploaderInput.accept = ".pdf";
+                if (urlInput && urlInput.value === '#') {
+                    urlInput.value = '';
+                }
+            } else if (type === 'Gambar') {
+                pdfContainer.classList.remove('hidden');
+                urlContainer.classList.add('hidden');
+                if (uploadLabel) uploadLabel.innerText = "Unggah Gambar (Maks. 2MB)";
+                if (uploadBtnLabel) uploadBtnLabel.innerText = "Pilih Gambar";
+                if (uploaderInput) uploaderInput.accept = "image/*";
                 if (urlInput && urlInput.value === '#') {
                     urlInput.value = '';
                 }
@@ -513,15 +662,29 @@
             const file = input.files[0];
             const statusEl = document.getElementById('file-upload-status');
             const urlEl = document.getElementById('file-url');
+            const type = document.getElementById('file-type').value;
             
             if (!file) return;
 
-            // Check file size (10 MB = 10 * 1024 * 1024 bytes)
-            const maxSize = 10 * 1024 * 1024;
+            // Check file size limit based on type
+            let maxSize = 10 * 1024 * 1024; // Default 10MB
+            let limitText = "10 MB";
+            let typeText = "Berkas";
+            
+            if (type === 'Gambar') {
+                maxSize = 2 * 1024 * 1024; // 2MB
+                limitText = "2 MB";
+                typeText = "Gambar";
+            } else if (type === 'PDF') {
+                maxSize = 10 * 1024 * 1024; // 10MB
+                limitText = "10 MB";
+                typeText = "Dokumen PDF";
+            }
+
             if (file.size > maxSize) {
-                showErrorModalPopup('Ukuran Berkas Terlalu Besar', 'Berkas PDF yang Anda pilih berukuran ' + (file.size / 1024 / 1024).toFixed(2) + ' MB. Batas maksimum ukuran berkas yang diperbolehkan adalah 10 MB.');
+                showErrorModalPopup('Ukuran Berkas Terlalu Besar', `${typeText} yang Anda pilih berukuran ${(file.size / 1024 / 1024).toFixed(2)} MB. Batas maksimum ukuran yang diperbolehkan adalah ${limitText}.`);
                 input.value = '';
-                statusEl.innerText = "Gagal: Berkas melebihi 10MB.";
+                statusEl.innerText = `Gagal: melebihi ${limitText}.`;
                 statusEl.className = "text-[10px] text-rose-500 font-semibold";
                 return;
             }
@@ -544,14 +707,14 @@
                     statusEl.innerText = "Selesai: " + file.name;
                     statusEl.className = "text-[10px] text-emerald-600 font-semibold";
                 } else {
-                    alert('Gagal mengunggah file: ' + data.message);
+                    showErrorModalPopup('Gagal Mengunggah', 'Gagal mengunggah berkas: ' + data.message);
                     statusEl.innerText = "Gagal mengunggah.";
                     statusEl.className = "text-[10px] text-rose-500 font-semibold";
                 }
             })
             .catch(err => {
                 console.error(err);
-                alert('Terjadi kesalahan saat mengunggah file.');
+                showErrorModalPopup('Gagal Mengunggah', 'Terjadi kesalahan saat mengunggah berkas. Pastikan ukuran berkas tidak melebihi batas maksimum (PDF: 10MB, Gambar: 2MB).');
                 statusEl.innerText = "Gagal mengunggah.";
                 statusEl.className = "text-[10px] text-rose-500 font-semibold";
             });
@@ -586,6 +749,11 @@
 
             if (type === 'PDF' && !url) {
                 showErrorModalPopup('Gagal Menyimpan', 'Silakan unggah dokumen PDF terlebih dahulu.');
+                return;
+            }
+
+            if (type === 'Gambar' && !url) {
+                showErrorModalPopup('Gagal Menyimpan', 'Silakan unggah gambar terlebih dahulu.');
                 return;
             }
 
